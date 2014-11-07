@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pe.com.codespace.nurse" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light" >
+        <activity
+            android:name="pe.com.codespace.nurse.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pe.com.codespace.nurse.Input2ParametrosActivity"
+            android:label="@string/title_activity_input" >
+        </activity>
+        <activity
+            android:name="pe.com.codespace.nurse.Input3ParametrosActivity"
+            android:label="@string/title_activity_input" >
+        </activity>
+        <activity
+            android:name="pe.com.codespace.nurse.Input4ParametrosActivity"
+            android:label="@string/title_activity_input" >
+        </activity>
+        <activity
+            android:name="pe.com.codespace.nurse.InputConvertSolutionActivity"
+            android:label="@string/title_activity_input" >
+        </activity>
+        <activity
+            android:name="pe.com.codespace.nurse.EscalaActivity1"
+            android:label="@string/title_activity_escala_activity1" >
+        </activity>
+        <activity
+            android:name=".Escala3ParametrosActivity"
+            android:label="@string/title_activity_escala_glasgow" >
+        </activity>
+        <activity
+            android:name=".Escala5ParametrosActivity"
+            android:label="@string/title_activity_escala_glasgow" >
+        </activity>
+        <activity
+            android:name=".Escala6ParametrosActivity"
+            android:label="@string/title_activity_escala_glasgow" >
+        </activity>
+        <activity
+            android:name=".Escala10ParametrosActivity"
+            android:label="@string/title_activity_escala_glasgow" >
+        </activity>
+        <activity
+            android:name=".EscalaNoParametrosActivity"
+            android:label="@string/title_activity_escala_glasgow" >
+        </activity>
+    </application>
+
+</manifest>
