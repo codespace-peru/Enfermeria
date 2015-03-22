@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tvItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/listitem_height_size"
         android:minHeight="40dp"
         android:paddingTop="3dp"
         android:gravity="center_vertical"

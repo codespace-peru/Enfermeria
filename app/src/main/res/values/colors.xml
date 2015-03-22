@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#f5f5f5</color>
+    <color name="background">#e7e7e7</color>
     <color name="background_splash">#ff0000</color>
     <color name="titulo_app_splash">#ffffff</color>
     <color name="titulo_aplicacion">#800000</color>
@@ -33,6 +33,7 @@
     <color name="guinda">#660033</color>
     <color name="granate">#800000</color>
     <color name="gris">#808080</color>
+    <color name="gris_clarito">#e1e1e1</color>
     <color name="gris_claro">#d3d3d3</color>
     <color name="indigo">#4b0082</color>
     <color name="ladrillo">#b22222</color>

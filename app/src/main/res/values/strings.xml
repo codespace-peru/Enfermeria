@@ -6,9 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_formulas">FormulasActivity</string>
     <string name="title_activity_input">InputActivity</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Enfermeria</string>
     <string name="title_section1">Escalas</string>
-    <string name="title_section2">Fórmulas</string>
+    <string name="title_section2">Formulas</string>
     <string name="title_activity_escala_activity1">EscalaActivity1</string>
     <string name="title_activity_escala_glasgow">EscalaGlasgowActivity</string>
 

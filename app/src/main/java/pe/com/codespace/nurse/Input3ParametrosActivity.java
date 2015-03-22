@@ -29,6 +29,7 @@ public class Input3ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayShowTitleEnabled(false);
         setContentView(R.layout.activity_input3param);
 
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);

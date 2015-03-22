@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tvGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/listgroup_height_size"
         android:minHeight="40dp"
         android:gravity="center_vertical"
         android:textStyle="bold"

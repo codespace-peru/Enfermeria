@@ -31,6 +31,7 @@ public class Input4ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayShowTitleEnabled(false);
         setContentView(R.layout.activity_input4param);
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewResultado2 = (TextView) findViewById(R.id.tvResultado2);

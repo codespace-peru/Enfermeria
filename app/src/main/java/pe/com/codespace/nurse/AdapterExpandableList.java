@@ -68,7 +68,7 @@ public class AdapterExpandableList extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View view, ViewGroup viewGroup) {
 
         View row = view;
-        TextView textView = null;
+        TextView textView;
         if(row == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.list_group, null);

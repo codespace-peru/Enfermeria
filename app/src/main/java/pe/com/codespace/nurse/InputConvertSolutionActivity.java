@@ -31,6 +31,7 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayShowTitleEnabled(false);
         setContentView(R.layout.activity_convertsolution);
 
         Intent intent = getIntent();
