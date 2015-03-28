@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class Escala6ParametrosActivity extends ActionBarActivity {
 
@@ -153,6 +157,11 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewEscala6Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void UpdateRespuesta(){
@@ -169,7 +178,7 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
                 textView4.setText("Cardiovascular: PAM");
                 textView5.setText("SNC: Glasgow");
                 textView6.setText("Renal: Creatinina");
-                textViewNotas.setText("Notas");
+                textViewNotas.setText("Sequential Organ Failure Assessment (SOFA) es una escala de medición de la aparición y evolución del fallo multiorgánico en pacientes de la UCI.\nUn incremento de la puntuación SOFA en las primeras 48h predice una mortalidad del 50%.\nEn SOFA mayores a 15 puntos la mortalidad esperada es >=90%.");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=0; Param2=0; Param3=0; Param4=0; Param5=0; Param6=0;
                 items1 = new String[]{"> 400 mmHg","< 400 mmHg", "< 300 mmHg", "< 200 mmHg", "< 100 mmHg"};
@@ -202,6 +211,18 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

@@ -13,7 +13,9 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import java.util.List;
 
 
@@ -102,6 +104,11 @@ public class Escala3ParametrosActivity extends ActionBarActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewEscala3Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void prepararData(int tipo) {
@@ -152,6 +159,18 @@ public class Escala3ParametrosActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class Escala10ParametrosActivity extends ActionBarActivity {
 
@@ -230,6 +234,11 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewEscala10Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void UpdateRespuesta(){
@@ -250,7 +259,9 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
                 textView8.setText("Traslado sillón/cama");
                 textView9.setText("Deambulación");
                 textView10.setText("Movilidad en escaleras");
-                textViewNotas.setText("Notas");
+                textViewNotas.setText("Esta escala valora la independencia funcional al realizar actividades básicas de la vida diaria.\n\n" +
+                                      "< 20 :   Total\n" + "20 - 35 : Grave\n" + "40 - 55 : Moderado\n" +
+                                      ">= 60 :  Leve\n" + "100 : Independiente\n");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=10; Param2=5; Param3=5; Param4=10; Param5=10; Param6=10; Param7=10; Param8=15; Param9=10; Param10=10;
                 items1 = new String[]{"Independiente","Necesita ayuda", "Dependiente"};
@@ -292,6 +303,18 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

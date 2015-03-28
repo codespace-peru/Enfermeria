@@ -15,6 +15,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class Input4ParametrosActivity extends ActionBarActivity {
     double Param1, Param2, Param3, Param4;
@@ -51,14 +55,21 @@ public class Input4ParametrosActivity extends ActionBarActivity {
         switch (tipo){
             case 15:
                 tvTitleFormula.setText("Velocidad de Goteo de Dopamina - Dobutamina");
-                tvParam1.setText("Dosis indicada (mcg/kg/min): ");
+                tvParam1.setText("Dosis (mcg/kg/min): ");
                 tvParam2.setText("Peso del Paciente (kg):");
                 tvParam3.setText("Cantidad del Fármaco (mg): ");
                 tvParam4.setText("Volumen Total de la Infusión (ml): ");
+                descripcion ="La cantidad del fármaco indica los mg. que están en la preparación.\nEl volumen total de la infusión incluye los volúmenes de la solución diluyente y del fármaco a preparar.";
+                textViewDescription.setText(descripcion);
                 break;
             case 16:
                 break;
         }
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewInput4Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 
@@ -79,8 +90,7 @@ public class Input4ParametrosActivity extends ActionBarActivity {
                 String s3 = editText3.getText().toString();
                 String s4 = editText4.getText().toString();
 
-                if((s1==null || s1.isEmpty()) || !Tools.isNumeric(s1) || (s2==null || s2.isEmpty() || Tools.isNumeric(s2)) ||
-                   (s3==null || s3.isEmpty()) || !Tools.isNumeric(s3) || (s4==null || s4.isEmpty() || Tools.isNumeric(s4))) {
+                if(!Tools.isNumeric(s1) || !Tools.isNumeric(s2) || !Tools.isNumeric(s3) || !Tools.isNumeric(s4)) {
                     Toast.makeText(getApplicationContext(), "Ingrese los valores solicitados", Toast.LENGTH_SHORT).show();
                     return false;
                 }
@@ -93,7 +103,6 @@ public class Input4ParametrosActivity extends ActionBarActivity {
                         resultado = Formulas.ConversionFarmacoDopamina(Param1, Param2, Param3, Param4);
                         label1 = "Velocidad de goteo: ";
                         unidades=" ml/hora";
-                        descripcion ="La cantidad del fármaco indica los mg que están en la preparación. \n El volumen total de la infusión incluye los volúmenes de la solución diluyente y del fármaco a preparar";
                         break;
                 }
                 textViewResultado1.setText(label1 + resultado + unidades);
@@ -112,6 +121,18 @@ public class Input4ParametrosActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

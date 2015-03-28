@@ -17,6 +17,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class InputConvertSolutionActivity extends ActionBarActivity {
     double Param1, Param2, Param3, Param4;
@@ -115,10 +119,15 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
                 tvParam1.setText("Solución a preparar: ");
                 tvParam2.setText("Solución base: ");
                 tvParam3.setText("Solución a mezclar: ");
-                tvParam4.setText("Volumen a preparar: ");
+                tvParam4.setText("Volumen a preparar (ml): ");
                 tvDescription.setText("Esta fórmula indica los volúmenes necesarios de las soluciones base que se necesitan para preparar la solución objetivo.");
                 break;
         }
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewConvertSolution);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 
@@ -168,6 +177,18 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

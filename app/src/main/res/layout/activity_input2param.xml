@@ -1,4 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -13,28 +15,17 @@
         <TextView
             android:id="@+id/tvTitleFormula"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/layout_height_title_size"
             android:textStyle="bold"
             android:textAllCaps="true"
-            android:text="TEST"
-            android:layout_marginTop="@dimen/layout_top_margin_size"
-            android:gravity="center_horizontal"
+            android:text="text"
+            android:gravity="center"
             android:textSize="@dimen/title_main"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="3dp"
             android:background="@color/rojo"/>
-
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripcion"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/text_color1"
-            android:textSize="@dimen/text_size1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,6 +107,29 @@
             android:textSize="@dimen/text_size3"
             android:visibility="gone"
             android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripcion"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color1"
+            android:textSize="@dimen/text_size1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.gms.ads.AdView android:id="@+id/adViewInput2Param"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            ads:adUnitId="ca-app-pub-4549935446415170/4450174044"
+            ads:adSize="BANNER"/>
     </LinearLayout>
 
 </RelativeLayout>

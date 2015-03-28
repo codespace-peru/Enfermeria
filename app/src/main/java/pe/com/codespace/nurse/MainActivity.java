@@ -25,6 +25,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -80,6 +84,11 @@ public class MainActivity extends ActionBarActivity {
         prepararData(tipo);
         myAdapter = new AdapterExpandableList(this, listDataHeader, listDataChild);
         myExpand.setAdapter(myAdapter);
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewMain);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -242,15 +251,15 @@ public class MainActivity extends ActionBarActivity {
                 child = new ArrayList<String>();
                 child.add("Escala de Coma de Glasgow");
                 child.add("Escala de Sedación de Ramsay"); //
-                child.add("Escala RASS"); //
-                child.add("Escala SOFA");
+                child.add("Escala de Sedación RASS"); //
+                child.add("Score SOFA");
                 listDataChild.put(listDataHeader.get(0),child);
 
                 //Hijos del Segundo Padre
                 child = new ArrayList<String>();
                 child.add("Escala de Norton Modificado");
-                child.add("Escala de Riesgo de Caídas de J.H.Downton");
-                child.add("Escala de Independencia Funcional de Barthel");
+                child.add("Escala de J.H.Downton");
+                child.add("Escala de Barthel");
                 listDataChild.put(listDataHeader.get(1), child);
 
                 //Hijos del Tercer Padre
@@ -274,7 +283,7 @@ public class MainActivity extends ActionBarActivity {
                 child.add("Pérdidas Insensibles"); // tipo=2
                 child.add("Superficie Corporal en Niños"); // tipo=3
                 child.add("Superficie Corporal en Adultos"); // tipo=4
-                child.add("Test con 3 Parámetros"); // tipo=5
+                //child.add("Test con 3 Parámetros"); // tipo=5
                 listDataChild.put(listDataHeader.get(0),child);
 
                 //Hijos del Segundo Padre
@@ -289,7 +298,7 @@ public class MainActivity extends ActionBarActivity {
                 //Hijos del Tercer Padre
                 child = new ArrayList<String>();
                 child.add("Preparación de Fármacos en UCI"); //tipo=15
-                child.add("Cálculo 2"); //tipo=16
+                //child.add("Cálculo 2"); //tipo=16
                 listDataChild.put(listDataHeader.get(2), child);
                 break;
         }
@@ -311,6 +320,18 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

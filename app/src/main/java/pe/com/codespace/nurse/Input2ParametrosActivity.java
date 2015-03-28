@@ -14,6 +14,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class Input2ParametrosActivity extends ActionBarActivity {
     double Param1, Param2;
@@ -48,7 +52,9 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                 tvTitleFormula.setText("Indice de Masa Corporal en Adultos");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Talla (cm): ");
-                descripcion="Se calcula el IMC en base a la fórmula de la OMS";
+                descripcion="Se calcula el IMC en base a la fórmula de la OMS.\n\n" +
+                            "Bajo peso: < 18.5\nNormal: 18.5 - 24.99\nSobrepeso: >= 25.0\n" +
+                            "Obesidad leve: 30.0 - 34.99\nObesidad moderada: 35.0 - 39.99\nObesidad mórbida: >= 40.0";
                 break;
             case 2://Perdidas Insensibles
                 tvTitleFormula.setText("Perdidas Insensibles en Adultos Normotermos");
@@ -60,34 +66,39 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                 tvTitleFormula.setText("Superficie Corporal en Niños");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Talla (cm): ");
-                descripcion="Se calcula la superficie corporal usando la fórmula de Haycock";
+                descripcion="Se calcula la superficie corporal usando la fórmula de Haycock.";
                 break;
             case 4://SC en adultos
                 tvTitleFormula.setText("Superficie Corporal en Adultos");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Talla (cm): ");
-                descripcion="Se calcula la superficie corporal usando la fórmula de Mollester";
+                descripcion="Se calcula la superficie corporal usando la fórmula de Mollester.";
                 break;
             case 10://Velocidad de Goteo
                 tvTitleFormula.setText("Cálculo de la Velocidad de Goteo");
                 tvParam1.setText("Volumen a infundir (ml): ");
                 tvParam2.setText("Número de horas : ");
-                descripcion="Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas. \n Se considera que 1ml tiene 20 gotas";
+                descripcion="Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas.\nSe considera 1ml = 20 gotas";
                 break;
             case 11://
                 tvTitleFormula.setText("Volumen de Infusión");
                 tvParam1.setText("Velocidad de Goteo (gotas/min): ");
                 tvParam2.setText("Número de horas : ");
-                descripcion="Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas. \n Se considera que 1ml tiene 20 gotas";
+                descripcion="Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas.\nSe considera 1ml = 20 gotas";
                 break;
             case 12://
                 tvTitleFormula.setText("Tiempo de Infusión");
                 tvParam1.setText("Volumen a infundir (ml): ");
                 tvParam2.setText("Velocidad de goteo (gotas/min): ");
-                descripcion="Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo. \n Se considera que 1ml tiene 20 gotas";
+                descripcion="Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo.\nSe considera 1ml = 20 gotas";
                 break;
         }
         textViewDescription.setText(descripcion);
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewInput2Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
 
@@ -126,7 +137,7 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                         unidades = " cc.";
 
                         textViewResultado2.setText(label2 + agua + unidades);
-                        textViewResultado2.setVisibility(1);
+                        textViewResultado2.setVisibility(View.VISIBLE);
                         break;
                     case 3://Superficie corporal en Niños
                         resultado = Formulas.ASCbyHaycock(Param1, Param2);
@@ -172,6 +183,18 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

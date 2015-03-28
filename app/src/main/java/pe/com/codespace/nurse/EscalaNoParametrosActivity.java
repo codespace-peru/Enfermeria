@@ -12,6 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class EscalaNoParametrosActivity extends ActionBarActivity {
 
@@ -64,6 +68,12 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
         linearLayout10 = (LinearLayout) findViewById(R.id.escala_linear10);
 
         prepararData(numeroEscala);
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewEscalaSinParam);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
     }
 
     private void prepararData(int tipo) {
@@ -90,45 +100,37 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
                 textViewItem8.setText("Sedación moderada");
                 textViewItem9.setText("Sedación profunda");
                 textViewItem10.setText("No estimulable");
-                textViewNotas.setText("La escala RASS mide el .. sdad adadad dasd dasd");
+                textViewNotas.setText("Richmond Agitation Sedation Scale (RASS) es una escala usada para medir el nivel de agitación o sedación de un paciente.\nEs muy usada en pacientes con ventilación mecánica.");
                 textViewNotas.setVisibility(View.VISIBLE);
                 //tipoEscala="RASS";
                 break;
             case RAMSAY:
                 textViewTitle.setText("Escala de Sedación de RAMSAY");
-                textViewNum1.setText("1");
-                textViewNum2.setText("2");
-                textViewNum3.setText("3");
-                textViewNum4.setText("4");
-                textViewNum5.setText("5");
-                textViewNum6.setText("6");
-                textViewNum7.setText("");
-                textViewNum8.setText("");
+                textViewNum1.setText("");
+                textViewNum2.setText("1");
+                textViewNum3.setText("2");
+                textViewNum4.setText("3");
+                textViewNum5.setText("");
+                textViewNum6.setText("4");
+                textViewNum7.setText("5");
+                textViewNum8.setText("6");
                 textViewNum9.setText("");
                 textViewNum10.setText("");
-                textViewItem1.setText("Ansioso y/o agitado");
-                textViewItem2.setText("Tranquilo y colaborador");
-                textViewItem3.setText("Responde a órdenes verbales");
-                textViewItem4.setText("Responde a estimulos táctiles");
-                textViewItem5.setText("Responde a estimulos dolorosos");
-                textViewItem6.setText("No responde");
-                textViewItem7.setText("");
-                textViewItem8.setText("");
+                textViewItem1.setText("Despierto:");
+                textViewItem2.setText("Ansioso y/o agitado");
+                textViewItem3.setText("Tranquilo y colaborador");
+                textViewItem4.setText("Responde sólo a órdenes");
+                textViewItem5.setText("Dormido: Estímulo auditivo o glabelar");
+                textViewItem6.setText("Respuesta enérgica");
+                textViewItem7.setText("Respuesta lenta");
+                textViewItem8.setText("No responde");
                 textViewItem9.setText("");
                 textViewItem10.setText("");
-                textViewNotas.setText("La escala de Ramsay mide .... la kjdahdk dakdsjkd");
-                linearLayout7.setVisibility(View.GONE);
-                linearLayout8.setVisibility(View.GONE);
+                textViewNotas.setText("La escala Ramsay es usada para evaluar el nivel de sedación de un paciente hospitalizado. Fue descrita por Michael A. E. Ramsay");
+                textViewNum1.setVisibility(View.GONE);
+                textViewNum5.setVisibility(View.GONE);
                 linearLayout9.setVisibility(View.GONE);
                 linearLayout10.setVisibility(View.GONE);
-                /*textViewNum7.setVisibility(View.INVISIBLE);
-                textViewNum8.setVisibility(View.INVISIBLE);
-                textViewNum9.setVisibility(View.INVISIBLE);
-                textViewNum10.setVisibility(View.INVISIBLE);
-                textViewItem7.setVisibility(View.INVISIBLE);
-                textViewItem8.setVisibility(View.INVISIBLE);
-                textViewItem9.setVisibility(View.INVISIBLE);
-                textViewItem10.setVisibility(View.INVISIBLE);*/
                 textViewNotas.setVisibility(View.VISIBLE);
                 //tipoEscala="RAMSAY";
                 break;
@@ -148,6 +150,18 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

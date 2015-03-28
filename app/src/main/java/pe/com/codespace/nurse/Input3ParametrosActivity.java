@@ -14,6 +14,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class Input3ParametrosActivity extends ActionBarActivity {
     double Param1, Param2, Param3;
@@ -56,6 +60,12 @@ public class Input3ParametrosActivity extends ActionBarActivity {
             case 1:case 2:
                 break;
         }
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewInput3Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
     }
 
 
@@ -103,6 +113,18 @@ public class Input3ParametrosActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

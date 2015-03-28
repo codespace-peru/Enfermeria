@@ -12,7 +12,9 @@ import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import java.util.List;
 
 
@@ -141,6 +143,11 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
+
+        //Agregar el adView
+        AdView adView = (AdView)this.findViewById(R.id.adViewEscala5Param);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void UpdateRespuesta(){
@@ -156,7 +163,8 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
                 textView3.setText("Color de la Piel");
                 textView4.setText("Tono Muscular");
                 textView5.setText("Respuesta a Estímulos");
-                textViewNotas.setText("Notas");
+                textViewNotas.setText("0 - 3 : Severamente deprimido.\n4 - 6 : Moderadamente deprimido.\n7 - 10: Normal.\n\n" +
+                                      "Desarrollado por Virginia Apgar en 1952. Es un test rápido que se realiza para obtener una valoración del estado general del neonato.");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=2; Param2=2; Param3=2; Param4=2; Param5=2;
                 items1 = new String[]{"> 100 por minuto","< 100 por minuto", "Ausente"};
@@ -178,9 +186,10 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
                 textView3.setText("¿Las decisiones importantes se toman en conjunto en la casa?");
                 textView4.setText("¿Está satisfecho con el tiempo que usted y su familia pasan juntos?");
                 textView5.setText("¿Siente que su familia lo quiere?");
-                textViewNotas.setText("Familias altamente funcionales :\n 7 a 10 puntos\n\n" +
-                                      "Familias moderadamente funcionales :\n 4 a 6 puntos\n\n" +
-                                      "Familias severamente disfuncionales :\n 0 a 3 puntos");
+                textViewNotas.setText("7 - 10 : Altamente funcionales.\n" +
+                                      "4 - 6 : Moderadamente funcionales.\n" +
+                                      "0 - 3 : Severamente disfuncionales.\n\n" +
+                                      "Es un test que busca evidenciar el estado funcional de la familia.");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=0; Param2=0; Param3=0; Param4=0; Param5=0;
                 items1 = new String[]{"Casi nunca","A veces", "Casi siempre"};
@@ -202,10 +211,11 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
                 textView3.setText("Actividad");
                 textView4.setText("Movilidad");
                 textView5.setText("Incontinencia");
-                textViewNotas.setText("Riesgo Muy Alto : 5 a 9 puntos\n" +
-                                      "Riesgo Alto     : 10 a 12 puntos\n" +
-                                      "Riesgo Medio    : 13 a 14 puntos\n" +
-                                      "Riesgo Mínimo   : Más de 14 puntos");
+                textViewNotas.setText("Esta escala mide el riesgo que tiene un paciente de padecer úlceras por presión.\nFue realizada por Doreen Norton en 1962.\n\n" +
+                                      "Riesgo Muy Alto : 5 a 9 puntos\n" +
+                                      "Riesgo Alto      : 10 a 12 puntos\n" +
+                                      "Riesgo Medio     : 13 a 14 puntos\n" +
+                                      "Riesgo Mínimo    : Más de 14 puntos");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=4; Param2=4; Param3=4; Param4=4; Param5=4;
                 items1 = new String[]{"Bueno","Mediano", "Regular","Muy Malo"};
@@ -221,13 +231,13 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
                 tipoEscala="Norton Modificado";
                 break;
             case DOWNTON:
-                textViewTitle.setText("Escala de Riesgo de Caídas (J.H. Downton)");
+                textViewTitle.setText("Escala de J.H. Downton");
                 textView1.setText("Caídas previas");
                 textView2.setText("Medicación");
                 textView3.setText("Déficit sensorial");
                 textView4.setText("Estado mental");
                 textView5.setText("Deambulación");
-                textViewNotas.setText("\nAlto Riesgo : > 2 puntos\n");
+                textViewNotas.setText("Esta escala mide el riesgo de caídas de un paciente.\n" + "Alto Riesgo : > 2 puntos\n");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=0; Param2=0; Param3=0; Param4=0; Param5=0;
                 items1 = new String[]{"No","Si"};
@@ -260,4 +270,15 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
+    }
 }

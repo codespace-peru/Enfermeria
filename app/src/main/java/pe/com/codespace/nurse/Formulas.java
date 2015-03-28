@@ -30,7 +30,7 @@ public class Formulas {
 
     public static double VelocidadGoteo(double volumen, double horas) {
         double resultado;
-        resultado = volumen/(horas*3);
+        resultado = (volumen/(horas*3));
         resultado = (double) Math.round(resultado);
         return resultado;
     }
