@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="100dp">
 
         <TextView
             android:id="@+id/textViewTitleEscala"
@@ -35,7 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/activity_horizontal_margin">
             <TextView
                 android:id="@+id/textViewVariable1"
                 android:text="Variable1"
@@ -74,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -106,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -137,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -168,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -197,14 +198,14 @@
                 android:id="@+id/textViewResultadoEscala"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textSize="@dimen/text_size3"
                 android:gravity="center"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textViewEscalaNotas"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
@@ -224,6 +225,6 @@
             android:layout_height="wrap_content"
             android:gravity="bottom"
             ads:adUnitId="ca-app-pub-4549935446415170/4450174044"
-            ads:adSize="BANNER"/>
+            ads:adSize="LARGE_BANNER"/>
     </LinearLayout>
 </RelativeLayout>

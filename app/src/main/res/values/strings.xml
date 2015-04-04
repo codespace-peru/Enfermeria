@@ -11,5 +11,7 @@
     <string name="title_section2">Formulas</string>
     <string name="title_activity_escala_activity1">EscalaActivity1</string>
     <string name="title_activity_escala_glasgow">EscalaGlasgowActivity</string>
+    <string name="title_activity_regladetres">RegladetresActivity</string>
+    <string name="title_activity_fechas">FechasActivity</string>
 
 </resources>

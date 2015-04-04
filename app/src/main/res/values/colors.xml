@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#e7e7e7</color>
-    <color name="background_splash">#ff0000</color>
+    <color name="background_splash">#4682b4</color>
     <color name="titulo_app_splash">#ffffff</color>
     <color name="titulo_aplicacion">#800000</color>
     <color name="title_divider">#ffff00</color>

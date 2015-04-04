@@ -1,5 +1,8 @@
 package pe.com.codespace.nurse;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by Carlos on 22/04/2014.
  */
@@ -78,13 +81,32 @@ public class Formulas {
         return resultado;
     }
 
-    public static double ConversionFarmacoDopamina(double dosis, double peso, double medTotal, double volTotal) {
+    public static double GoteoDopamina(double dosis, double peso, double medTotal, double volTotal) {
         double temp;
         double resultado;
         temp = ((dosis*peso)/1000)*60;
         resultado = (temp*volTotal)/medTotal;
         resultado = (double) Math.round(resultado*100)/100;
         return resultado;
+    }
+
+    public static double VolumenDopamina(double peso, double medAmp) {
+        double resultado;
+        resultado = ((medAmp*100)/(peso*6));
+        resultado = (double) Math.round(resultado*100)/100;
+        return resultado;
+    }
+
+    public static Date FechaProbabledeParto(int dia, int mes, int anyo) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(Calendar.DAY_OF_MONTH, dia);
+        calendar.set(Calendar.MONTH, mes);
+        calendar.set(Calendar.YEAR, anyo);
+        calendar.add(Calendar.DAY_OF_MONTH,7);
+        calendar.add(Calendar.MONTH,-3);
+        calendar.add(Calendar.YEAR,1);
+        return calendar.getTime();
     }
 
 

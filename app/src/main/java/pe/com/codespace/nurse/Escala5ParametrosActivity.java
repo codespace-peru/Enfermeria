@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import static pe.com.codespace.nurse.MyValues.*;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
@@ -19,11 +20,6 @@ import java.util.List;
 
 
 public class Escala5ParametrosActivity extends ActionBarActivity {
-
-    private static final int APGAR=51;
-    private static final int APGAR_FAM=52;
-    private static final int NORTON=53;
-    private static final int DOWNTON=54;
 
     TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5;
@@ -205,7 +201,7 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
                 tipoEscala="Apgar Familiar";
                 break;
             case NORTON:
-                textViewTitle.setText("Escala de Norton Modificada");
+                textViewTitle.setText("Escala de Norton Modificado");
                 textView1.setText("Estado Fisico General");
                 textView2.setText("Estado Mental");
                 textView3.setText("Actividad");
@@ -215,7 +211,7 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
                                       "Riesgo Muy Alto : 5 a 9 puntos\n" +
                                       "Riesgo Alto      : 10 a 12 puntos\n" +
                                       "Riesgo Medio     : 13 a 14 puntos\n" +
-                                      "Riesgo Mínimo    : Más de 14 puntos");
+                                      "Riesgo Mínimo    : > 14 puntos");
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=4; Param2=4; Param3=4; Param4=4; Param5=4;
                 items1 = new String[]{"Bueno","Mediano", "Regular","Muy Malo"};

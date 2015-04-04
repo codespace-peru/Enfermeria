@@ -14,6 +14,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static pe.com.codespace.nurse.MyValues.*;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -48,49 +49,59 @@ public class Input2ParametrosActivity extends ActionBarActivity {
         tipo = intent.getExtras().getInt("formula");
 
         switch (tipo){
-            case 1://IMC
+            case IMC://IMC
                 tvTitleFormula.setText("Indice de Masa Corporal en Adultos");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Talla (cm): ");
                 descripcion="Se calcula el IMC en base a la fórmula de la OMS.\n\n" +
-                            "Bajo peso: < 18.5\nNormal: 18.5 - 24.99\nSobrepeso: >= 25.0\n" +
+                            "Bajo peso: < 18.5\nNormal: 18.5 - 24.99\nSobrepeso: 25.0 - 29.99\n" +
                             "Obesidad leve: 30.0 - 34.99\nObesidad moderada: 35.0 - 39.99\nObesidad mórbida: >= 40.0";
                 break;
-            case 2://Perdidas Insensibles
+            case PERDIDAS://Perdidas Insensibles
                 tvTitleFormula.setText("Perdidas Insensibles en Adultos Normotermos");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Número de horas: ");
                 descripcion="";
                 break;
-            case 3://SC en niños
+            case SC_NINOS://SC en niños
                 tvTitleFormula.setText("Superficie Corporal en Niños");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Talla (cm): ");
                 descripcion="Se calcula la superficie corporal usando la fórmula de Haycock.";
                 break;
-            case 4://SC en adultos
+            case SC_ADULTOS://SC en adultos
                 tvTitleFormula.setText("Superficie Corporal en Adultos");
                 tvParam1.setText("Peso (kg): ");
                 tvParam2.setText("Talla (cm): ");
                 descripcion="Se calcula la superficie corporal usando la fórmula de Mollester.";
                 break;
-            case 10://Velocidad de Goteo
+            case VELOCIDADGOTEO://Velocidad de Goteo
                 tvTitleFormula.setText("Cálculo de la Velocidad de Goteo");
                 tvParam1.setText("Volumen a infundir (ml): ");
                 tvParam2.setText("Número de horas : ");
                 descripcion="Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas.\nSe considera 1ml = 20 gotas";
                 break;
-            case 11://
-                tvTitleFormula.setText("Volumen de Infusión");
+            case VOLUMENINFUSION://
+                tvTitleFormula.setText("Cálculo del Volumen de Infusión");
                 tvParam1.setText("Velocidad de Goteo (gotas/min): ");
                 tvParam2.setText("Número de horas : ");
                 descripcion="Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas.\nSe considera 1ml = 20 gotas";
                 break;
-            case 12://
-                tvTitleFormula.setText("Tiempo de Infusión");
+            case TIEMPOINFUSION://
+                tvTitleFormula.setText("Cálculo del Tiempo de Infusión");
                 tvParam1.setText("Volumen a infundir (ml): ");
                 tvParam2.setText("Velocidad de goteo (gotas/min): ");
                 descripcion="Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo.\nSe considera 1ml = 20 gotas";
+                break;
+            case VOLUMEN_FARMACOS_UCI://
+                tvTitleFormula.setText("Volumen total Dopamina/Dobutamina");
+                tvParam1.setText("Peso del paciente (kg): ");
+                tvParam2.setText("Cantidad del fármaco (mg): ");
+                descripcion="Se calcula el volumen total de una preparación para obtener 1mcg de fármaco por cada 1cc de preparación.\n" +
+                            "Esto es muy útil porque numéricamente coinciden la dosis indicada (mcg/kg/min) con la velocidad de infusión (ml/hora).\n" +
+                            "Es decir si se desea una dosis de 3mcg/kg/min se infundirá a 3ml/hora; permitiendo implementar rápidamente los cambios en la indicación.\n" +
+                            "La cantidad del fármaco indica los mg. que se prepararán.\n" +
+                            "Fuente: UCI Grau-EsSalud-Perú.";
                 break;
         }
         textViewDescription.setText(descripcion);
@@ -123,13 +134,13 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                 Param1 = Double.parseDouble(editText1.getText().toString());
                 Param2 = Double.parseDouble(editText2.getText().toString());
                 switch (tipo){
-                    case 1://Indice de Masa Corporal
+                    case IMC://Indice de Masa Corporal
                         resultado = Formulas.IMC(Param1, Param2);
                         label1 = "IMC: ";
                         unidades="";
 
                         break;
-                    case 2://Perdidas Insensibles
+                    case PERDIDAS://Perdidas Insensibles
                         resultado = Formulas.PerdidaInsensibleAdultoNormotermo(Param1, Param2);
                         double agua = (double) Math.round((resultado/3)*100)/100;
                         label1 = "Perdidas Insensibles: ";
@@ -139,32 +150,37 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                         textViewResultado2.setText(label2 + agua + unidades);
                         textViewResultado2.setVisibility(View.VISIBLE);
                         break;
-                    case 3://Superficie corporal en Niños
+                    case SC_NINOS://Superficie corporal en Niños
                         resultado = Formulas.ASCbyHaycock(Param1, Param2);
                         label1 = "Superficie Corporal: ";
                         unidades=" m2";
 
                         break;
-                    case 4://Superficie corporal en Adultos
+                    case SC_ADULTOS://Superficie corporal en Adultos
                         resultado = Formulas.ASCbyMollester(Param1, Param2);
                         label1 = "Superficie Corporal: ";
                         unidades=" m2";
 
                         break;
-                    case 10://Velocidad de Goteo
+                    case VELOCIDADGOTEO://Velocidad de Goteo
                         resultado = Formulas.VelocidadGoteo(Param1, Param2);
-                        label1 = "Velocidad de infusión: ";
-                        unidades=" gotas/min";
+                        label1 = "Velocidad de goteo: ";
+                        unidades=" gts/min";
                         break;
-                    case 11://
+                    case VOLUMENINFUSION://
                         resultado = Formulas.VolumenInfusion(Param1, Param2);
                         label1 = "Volumen de infusión: ";
                         unidades=" ml";
                         break;
-                    case 12://
+                    case TIEMPOINFUSION://
                         resultado = Formulas.TiempoInfusion(Param1, Param2);
                         label1 = "Tiempo de infusión: ";
                         unidades=" hr";
+                        break;
+                    case VOLUMEN_FARMACOS_UCI://
+                        resultado = Formulas.VolumenDopamina(Param1, Param2);
+                        label1 = "Volumen total: ";
+                        unidades=" ml";
                         break;
                 }
                 textViewResultado1.setText(label1 + resultado + unidades);

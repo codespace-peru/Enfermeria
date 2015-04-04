@@ -12,7 +12,7 @@ import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-
+import static pe.com.codespace.nurse.MyValues.*;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -20,8 +20,6 @@ import java.util.List;
 
 
 public class Escala3ParametrosActivity extends ActionBarActivity {
-
-    private static final int GLASGOW=31;
 
     TextView textViewTitle,textViewResultado,textView1, textView2, textView3, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3;

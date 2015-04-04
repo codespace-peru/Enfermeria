@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import static pe.com.codespace.nurse.MyValues.*;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -32,6 +32,7 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
     TextView textViewResultado2 = null;
     TextView tvDescription = null;
     Spinner dropdownBase, dropdownMix, dropdownTarget;
+    Menu opMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
         double[] itemsTargetValues=null, itemsBaseValues=null, itemsMixValues=null;
 
         switch (tipo){
-            case 8:
+            case CONVERSIONDEXTROSA:
                 itemsBase = new String[]{"Agua Destilada","Dextrosa 5%", "Dextrosa 10%"};
                 itemsBaseValues = new double[]{0,5,10};
                 itemsMix = new String[]{"Dextrosa 5%", "Dextrosa 10%", "Dextrosa 25%", "Dextrosa 33.3%", "Dextrosa 50%", "Dextrosa 70%"};
@@ -59,7 +60,7 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
                 itemsTarget = new String[]{"Dextrosa 5%", "Dextrosa 10%", "Dextrosa 20%", "Dextrosa 25%", "Dextrosa 30%", "Dextrosa 50%"};
                 itemsTargetValues = new double[]{5,10,20,25,30,50};
                 break;
-            case 9:
+            case CONVERSIONCLORURO:
                 itemsTarget = new String[]{"NaCl 0.45%", "NaCl 1.5%", "NaCl 3%", "NaCl 10%", "NaCl 11.7%"};
                 itemsTargetValues = new double[]{0.45,1.5,3,10,11.7};
                 itemsBase = new String[]{"Agua Destilada","NaCl 0.9%"};
@@ -114,13 +115,13 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
         textViewResultado2 = (TextView) findViewById(R.id.tvResultado2);
         tvDescription = (TextView) findViewById(R.id.tvDescription);
         switch (tipo){
-            case 8:case 9:
+            case CONVERSIONDEXTROSA:case CONVERSIONCLORURO:
                 tvTitleFormula.setText("Conversión de Soluciones");
                 tvParam1.setText("Solución a preparar: ");
-                tvParam2.setText("Solución base: ");
-                tvParam3.setText("Solución a mezclar: ");
+                tvParam2.setText("Solución base 1: ");
+                tvParam3.setText("Solución base 2: ");
                 tvParam4.setText("Volumen a preparar (ml): ");
-                tvDescription.setText("Esta fórmula indica los volúmenes necesarios de las soluciones base que se necesitan para preparar la solución objetivo.");
+                tvDescription.setText("Esta fórmula indica los volúmenes necesarios de las soluciones base que se necesitan para obtener la solución a preparar.");
                 break;
         }
 
@@ -134,6 +135,7 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        opMenu = menu;
         getMenuInflater().inflate(R.menu.input, menu);
         return true;
     }
@@ -145,30 +147,36 @@ public class InputConvertSolutionActivity extends ActionBarActivity {
             case R.id.action_calculate:
                 String s1 = dropdownBase.getSelectedItem().toString();
                 String s2 = dropdownMix.getSelectedItem().toString();
-                String s3 = dropdownTarget.getSelectedItem().toString();
+                //String s3 = dropdownTarget.getSelectedItem().toString();
                 String s4 = editText1.getText().toString();
 
                 if(!Tools.isNumeric(s4)) {
                     Toast.makeText(getApplicationContext(), "Ingrese los valores solicitados", Toast.LENGTH_SHORT).show();
                     return false;
                 }
-                Param4 = Integer.parseInt(editText1.getText().toString());
-                double temp = 0;
-                switch (tipo){
-                    case 8:case 9://Conversion de Dextrosa y NaCl
-                        resultado = Formulas.ConversionSoluciones(Param1, Param2, Param3, Param4);
-                        temp = Param4 - resultado;
-                        unidades=" ml";
-                        label1= s1 + " : ";
-                        label2= s2 + " : ";
-                        textViewResultado2.setVisibility(View.VISIBLE);
-                        textViewResultado2.setText(label2 + resultado + unidades);
-                        break;
+                if(!((Param1<=Param3 && Param3<=Param2) || (Param2<=Param3 && Param3<=Param1))){
+                    Toast.makeText(getApplicationContext(),"Error en las selecciones",Toast.LENGTH_SHORT).show();
+                    onOptionsItemSelected(opMenu.findItem(R.id.action_clean));
                 }
-                textViewResultado1.setText(label1 + Math.round(temp) + unidades);
-                textViewResultado1.setVisibility(View.VISIBLE);
-                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                else {
+                    Param4 = Integer.parseInt(editText1.getText().toString());
+                    double temp = 0;
+                    switch (tipo){
+                        case CONVERSIONDEXTROSA: case CONVERSIONCLORURO://Conversion de Dextrosa y NaCl
+                            resultado = Formulas.ConversionSoluciones(Param1, Param2, Param3, Param4);
+                            temp = Param4 - resultado;
+                            unidades=" ml";
+                            label1= s1 + " : ";
+                            label2= s2 + " : ";
+                            textViewResultado2.setVisibility(View.VISIBLE);
+                            textViewResultado2.setText(label2 + resultado + unidades);
+                            break;
+                    }
+                    textViewResultado1.setText(label1 + Math.round(temp) + unidades);
+                    textViewResultado1.setVisibility(View.VISIBLE);
+                    InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                }
                 break;
             case R.id.action_clean:
                 textViewResultado1.setVisibility(View.INVISIBLE);

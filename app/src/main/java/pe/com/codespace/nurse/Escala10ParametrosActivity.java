@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import static pe.com.codespace.nurse.MyValues.*;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
@@ -17,9 +18,6 @@ import com.google.android.gms.ads.AdView;
 
 
 public class Escala10ParametrosActivity extends ActionBarActivity {
-
-    private static final int BARTHEL=101;
-
 
     TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textView6, textView7, textView8,textView9, textView10, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5, textViewItemEscala6, textViewItemEscala7, textViewItemEscala8,textViewItemEscala9, textViewItemEscala10;

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import static pe.com.codespace.nurse.MyValues.*;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
@@ -53,13 +54,13 @@ public class Input4ParametrosActivity extends ActionBarActivity {
         tipo = intent.getExtras().getInt("formula");
 
         switch (tipo){
-            case 15:
-                tvTitleFormula.setText("Velocidad de Goteo de Dopamina - Dobutamina");
+            case GOTEO_FARMACOS_UCI:
+                tvTitleFormula.setText("Velocidad de Infusión Dopamina/Dobutamina");
                 tvParam1.setText("Dosis (mcg/kg/min): ");
-                tvParam2.setText("Peso del Paciente (kg):");
-                tvParam3.setText("Cantidad del Fármaco (mg): ");
-                tvParam4.setText("Volumen Total de la Infusión (ml): ");
-                descripcion ="La cantidad del fármaco indica los mg. que están en la preparación.\nEl volumen total de la infusión incluye los volúmenes de la solución diluyente y del fármaco a preparar.";
+                tvParam2.setText("Peso del paciente (kg):");
+                tvParam3.setText("Cantidad del fármaco (mg): ");
+                tvParam4.setText("Volumen total (ml): ");
+                descripcion ="Esta fórmula calcula la velocidad de infusión de una preparación en un determinado volumen de solución, dada una dosis indicada.\n\nLa cantidad del fármaco indica los mg. que están en la preparación.\nEl volumen total incluye los volúmenes de la solución diluyente y del fármaco a preparar.";
                 textViewDescription.setText(descripcion);
                 break;
             case 16:
@@ -99,9 +100,9 @@ public class Input4ParametrosActivity extends ActionBarActivity {
                 Param3 = Double.parseDouble(editText3.getText().toString());
                 Param4 = Double.parseDouble(editText4.getText().toString());
                 switch (tipo){
-                    case 15://Calculo de Dopamina
-                        resultado = Formulas.ConversionFarmacoDopamina(Param1, Param2, Param3, Param4);
-                        label1 = "Velocidad de goteo: ";
+                    case GOTEO_FARMACOS_UCI://Goteo de Dopamina
+                        resultado = Formulas.GoteoDopamina(Param1, Param2, Param3, Param4);
+                        label1 = "Velocidad: ";
                         unidades=" ml/hora";
                         break;
                 }

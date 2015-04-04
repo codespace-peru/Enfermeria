@@ -119,14 +119,14 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
                 textViewItem1.setText("Despierto:");
                 textViewItem2.setText("Ansioso y/o agitado");
                 textViewItem3.setText("Tranquilo y colaborador");
-                textViewItem4.setText("Responde sólo a órdenes");
+                textViewItem4.setText("Responde sólo a órdenes\n\n");
                 textViewItem5.setText("Dormido: Estímulo auditivo o glabelar");
                 textViewItem6.setText("Respuesta enérgica");
                 textViewItem7.setText("Respuesta lenta");
                 textViewItem8.setText("No responde");
                 textViewItem9.setText("");
                 textViewItem10.setText("");
-                textViewNotas.setText("La escala Ramsay es usada para evaluar el nivel de sedación de un paciente hospitalizado. Fue descrita por Michael A. E. Ramsay");
+                textViewNotas.setText("La escala Ramsay es usada para evaluar el nivel de sedación de un paciente hospitalizado. Fue descrita por Michael A. E. Ramsay.");
                 textViewNum1.setVisibility(View.GONE);
                 textViewNum5.setVisibility(View.GONE);
                 linearLayout9.setVisibility(View.GONE);

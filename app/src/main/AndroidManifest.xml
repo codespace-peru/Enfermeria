@@ -11,8 +11,9 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light" >
         <activity
-            android:name="pe.com.codespace.nurse.MainActivity"
-            android:label="@string/app_name" >
+            android:name=".SplashScreenActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,51 +21,74 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="pe.com.codespace.nurse.Input2ParametrosActivity"
-            android:label="@string/title_activity_input" >
+            android:name=".Input2ParametrosActivity"
+            android:label="@string/title_activity_input"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="pe.com.codespace.nurse.Input3ParametrosActivity"
-            android:label="@string/title_activity_input" >
+            android:name=".Input3ParametrosActivity"
+            android:label="@string/title_activity_input"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="pe.com.codespace.nurse.Input4ParametrosActivity"
-            android:label="@string/title_activity_input" >
+            android:name=".Input4ParametrosActivity"
+            android:label="@string/title_activity_input"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="pe.com.codespace.nurse.InputConvertSolutionActivity"
-            android:label="@string/title_activity_input" >
-        </activity>
-        <activity
-            android:name="pe.com.codespace.nurse.EscalaActivity1"
-            android:label="@string/title_activity_escala_activity1" >
+            android:name=".InputConvertSolutionActivity"
+            android:label="@string/title_activity_input"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Escala3ParametrosActivity"
-            android:label="@string/title_activity_escala_glasgow" >
+            android:label="@string/title_activity_escala_glasgow"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Escala5ParametrosActivity"
-            android:label="@string/title_activity_escala_glasgow" >
+            android:label="@string/title_activity_escala_glasgow"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Escala6ParametrosActivity"
-            android:label="@string/title_activity_escala_glasgow" >
+            android:label="@string/title_activity_escala_glasgow"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Escala10ParametrosActivity"
-            android:label="@string/title_activity_escala_glasgow" >
+            android:label="@string/title_activity_escala_glasgow"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".EscalaNoParametrosActivity"
-            android:label="@string/title_activity_escala_glasgow" >
+            android:label="@string/title_activity_escala_glasgow"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".RegladetresActivity"
+            android:label="@string/title_activity_regladetres"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".FechasActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_fechas" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

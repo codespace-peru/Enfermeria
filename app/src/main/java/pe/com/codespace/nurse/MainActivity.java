@@ -3,28 +3,17 @@ package pe.com.codespace.nurse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ExpandableListView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import static pe.com.codespace.nurse.MyValues.*;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -38,29 +27,13 @@ public class MainActivity extends ActionBarActivity {
     ExpandableListView myExpand;
     ExpandableListView.OnGroupClickListener onGroupClick;
     ExpandableListView.OnChildClickListener onChildClick;
-    private final static int ESCALAS = 1;
-    private final static int FORMULAS = 2;
     int tipo = 1;
-
-    private static final int GLASGOW=31;
-    private static final int RASS=1001;
-    private static final int RAMSAY=1002;
-    private static final int APGAR=51;
-    private static final int APGAR_FAM=52;
-    private static final int NORTON=53;
-    private static final int DOWNTON=54;
-    private static final int SOFA=61;
-    private static final int BARTHEL=101;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getActionBar().setDisplayShowHomeEnabled(false);
-        //getActionBar().setDisplayShowTitleEnabled(false);
-        //this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
 
         final TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -190,37 +163,91 @@ public class MainActivity extends ActionBarActivity {
                         switch (groupPosition){
                             case 0://Fórmulas Antropométricas
                                 switch (childPosition+1){
-                                    case 1:case 2:case 3:case 4:
+                                    case 1:
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",IMC);
+                                        startActivity(intent);
                                         break;
-                                    case 5:
-                                        intent = new Intent(getApplicationContext(), Input3ParametrosActivity.class);
+                                    case 2:
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",PERDIDAS);
+                                        startActivity(intent);
                                         break;
-                                    case 6:case 7:
+                                    case 3:
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",SC_NINOS);
+                                        startActivity(intent);
+                                        break;
+                                    case 4:
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",SC_ADULTOS);
+                                        startActivity(intent);
                                         break;
                                 }
-                                intent.putExtra("formula",childPosition + 1); // Para las 7 primeras formulas
-                                startActivity(intent);
                                 break;
                             case 1://Fórmulas para Sueroterapia
                                 switch (childPosition+8){
-                                    case 8: case 9: // Conversion Dextrosa y NaCl
+                                    case 8:// Conversion Dextrosa
                                         intent = new Intent(getApplicationContext(), InputConvertSolutionActivity.class);
+                                        intent.putExtra("formula",CONVERSIONDEXTROSA);
+                                        startActivity(intent);
                                         break;
-                                    case 10: case 11:case 12:// Velocidad de Goteo y similares
+                                    case 9:// Conversion Cloruro
+                                        intent = new Intent(getApplicationContext(), InputConvertSolutionActivity.class);
+                                        intent.putExtra("formula",CONVERSIONCLORURO);
+                                        startActivity(intent);
+                                        break;
+                                    case 10:// Velocidad de Goteo
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",VELOCIDADGOTEO);
+                                        startActivity(intent);
+                                        break;
+                                    case 11:// Velocidad de Goteo
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",VOLUMENINFUSION);
+                                        startActivity(intent);
+                                        break;
+                                    case 12:// Velocidad de Goteo
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",TIEMPOINFUSION);
+                                        startActivity(intent);
                                         break;
                                 }
-                                intent.putExtra("formula",childPosition + 8); // Empieza en el 8
-                                startActivity(intent);
+
                                 break;
                             case 2://Fórmulas para Fármacos en UCI
                                 switch (childPosition+15){
                                     case 15:// Calculo de Dopamina y Dobutamina
                                         intent = new Intent(getApplicationContext(), Input4ParametrosActivity.class);
-                                        intent.putExtra("formula",childPosition + 15); // Empieza en el 15
+                                        intent.putExtra("formula",GOTEO_FARMACOS_UCI); // Empieza en el 15
                                         startActivity(intent);
                                         break;
-                                    case 16:
+                                    case 16:// Cálculo del Volumen total Dopamina y Dobutamina
+                                        intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
+                                        intent.putExtra("formula",VOLUMEN_FARMACOS_UCI);
+                                        startActivity(intent);
+                                        break;
+                                }
+                                break;
+                            case 3://GinecoObstetricas
+                                switch (childPosition+22){
+                                    case 22:// Fecha Probable de Parto
+                                        intent = new Intent(getApplicationContext(), FechasActivity.class);
+                                        intent.putExtra("formula",FPP); // Empieza en el 22
+                                        startActivity(intent);
+                                        break;
+                                    case 23:
+                                        break;
+                                }
+                                break;
+                            case 4://Otras
+                                switch (childPosition+29){
+                                    case 29:// Regla de tres
+                                        intent = new Intent(getApplicationContext(), RegladetresActivity.class);
+                                        intent.putExtra("formula",REGLATRES); // Empieza en el 29
+                                        startActivity(intent);
+                                        break;
+                                    case 30:
                                         break;
                                 }
                                 break;
@@ -243,9 +270,9 @@ public class MainActivity extends ActionBarActivity {
         String[] temp;
         switch(tipo){
             case ESCALAS:
-                listDataHeader.add("Escalas en UCI");
-                listDataHeader.add("Escalas en Geriatría");
-                listDataHeader.add("Escalas en Pediatría");
+                listDataHeader.add("UCI");
+                listDataHeader.add("Geriatría");
+                listDataHeader.add("Pediatría");
                 listDataHeader.add("Otras Escalas");
                 //Hijos del Primer Padre
                 child = new ArrayList<String>();
@@ -274,12 +301,14 @@ public class MainActivity extends ActionBarActivity {
                 listDataChild.put(listDataHeader.get(3), child);
                 break;
             case FORMULAS:
-                listDataHeader.add("Fórmulas Antropométricas");
-                listDataHeader.add("Fórmulas para SueroTerapia");
-                listDataHeader.add("Fórmulas para Preparación de Medicamentos");
+                listDataHeader.add("Antropométricas");
+                listDataHeader.add("SueroTerapia");
+                listDataHeader.add("Preparación de Medicamentos");
+                listDataHeader.add("Gineco-Obstetricia");
+                listDataHeader.add("Otras");
                 //Hijos del Primer Padre
                 child = new ArrayList<String>();
-                child.add("Cálculo del Indice de Masa Corporal"); // tipo=1
+                child.add("Indice de Masa Corporal"); // tipo=1
                 child.add("Pérdidas Insensibles"); // tipo=2
                 child.add("Superficie Corporal en Niños"); // tipo=3
                 child.add("Superficie Corporal en Adultos"); // tipo=4
@@ -290,16 +319,26 @@ public class MainActivity extends ActionBarActivity {
                 child = new ArrayList<String>();
                 child.add("Conversión de Dextrosa"); //tipo=8
                 child.add("Conversión de Cloruro de Sodio"); //tipo=9
-                child.add("Cálculo de la Velocidad del Goteo"); //tipo=10
-                child.add("Cálculo del Volumen Total a Infundir"); //tipo=11
-                child.add("Cálculo del Tiempo de la Infusión"); // tipo=12
+                child.add("Velocidad del Goteo"); //tipo=10
+                child.add("Volumen Total a Infundir"); //tipo=11
+                child.add("Tiempo de Infusión"); // tipo=12
                 listDataChild.put(listDataHeader.get(1), child);
 
                 //Hijos del Tercer Padre
                 child = new ArrayList<String>();
-                child.add("Preparación de Fármacos en UCI"); //tipo=15
-                //child.add("Cálculo 2"); //tipo=16
+                child.add("Velocidad de Infusión Dopamina/Dobutamina"); //tipo=15
+                child.add("Volumen total Dopamina/Dobutamina"); //tipo=16
                 listDataChild.put(listDataHeader.get(2), child);
+
+                //Hijos del Cuarto Padre
+                child = new ArrayList<String>();
+                child.add("Fecha Probable del Parto");
+                listDataChild.put(listDataHeader.get(3), child);
+
+                //Hijos del Quinto Padre
+                child = new ArrayList<String>();
+                child.add("Regla de Tres Simple");
+                listDataChild.put(listDataHeader.get(4), child);
                 break;
         }
 
@@ -308,8 +347,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 

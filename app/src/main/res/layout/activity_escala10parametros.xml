@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="100dp">
 
         <TextView
             android:id="@+id/textViewTitleEscala"
@@ -36,12 +36,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/layout_top_margin_size">
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable1"
                     android:text="Variable1"
@@ -69,7 +69,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable2"
                     android:text="Variable1"
@@ -97,7 +98,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable3"
                     android:text="Variable1"
@@ -125,7 +127,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable4"
                     android:text="Variable1"
@@ -153,7 +156,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable5"
                     android:text="Variable1"
@@ -181,7 +185,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable6"
                     android:text="Variable1"
@@ -209,7 +214,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable7"
                     android:text="Variable1"
@@ -237,7 +243,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable8"
                     android:text="Variable1"
@@ -265,7 +272,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable9"
                     android:text="Variable1"
@@ -293,7 +301,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
                 <TextView
                     android:id="@+id/textViewVariable10"
                     android:text="Variable1"
@@ -349,7 +358,7 @@
             android:layout_height="wrap_content"
             android:gravity="bottom"
             ads:adUnitId="ca-app-pub-4549935446415170/4450174044"
-            ads:adSize="BANNER"/>
+            ads:adSize="LARGE_BANNER"/>
     </LinearLayout>
 
 </RelativeLayout>
