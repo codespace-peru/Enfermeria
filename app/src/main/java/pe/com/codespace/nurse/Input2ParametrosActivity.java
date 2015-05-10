@@ -2,29 +2,33 @@ package pe.com.codespace.nurse;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import static pe.com.codespace.nurse.MyValues.*;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class Input2ParametrosActivity extends ActionBarActivity {
+public class Input2ParametrosActivity extends AppCompatActivity {
     double Param1, Param2;
     double resultado;
     String label1="", label2="", unidades="", descripcion="";
     int tipo = -1;
+    Menu opMenu;
+    SharedPreferences sharedPreferences;
+    boolean sistema_metrico_flag;
     EditText editText1 = null;
     EditText editText2 = null;
     TextView textViewResultado1 = null;
@@ -35,8 +39,15 @@ public class Input2ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        }
         setContentView(R.layout.activity_input2param);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sistema_metrico_flag = PrefSingleton.getInstance().getPreference(MyValues.SISTEMA_METRICO,true);
+
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewResultado2 = (TextView) findViewById(R.id.tvResultado2);
         textViewDescription = (TextView) findViewById(R.id.tvDescription);
@@ -50,58 +61,80 @@ public class Input2ParametrosActivity extends ActionBarActivity {
 
         switch (tipo){
             case IMC://IMC
-                tvTitleFormula.setText("Indice de Masa Corporal en Adultos");
-                tvParam1.setText("Peso (kg): ");
-                tvParam2.setText("Talla (cm): ");
-                descripcion="Se calcula el IMC en base a la fórmula de la OMS.\n\n" +
-                            "Bajo peso: < 18.5\nNormal: 18.5 - 24.99\nSobrepeso: 25.0 - 29.99\n" +
-                            "Obesidad leve: 30.0 - 34.99\nObesidad moderada: 35.0 - 39.99\nObesidad mórbida: >= 40.0";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_imc_title));
+                if(sistema_metrico_flag){
+                    tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
+                    tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_METRICO + "):");
+                }
+                else {
+                    tvParam1.setText(getResources().getString(R.string.label_peso) + " (" + MyValues.MASA_INGLES + "):");
+                    tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_INGLES + "):");
+                }
+                descripcion= getResources().getString(R.string.descripcion_imc);
                 break;
             case PERDIDAS://Perdidas Insensibles
-                tvTitleFormula.setText("Perdidas Insensibles en Adultos Normotermos");
-                tvParam1.setText("Peso (kg): ");
-                tvParam2.setText("Número de horas: ");
+                tvTitleFormula.setText(getResources().getString(R.string.formula_perdidas_insensibles_title));
+                if(sistema_metrico_flag){
+                    tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
+                }
+                else {
+                    tvParam1.setText(getResources().getString(R.string.label_peso) + " (" + MyValues.MASA_INGLES + "):");
+                }
+                tvParam2.setText(getResources().getString(R.string.label_numero_horas) + ":");
                 descripcion="";
                 break;
             case SC_NINOS://SC en niños
-                tvTitleFormula.setText("Superficie Corporal en Niños");
-                tvParam1.setText("Peso (kg): ");
-                tvParam2.setText("Talla (cm): ");
-                descripcion="Se calcula la superficie corporal usando la fórmula de Haycock.";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_superficie_corporal_ninos_title));
+                if(sistema_metrico_flag){
+                    tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
+                    tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_METRICO + "):");
+                }
+                else {
+                    tvParam1.setText(getResources().getString(R.string.label_peso) + " (" + MyValues.MASA_INGLES + "):");
+                    tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_INGLES + "):");
+                }
+                descripcion= getResources().getString(R.string.descripcion_sc_ninos);
                 break;
             case SC_ADULTOS://SC en adultos
-                tvTitleFormula.setText("Superficie Corporal en Adultos");
-                tvParam1.setText("Peso (kg): ");
-                tvParam2.setText("Talla (cm): ");
-                descripcion="Se calcula la superficie corporal usando la fórmula de Mollester.";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_superficie_corporal_adultos_title));
+                if(sistema_metrico_flag){
+                    tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
+                    tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_METRICO + "):");
+                }
+                else {
+                    tvParam1.setText(getResources().getString(R.string.label_peso) + " (" + MyValues.MASA_INGLES + "):");
+                    tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_INGLES + "):");
+                }
+                descripcion=getResources().getString(R.string.descripcion_sc_adultos);
                 break;
             case VELOCIDADGOTEO://Velocidad de Goteo
-                tvTitleFormula.setText("Cálculo de la Velocidad de Goteo");
-                tvParam1.setText("Volumen a infundir (ml): ");
-                tvParam2.setText("Número de horas : ");
-                descripcion="Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas.\nSe considera 1ml = 20 gotas";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_velocidad_goteo_title));
+                tvParam1.setText(getResources().getString(R.string.label_volumen_infusion) + ":");
+                tvParam2.setText(getResources().getString(R.string.label_numero_horas) + ":");
+                descripcion=getResources().getString(R.string.descripcion_velocidad_goteo);
                 break;
             case VOLUMENINFUSION://
-                tvTitleFormula.setText("Cálculo del Volumen de Infusión");
-                tvParam1.setText("Velocidad de Goteo (gotas/min): ");
-                tvParam2.setText("Número de horas : ");
-                descripcion="Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas.\nSe considera 1ml = 20 gotas";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_volumen_infusion_title));
+                tvParam1.setText(getResources().getString(R.string.formula_velocidad_goteo_title) + " (gts/min): ");
+                tvParam2.setText(getResources().getString(R.string.label_numero_horas) + ":");
+                descripcion = getResources().getString(R.string.descripcion_volumen_infusion);
                 break;
             case TIEMPOINFUSION://
-                tvTitleFormula.setText("Cálculo del Tiempo de Infusión");
-                tvParam1.setText("Volumen a infundir (ml): ");
-                tvParam2.setText("Velocidad de goteo (gotas/min): ");
-                descripcion="Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo.\nSe considera 1ml = 20 gotas";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_tiempo_infusion_title));
+                tvParam1.setText(getResources().getString(R.string.label_volumen_infusion) + ":");
+                tvParam2.setText(getResources().getString(R.string.formula_velocidad_goteo_title) + " (gts/min): ");
+                descripcion=getResources().getString(R.string.descripcion_tiempo_infusion);
                 break;
             case VOLUMEN_FARMACOS_UCI://
-                tvTitleFormula.setText("Volumen total Dopamina/Dobutamina");
-                tvParam1.setText("Peso del paciente (kg): ");
-                tvParam2.setText("Cantidad del fármaco (mg): ");
-                descripcion="Se calcula el volumen total de una preparación para obtener 1mcg de fármaco por cada 1cc de preparación.\n" +
-                            "Esto es muy útil porque numéricamente coinciden la dosis indicada (mcg/kg/min) con la velocidad de infusión (ml/hora).\n" +
-                            "Es decir si se desea una dosis de 3mcg/kg/min se infundirá a 3ml/hora; permitiendo implementar rápidamente los cambios en la indicación.\n" +
-                            "La cantidad del fármaco indica los mg. que se prepararán.\n" +
-                            "Fuente: UCI Grau-EsSalud-Perú.";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_volumen_inotropicos_title));
+                if(sistema_metrico_flag){
+                    tvParam1.setText(getResources().getString(R.string.label_peso_paciente)  + " (" + MyValues.MASA_METRICO + "):");
+                }
+                else {
+                    tvParam1.setText(getResources().getString(R.string.label_peso_paciente) + " (" + MyValues.MASA_INGLES + "):");
+                }
+                tvParam2.setText(getResources().getString(R.string.label_cantidad_farmaco) + ":");
+                descripcion=getResources().getString(R.string.descripcion_volumen_farmacos_uci);
                 break;
         }
         textViewDescription.setText(descripcion);
@@ -110,11 +143,19 @@ public class Input2ParametrosActivity extends ActionBarActivity {
         AdView adView = (AdView)this.findViewById(R.id.adViewInput2Param);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        opMenu = menu;
         getMenuInflater().inflate(R.menu.input, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -128,66 +169,132 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                 String s2 = editText2.getText().toString();
 
                 if(!Tools.isNumeric(s1) || ! Tools.isNumeric(s2)){
-                    Toast.makeText(getApplicationContext(),"Ingrese los valores solicitados", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_ingrese_valores), Toast.LENGTH_LONG).show();
                     return false;
                 }
                 Param1 = Double.parseDouble(editText1.getText().toString());
                 Param2 = Double.parseDouble(editText2.getText().toString());
+
                 switch (tipo){
                     case IMC://Indice de Masa Corporal
-                        resultado = Formulas.IMC(Param1, Param2);
-                        label1 = "IMC: ";
-                        unidades="";
-
+                        label1 = getResources().getString(R.string.label_imc);
+                        if(!sistema_metrico_flag){
+                            Param1 = Tools.LibrasToKilos(Param1);
+                            Param2 = Tools.InchesToCentimetros(Param2);
+                        }
+                        if(Param1 > MyValues.PESO_MAXIMO || Param2 > MyValues.TALLA_MAXIMA){
+                            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_error_medidas), Toast.LENGTH_LONG).show();
+                            onOptionsItemSelected(opMenu.findItem(R.id.action_clean));
+                            break;
+                        }
+                        else {
+                            resultado = Formulas.IMC(Param1, Param2);
+                            unidades="";
+                            textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                            textViewResultado1.setVisibility(View.VISIBLE);
+                        }
                         break;
                     case PERDIDAS://Perdidas Insensibles
-                        resultado = Formulas.PerdidaInsensibleAdultoNormotermo(Param1, Param2);
-                        double agua = (double) Math.round((resultado/3)*100)/100;
-                        label1 = "Perdidas Insensibles: ";
-                        label2 = "Agua de Oxidación: ";
-                        unidades = " cc.";
-
-                        textViewResultado2.setText(label2 + agua + unidades);
-                        textViewResultado2.setVisibility(View.VISIBLE);
+                        label1 = getResources().getString(R.string.label_perdidas_insensibles);
+                        label2 = getResources().getString(R.string.label_agua_oxidacion);
+                        if(!sistema_metrico_flag){
+                            Param1 = Tools.LibrasToKilos(Param1);
+                        }
+                        if(Param1 > MyValues.PESO_MAXIMO){
+                            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_error_medidas), Toast.LENGTH_LONG).show();
+                            onOptionsItemSelected(opMenu.findItem(R.id.action_clean));
+                            break;
+                        }
+                        else {
+                            resultado = Formulas.PerdidaInsensibleAdultoNormotermo(Param1, Param2);
+                            double agua = (double) Math.round((resultado/3)*100)/100;
+                            unidades = " ml.";
+                            textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                            textViewResultado1.setVisibility(View.VISIBLE);
+                            textViewResultado2.setText(label2 + " : " + agua + unidades);
+                            textViewResultado2.setVisibility(View.VISIBLE);
+                        }
                         break;
                     case SC_NINOS://Superficie corporal en Niños
-                        resultado = Formulas.ASCbyHaycock(Param1, Param2);
-                        label1 = "Superficie Corporal: ";
-                        unidades=" m2";
-
+                        if(!sistema_metrico_flag){
+                            Param1 = Tools.LibrasToKilos(Param1);
+                            Param2 = Tools.InchesToCentimetros(Param2);
+                        }
+                        if(Param1 > MyValues.PESO_MAXIMO || Param2 > MyValues.TALLA_MAXIMA){
+                            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_error_medidas), Toast.LENGTH_LONG).show();
+                            onOptionsItemSelected(opMenu.findItem(R.id.action_clean));
+                            break;
+                        }
+                        else {
+                            resultado = Formulas.ASCbyHaycock(Param1, Param2);
+                            label1 = getResources().getString(R.string.label_superficie_corporal);
+                            unidades=" m2";
+                            textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                            textViewResultado1.setVisibility(View.VISIBLE);
+                        }
                         break;
                     case SC_ADULTOS://Superficie corporal en Adultos
-                        resultado = Formulas.ASCbyMollester(Param1, Param2);
-                        label1 = "Superficie Corporal: ";
-                        unidades=" m2";
-
+                        if(!sistema_metrico_flag){
+                            Param1 = Tools.LibrasToKilos(Param1);
+                            Param2 = Tools.InchesToCentimetros(Param2);
+                        }
+                        if(Param1 > MyValues.PESO_MAXIMO || Param2 > MyValues.TALLA_MAXIMA){
+                            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_error_medidas), Toast.LENGTH_LONG).show();
+                            onOptionsItemSelected(opMenu.findItem(R.id.action_clean));
+                            break;
+                        }
+                        else {
+                            resultado = Formulas.ASCbyMollester(Param1, Param2);
+                            label1 = getResources().getString(R.string.label_superficie_corporal);
+                            unidades=" m2";
+                            textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                            textViewResultado1.setVisibility(View.VISIBLE);
+                        }
                         break;
                     case VELOCIDADGOTEO://Velocidad de Goteo
                         resultado = Formulas.VelocidadGoteo(Param1, Param2);
-                        label1 = "Velocidad de goteo: ";
+                        label1 = getResources().getString(R.string.formula_velocidad_goteo_title);
                         unidades=" gts/min";
+                        textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                        textViewResultado1.setVisibility(View.VISIBLE);
                         break;
                     case VOLUMENINFUSION://
                         resultado = Formulas.VolumenInfusion(Param1, Param2);
-                        label1 = "Volumen de infusión: ";
+                        label1 = getResources().getString(R.string.formula_volumen_infusion_title);
                         unidades=" ml";
+                        textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                        textViewResultado1.setVisibility(View.VISIBLE);
                         break;
                     case TIEMPOINFUSION://
                         resultado = Formulas.TiempoInfusion(Param1, Param2);
-                        label1 = "Tiempo de infusión: ";
+                        label1 = getResources().getString(R.string.formula_tiempo_infusion_title);
                         unidades=" hr";
+                        textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                        textViewResultado1.setVisibility(View.VISIBLE);
                         break;
                     case VOLUMEN_FARMACOS_UCI://
-                        resultado = Formulas.VolumenDopamina(Param1, Param2);
-                        label1 = "Volumen total: ";
-                        unidades=" ml";
+                        if(!sistema_metrico_flag){
+                            Param1 = Tools.LibrasToKilos(Param1);
+                        }
+                        if(Param1 > MyValues.PESO_MAXIMO){
+                            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_error_medidas), Toast.LENGTH_LONG).show();
+                            onOptionsItemSelected(opMenu.findItem(R.id.action_clean));
+                            break;
+                        }
+                        else {
+                            resultado = Formulas.VolumenDopamina(Param1, Param2);
+                            label1 = getResources().getString(R.string.label_volumen_total);
+                            unidades=" ml";
+                            textViewResultado1.setText(label1 + " : " + resultado + unidades);
+                            textViewResultado1.setVisibility(View.VISIBLE);
+                        }
                         break;
                 }
-                textViewResultado1.setText(label1 + resultado + unidades);
-                textViewResultado1.setVisibility(View.VISIBLE);
 
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                if(getCurrentFocus()!=null){
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                }
 
                 break;
             case R.id.action_clean:
@@ -199,18 +306,6 @@ public class Input2ParametrosActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

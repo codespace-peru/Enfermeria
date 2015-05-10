@@ -1,23 +1,22 @@
 package pe.com.codespace.nurse;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import static pe.com.codespace.nurse.MyValues.*;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class Escala6ParametrosActivity extends ActionBarActivity {
+public class Escala6ParametrosActivity extends AppCompatActivity {
 
     TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textView6, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5, textViewItemEscala6;
@@ -33,8 +32,10 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_escala6parametros);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
         numeroEscala = getIntent().getExtras().getInt("numeroEscala");
 
         textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
@@ -67,22 +68,22 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
         textViewItemEscala6.setText(String.valueOf(Param6));
         UpdateRespuesta();
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.spinner_item, items1);
+        AdapterSpinner adapter1 = new AdapterSpinner(this,R.layout.spinner_item, items1);
         dropdownItem1.setAdapter(adapter1);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, items2);
+        AdapterSpinner adapter2 = new AdapterSpinner(this,R.layout.spinner_item, items2);
         dropdownItem2.setAdapter(adapter2);
 
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, items3);
+        AdapterSpinner adapter3 = new AdapterSpinner(this,R.layout.spinner_item, items3);
         dropdownItem3.setAdapter(adapter3);
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, items4);
+        AdapterSpinner adapter4 = new AdapterSpinner(this,R.layout.spinner_item, items4);
         dropdownItem4.setAdapter(adapter4);
 
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.spinner_item, items5);
+        AdapterSpinner adapter5 = new AdapterSpinner(this,R.layout.spinner_item, items5);
         dropdownItem5.setAdapter(adapter5);
 
-        ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(this, R.layout.spinner_item, items6);
+        AdapterSpinner adapter6 = new AdapterSpinner(this,R.layout.spinner_item, items6);
         dropdownItem6.setAdapter(adapter6);
 
         dropdownItem1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -161,6 +162,13 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
         AdView adView = (AdView)this.findViewById(R.id.adViewEscala6Param);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
     private void UpdateRespuesta(){
@@ -170,27 +178,27 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case SOFA:
-                textViewTitle.setText("SCORE SOFA");
-                textView1.setText("Respiración: PO2/FiO2");
-                textView2.setText("Coagulación: Plaquetas");
-                textView3.setText("Hígado: Bilirrubina");
-                textView4.setText("Cardiovascular: PAM");
-                textView5.setText("SNC: Glasgow");
-                textView6.setText("Renal: Creatinina");
-                textViewNotas.setText("Sequential Organ Failure Assessment (SOFA) es una escala de medición de la aparición y evolución del fallo multiorgánico en pacientes de la UCI.\nUn incremento de la puntuación SOFA en las primeras 48h predice una mortalidad del 50%.\nEn SOFA mayores a 15 puntos la mortalidad esperada es >=90%.");
+                textViewTitle.setText(getResources().getString(R.string.score_sofa_title));
+                textView1.setText(getResources().getString(R.string.label_sofa_respiracion));
+                textView2.setText(getResources().getString(R.string.label_sofa_coagulacion));
+                textView3.setText(getResources().getString(R.string.label_sofa_higado));
+                textView4.setText(getResources().getString(R.string.label_sofa_cardiovascular));
+                textView5.setText(getResources().getString(R.string.label_sofa_snc));
+                textView6.setText(getResources().getString(R.string.label_sofa_renal));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_sofa));
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=0; Param2=0; Param3=0; Param4=0; Param5=0; Param6=0;
-                items1 = new String[]{"> 400 mmHg","< 400 mmHg", "< 300 mmHg", "< 200 mmHg", "< 100 mmHg"};
+                items1 = new String[]{"> 400 mmHg","<= 400 mmHg", "<= 300 mmHg", "<= 200 mmHg", "<= 100 mmHg"};
                 items1Values = new int[]{0,1,2,3,4};
-                items2 = new String[]{"> 150,000 mm3","< 150,000 mm3","< 100,000 mm3","< 50,000 mm3","< 20,000 mm3"};
+                items2 = new String[]{"> 150,000 mm3","<= 150,000 mm3","<= 100,000 mm3","<= 50,000 mm3","<= 20,000 mm3"};
                 items2Values = new int[]{0,1,2,3,4};
-                items3 = new String[]{"> 1.2 mg/dl","1.2 - 1.9 mg/dl","2.0 - 5.9 mg/dl","6.0 - 11.9 mg/dl","> 12.0 mg/dl"};
+                items3 = new String[]{"< 1.2 mg/dl","1.2 - 1.9 mg/dl","2.0 - 5.9 mg/dl","6.0 - 11.9 mg/dl","> 12.0 mg/dl"};
                 items3Values = new int[]{0,1,2,3,4};
-                items4 = new String[]{">= 70 mmHg"," < 70 mmHg","Dopamina <= 5 y/o Dobutamina","Dopamina > 5 y/o Norepinefrina < 0.1","Dopamina > 15 y/o Norepinefrina > 0.1"};
+                items4 = new String[]{">= 70 mmHg"," < 70 mmHg",getResources().getString(R.string.opc_sofa_cardio1),getResources().getString(R.string.opc_sofa_cardio2),getResources().getString(R.string.opc_sofa_cardio3)};
                 items4Values = new int[]{0,1,2,3,4};
                 items5 = new String[]{"15","13 - 14","10 - 12","6 - 9","< 6"};
                 items5Values = new int[]{0,1,2,3,4};
-                items6 = new String[]{"< 1.2 mg/dl","1.2 - 1.9 mg/dl","2.0 - 3.4 mg/dl","3.5 - 4.9 mg/dl","> 5.0 mg/dl"};
+                items6 = new String[]{"< 1.2 mg/dl (<=109 µmol/L)","1.2-1.9 mg/dl (110-170µmol/L)","2-3.4 mg/dl (171-299µmol/L)","3.5-4.9 mg/dl (300-439µmol/L)","> 5 mg/dl (>=440µmol/L)"};
                 items6Values = new int[]{0,1,2,3,4};
                 tipoEscala="SOFA";
                 break;
@@ -199,29 +207,13 @@ public class Escala6ParametrosActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.escala_glasgow, menu);
+        //getMenuInflater().inflate(R.menu.escala_glasgow, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

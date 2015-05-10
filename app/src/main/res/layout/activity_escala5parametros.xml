@@ -2,22 +2,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_vertical_margin"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="100dp">
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/adViewEscala5Param">
 
         <TextView
             android:id="@+id/textViewTitleEscala"
-            android:text="Variable1"
+            android:text="@string/test"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_height_title_size"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/height_padding_title"
+            android:paddingBottom="@dimen/height_padding_title"
             android:textSize="@dimen/title_main"
             android:gravity="center"
             android:textStyle="bold"/>
@@ -25,7 +26,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/rojo">
+            android:background="@color/view_color">
         </View>
 
         <ScrollView
@@ -34,12 +35,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/activity_horizontal_margin">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/textViewVariable1"
-                android:text="Variable1"
+                android:text="@string/test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
@@ -52,26 +52,26 @@
                 android:orientation="horizontal">
                 <Spinner
                     android:id="@+id/spinnerVariable1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/light_blue_dropdown_normal"
-                    android:layout_weight="1">
+                    android:background="@drawable/dropdown"
+                    android:layout_weight="9">
                 </Spinner>
                 <TextView
                     android:id="@+id/textViewItemEscala1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:text="test"
+                    android:text="@string/test"
                     android:textSize="@dimen/text_size3"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_weight="5"/>
+                    android:layout_weight="2"/>
             </LinearLayout>
 
 
             <TextView
                 android:id="@+id/textViewVariable2"
-                android:text="Variable2"
+                android:text="@string/test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
@@ -84,18 +84,18 @@
                 android:orientation="horizontal">
                 <Spinner
                     android:id="@+id/spinnerVariable2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/light_blue_dropdown_normal"
-                    android:layout_weight="1">
+                    android:background="@drawable/dropdown"
+                    android:layout_weight="9">
                 </Spinner>
                 <TextView
                     android:id="@+id/textViewItemEscala2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:text="test1"
+                    android:text="@string/test"
                     android:textStyle="bold"
-                    android:layout_weight="5"
+                    android:layout_weight="2"
                     android:gravity="center"
                     android:textSize="@dimen/text_size3"/>
             </LinearLayout>
@@ -103,7 +103,7 @@
 
             <TextView
                 android:id="@+id/textViewVariable3"
-                android:text="Variable3"
+                android:text="@string/test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
@@ -116,25 +116,25 @@
                 android:orientation="horizontal">
                 <Spinner
                     android:id="@+id/spinnerVariable3"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/light_blue_dropdown_normal"
-                    android:layout_weight="1">
+                    android:background="@drawable/dropdown"
+                    android:layout_weight="9">
                 </Spinner>
                 <TextView
                     android:id="@+id/textViewItemEscala3"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:text="test2"
+                    android:text="@string/test"
                     android:textStyle="bold"
-                    android:layout_weight="5"
+                    android:layout_weight="2"
                     android:gravity="center"
                     android:textSize="@dimen/text_size3"/>
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textViewVariable4"
-                android:text="Variable4"
+                android:text="@string/test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
@@ -147,25 +147,25 @@
                 android:orientation="horizontal">
                 <Spinner
                     android:id="@+id/spinnerVariable4"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/light_blue_dropdown_normal"
-                    android:layout_weight="1">
+                    android:background="@drawable/dropdown"
+                    android:layout_weight="9">
                 </Spinner>
                 <TextView
                     android:id="@+id/textViewItemEscala4"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:text="test"
+                    android:text="@string/test"
                     android:textSize="@dimen/text_size3"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_weight="5"/>
+                    android:layout_weight="2"/>
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textViewVariable5"
-                android:text="Variable5"
+                android:text="@string/test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size2"
@@ -178,20 +178,20 @@
                 android:orientation="horizontal">
                 <Spinner
                     android:id="@+id/spinnerVariable5"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/light_blue_dropdown_normal"
-                    android:layout_weight="1">
+                    android:background="@drawable/dropdown"
+                    android:layout_weight="9">
                 </Spinner>
                 <TextView
                     android:id="@+id/textViewItemEscala5"
-                    android:layout_width="match_parent"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:text="test"
+                    android:text="@string/test"
                     android:textSize="@dimen/text_size3"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_weight="5"/>
+                    android:layout_weight="2"/>
             </LinearLayout>
 
             <TextView
@@ -214,17 +214,14 @@
         </LinearLayout>
         </ScrollView>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true">
 
-        <com.google.android.gms.ads.AdView android:id="@+id/adViewEscala5Param"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            ads:adUnitId="ca-app-pub-4549935446415170/4450174044"
-            ads:adSize="LARGE_BANNER"/>
-    </LinearLayout>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewEscala5Param"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:adSize="SMART_BANNER"/>
+
 </RelativeLayout>

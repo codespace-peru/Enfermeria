@@ -8,13 +8,13 @@
     <TextView
         android:id="@+id/tvItem"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/listitem_height_size"
-        android:minHeight="40dp"
-        android:paddingTop="3dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/height_padding_title"
+        android:paddingTop="@dimen/height_padding_title"
         android:gravity="center_vertical"
-        android:textColor="@color/text_color1"
-        android:text="Titulo"
+        android:textColor="@color/text_color2"
+        android:text="@string/test"
         android:ellipsize="end"
-        android:singleLine="true"
-        android:textSize="@dimen/text_item_title_size"/>
+        android:textSize="@dimen/text_item_title_size"
+        android:textStyle="bold"/>
 </LinearLayout>

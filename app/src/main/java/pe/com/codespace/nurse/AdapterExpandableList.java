@@ -1,6 +1,6 @@
 package pe.com.codespace.nurse;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Carlos on 23/11/13.
+ * Creado por Carlos on 23/11/13.
  */
-public class AdapterExpandableList extends BaseExpandableListAdapter {
-    private Context context;
-    private List<String> _listHeader;
-    private HashMap<String, List<String>> _listChild;
-    //private LayoutInflater inflater;
-
+class AdapterExpandableList extends BaseExpandableListAdapter {
+    private final Context context;
+    private final List<String> _listHeader;
+    private final HashMap<String, List<String>> _listChild;
 
     public AdapterExpandableList(Context context, List<String> listHeader, HashMap<String, List<String>> listChild){
         this._listChild = listChild;
@@ -64,6 +61,7 @@ public class AdapterExpandableList extends BaseExpandableListAdapter {
         return false;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View view, ViewGroup viewGroup) {
 
@@ -79,11 +77,12 @@ public class AdapterExpandableList extends BaseExpandableListAdapter {
         return row;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View view, ViewGroup viewGroup) {
         View row = view;
         //ArrayList<String> child = (ArrayList<String>)_listChild.get(groupPosition);
-        TextView textView = null;
+        TextView textView;
         if(row == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.list_item, null);

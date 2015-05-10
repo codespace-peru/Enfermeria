@@ -4,9 +4,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Carlos on 22/04/2014.
+ * Creado por Carlos on 22/04/2014.
  */
-public class Formulas {
+class Formulas {
 
     public static double ASCbyHaycock(double dPeso, double dTalla) {
         double resultado;
@@ -41,14 +41,14 @@ public class Formulas {
     public static double VolumenInfusion(double goteo, double horas) {
         double resultado;
         resultado = goteo*horas*3;
-        resultado = (double) Math.round(resultado);
+        resultado = (double) Math.round(resultado*100)/100;
         return resultado;
     }
 
     public static double TiempoInfusion(double volumen, double goteo) {
         double resultado;
         resultado = volumen/(goteo*3);
-        resultado = (double) Math.round(resultado);
+        resultado = (double) Math.round(resultado*100)/100;
         return resultado;
     }
 
@@ -56,13 +56,6 @@ public class Formulas {
         double resultado;
         double altura = talla/100;
         resultado = peso/(Math.pow(altura,2));
-        resultado = (double) Math.round(resultado*100)/100;
-        return resultado;
-    }
-
-    public static double TestFormula(double x1, double x2, double x3) {
-        double resultado;
-        resultado = (x1*x2)+x1;
         resultado = (double) Math.round(resultado*100)/100;
         return resultado;
     }
@@ -77,7 +70,7 @@ public class Formulas {
     public static int ConversionSoluciones(double base, double mix, double target, double targetVol) {
         int resultado;
         resultado = (int) ((targetVol*(target-base))/(mix-base));
-        resultado = Math.round(resultado);
+        resultado = Math.round(resultado*100)/100;
         return resultado;
     }
 

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Enfermería</string>
+
+    <!--Opciones del menu  -->
+    <string name="menu_settings">Preferencias</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_calcular">Calcular</string>
+    <string name="menu_repeat">Repetir</string>
+
+    <!--Titulos de las categorias de las Escalas y formulas  -->
+    <string name="scale_uci_title">UCI</string>
+    <string name="scale_geriatria_title">Geriatría</string>
+    <string name="scale_pediatria_title">Pediatría</string>
+    <string name="scale_otras_title">Otras Escalas</string>
+    <string name="formula_antropom_title">Antropométricas</string>
+    <string name="formula_suero_title">Sueroterapia</string>
+    <string name="formula_medicamentos_title">Preparación de Medicamentos</string>
+    <string name="formula_obstetricia_title">Gineco-Obstetricia</string>
+    <string name="formula_otras_title">Otras Fórmulas</string>
+
+    <!--Titulos de las Escalas y formulas  -->
+    <string name="scale_glasgow_title">Escala de Coma de Glasgow</string>
+    <string name="scale_ramsay_title">Escala de Sedación de Ramsay</string>
+    <string name="scale_rass_title">Escala de Sedación RASS</string>
+    <string name="score_sofa_title">Score Sofa</string>
+    <string name="score_apache_title">Score Apache</string>
+    <string name="scale_norton_title">Escala de Norton Modificado</string>
+    <string name="scale_downton_title">Escala de Riesgo de Caídas de Downton</string>
+    <string name="scale_barthel_title">Escala de Barthel</string>
+    <string name="test_apgar_title">Test de Apgar</string>
+    <string name="test_silverman_title">Test de Silverman-Andersen</string>
+    <string name="test_apgarfam_title">Test de Apgar Familiar</string>
+    <string name="formula_imc_title">Índice de Masa Corporal</string>
+    <string name="formula_perdidas_insensibles_title">Perdidas Insensibles</string>
+    <string name="formula_superficie_corporal_ninos_title">Superficie Corporal en Niños</string>
+    <string name="formula_superficie_corporal_adultos_title">Superficie Corporal en Adultos</string>
+    <string name="formula_conversion_dextrosa_title">Conversión de Dextrosa</string>
+    <string name="formula_conversion_cloruro_title">Conversión de Cloruro</string>
+    <string name="formula_velocidad_goteo_title">Velocidad de Goteo</string>
+    <string name="formula_volumen_infusion_title">Volumen de Infusión</string>
+    <string name="formula_tiempo_infusion_title">Tiempo de Infusión</string>
+    <string name="formula_velocidad_inotropicos_title">Velocidad de Infusión Inotrópicos</string>
+    <string name="formula_volumen_inotropicos_title">Volumen Total de Infusión Inotrópicos</string>
+    <string name="formula_fecha_parto_title">Fecha Probable de Parto</string>
+    <string name="formula_regla_tres_title">Regla de Tres Simple</string>
+    <string name="preferencias_title">Preferencias</string>
+
+    <!--Cadenas de texto varias  -->
+    <string name="label_sistemas_medicion">Escoja un sistema de medición:</string>
+    <string name="label_sistema_metrico">Sistema Métrico</string>
+    <string name="label_sistema_ingles">Sistema Inglés</string>
+    <string name="label_peso">Peso</string>
+    <string name="label_peso_paciente">Peso del paciente</string>
+    <string name="label_talla">Talla</string>
+    <string name="label_imc">IMC</string>
+    <string name="label_dosis_inotropicos">Dosis (µg/kg/min)</string>
+    <string name="label_volumen_infusion">Volumen a infundir (ml)</string>
+    <string name="label_cantidad_farmaco">Cantidad fármaco (mg)</string>
+    <string name="label_numero_horas">Número de horas</string>
+    <string name="label_perdidas_insensibles">Perdidas insensibles</string>
+    <string name="label_agua_oxidacion">Agua de oxidación:</string>
+    <string name="label_superficie_corporal">Superficie corporal:</string>
+    <string name="label_volumen_total">Volumen total</string>
+    <string name="label_solucion_target">Solución a preparar:</string>
+    <string name="label_solucion_base1">Solución base 1:</string>
+    <string name="label_solucion_base2">Solución base 2:</string>
+    <string name="label_velocidad">Velocidad</string>
+    <string name="label_resultado">Resultado</string>
+    <string name="label_fecha_parto">Fecha del primer día de la última regla:</string>
+    <string name="label_glasgow_ocular">Apertura ocular</string>
+    <string name="label_glasgow_verbal">Respuesta verbal</string>
+    <string name="label_glasgow_motora">Respuesta motora</string>
+    <string name="label_apgarfam_tipoescala">Apgar familiar</string>
+    <string name="label_apgar_frec_cardiaca">Frecuencia Cardíaca</string>
+    <string name="label_apgar_mov_respiratorios">Movimientos Respiratorios</string>
+    <string name="label_apgar_color_piel">Color de la Piel</string>
+    <string name="label_apgar_tono_muscular">Tono Muscular</string>
+    <string name="label_apgar_respuesta_estimulos">Respuesta a Estímulos</string>
+    <string name="label_silverman_aleteo">Aleteo nasal</string>
+    <string name="label_silverman_tiraje">Tiraje intercostal</string>
+    <string name="label_silverman_quejido">Quejido espiratorio</string>
+    <string name="label_silverman_retraccion">Retracción esternal</string>
+    <string name="label_silverman_toracoabdominal">Disociación toracoabdominal</string>
+    <string name="label_norton_estado_fisico">Estado Fisico General</string>
+    <string name="label_norton_estado_mental">Estado Mental</string>
+    <string name="label_norton_actividad">Actividad</string>
+    <string name="label_norton_movilidad">Movilidad</string>
+    <string name="label_norton_incontinencia">Incontinencia</string>
+    <string name="label_norton_tipoescala">Norton</string>
+    <string name="label_downton_caidas">Caídas previas</string>
+    <string name="label_downton_medicacion">Medicación</string>
+    <string name="label_downton_deficit_sensorial">Déficit sensorial</string>
+    <string name="label_downton_estado_mental">Estado mental</string>
+    <string name="label_downton_deambulacion">Deambulación</string>
+    <string name="label_downton_puntos">Puntos</string>
+    <string name="label_barthel_alimentacion">Alimentación</string>
+    <string name="label_barthel_banarse">Bañarse</string>
+    <string name="label_barthel_arreglarse">Arreglarse</string>
+    <string name="label_barthel_vestirse">Vestirse</string>
+    <string name="label_barthel_deposicion">Deposición</string>
+    <string name="label_barthel_miccion">Micción</string>
+    <string name="label_barthel_retrete">Uso del Retrete</string>
+    <string name="label_barthel_sillon">Traslado sillón/cama</string>
+    <string name="label_barthel_deambulacion">Deambulación</string>
+    <string name="label_barthel_movilidad">Movilidad en escaleras</string>
+    <string name="label_barthel_tipoescala">Indice de Barthel</string>
+    <string name="label_sofa_respiracion">Respiración: PO2/FiO2</string>
+    <string name="label_sofa_coagulacion">Coagulación: Plaquetas</string>
+    <string name="label_sofa_higado">Hígado: Bilirrubina</string>
+    <string name="label_sofa_cardiovascular">Cardiovascular: PAM</string>
+    <string name="label_sofa_snc">SNC: Glasgow</string>
+    <string name="label_sofa_renal">Renal: Creatinina</string>
+
+
+    <string name="descripcion_imc">Se calcula el IMC en base a la fórmula de Adolphe Quetelet, recomendada por la OMS.\n\nInterpretación:\nBajo peso:\t &lt; 18.5\nNormal:\t18.5 - 24.99\nSobrepeso:\t25.0 - 29.99\nObesidad leve:\t30.0 - 34.99\nObesidad moderada:\t35.0 - 39.99\nObesidad mórbida:\t&gt;= 40.0</string>
+    <string name="descripcion_sc_ninos">Se calcula la superficie corporal usando la fórmula de Haycock.</string>
+    <string name="descripcion_sc_adultos">Se calcula la superficie corporal usando la fórmula de Mollester.</string>
+    <string name="descripcion_velocidad_goteo">Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas.\nSe considera 1ml = 20 gotas.</string>
+    <string name="descripcion_volumen_infusion">Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas.\nSe considera 1ml = 20 gotas.</string>
+    <string name="descripcion_tiempo_infusion">Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo.\nSe considera 1ml = 20 gotas.</string>
+    <string name="descripcion_volumen_farmacos_uci">Se calcula el volumen total de una preparación para obtener 1µg/kg/min de fármaco por cada 1cc de preparación, según el peso del paciente.\nEsto es muy útil porque numéricamente coinciden la dosis indicada (µg/kg/min) con la velocidad de infusión (ml/hora).\nEs decir si se desea una dosis de 3µg/kg/min se infundirá a 3ml/hora; permitiendo implementar rápidamente los cambios en la indicación.\nLa cantidad del fármaco indica los mg. que se prepararán.\n</string>
+    <string name="descripcion_conversion_soluciones">Esta fórmula indica los volúmenes necesarios de las soluciones base que se necesitan para obtener la solución a preparar.\n\n</string>
+    <string name="descripcion_farmacos_uci">Esta fórmula calcula la velocidad de infusión de una preparación en un determinado volumen de solución, dada una dosis indicada. \n\nLa cantidad del fármaco indica los mg. que están en la preparación.\nEl volumen total incluye los volúmenes de la solución diluyente y del fármaco a preparar.\n</string>
+    <string formatted="false" name="descripcion_apache">APACHE II (Acute Physiology And Chronic Health Evaluation) es un score que valora el pronóstico de mortalidad de un paciente en UCI.\n\nPuntaje - Mortalidad:\n0 - 4 : 4%\n5 - 9 : 8%\n10-14 : 15%\n15-19 : 25%\n20-24 : 40%\n25-29 : 55%\n30-34 : 75%\n >= 35 : 85%\n</string>
+    <string formatted="false" name="descripcion_fecha_parto">Se calcula mediante la fórmula de Naegele, recomendada por la OMS.</string>
+    <string formatted="false" name="descripcion_scale_rass">Richmond Agitation Sedation Scale (RASS) es una escala usada para medir el nivel de agitación o sedación de un paciente.\nEs muy usada en pacientes con ventilación mecánica.\n</string>
+    <string formatted="false" name="descripcion_scale_ramsay">La escala Ramsay es usada para evaluar el nivel de sedación de un paciente hospitalizado. Fue descrita por Michael A. E. Ramsay.\n</string>
+    <string formatted="false" name="descripcion_scale_glasgow">Interpretación Neurológica :\nConsciente:  15 puntos\nEstupor ligero:   13-14 puntos\nEstupor moderado: 11-12 puntos\nEstupor profundo: 9-10 puntos\nComa superficial: 7-8 puntos\nComa moderado:  5-6 puntos\nComa profundo:  3-4 puntos\n</string>
+    <string formatted="false" name="descripcion_scale_apgarfam">Es un test que busca evidenciar el estado funcional de la familia.\n\n7 - 10 : Altamente funcionales.\n4 - 6 : Moderadamente funcionales.\n0 - 3 : Severamente disfuncionales.\n</string>
+    <string formatted="false" name="descripcion_scale_apgar">Desarrollado por Virginia Apgar en 1952. Es un test rápido que se realiza para obtener una valoración del estado general del neonato.\n\n0 - 3 : Severamente deprimido.\n4 - 6 : Moderadamente deprimido.\n7 - 10: Normal.\n</string>
+    <string formatted="false" name="descripcion_scale_silverman">Es un test que valora la dificultad respiratoria de un recien nacido.\n\nInterpretación:\n0 : Sin dificultad respiratoria\n1 - 3 : Dificultad respiratoria leve\n4 - 6 : Dificultad respiratoria moderada\n7 - 10: Dificultad respiratoria severa\n</string>
+    <string formatted="false" name="descripcion_scale_norton">Esta escala mide el riesgo que tiene un paciente de padecer úlceras por presión.\nFue realizada por Doreen Norton en 1962.\n\nRiesgo Muy Alto : 5 - 9\nRiesgo Alto : 10 - 12\nRiesgo Medio : 13 - 14\nRiesgo Mínimo  : &gt; 14\n"</string>
+    <string formatted="false" name="descripcion_scale_downton">Esta escala mide el riesgo que tiene un paciente de sufrir caídas.\n\nAlto Riesgo : > 2 puntos\n</string>
+    <string formatted="false" name="descripcion_scale_barthel">Esta escala valora la independencia funcional al realizar actividades básicas de la vida diaria.\n\n&lt; 20 :   Dependencia total\n20 - 35 : Dependencia grave\n40 - 55 : Dependencia moderada\n>= 60 :  Dependencia leve\n100 : Independiente\n</string>
+    <string formatted="false" name="descripcion_regla3">Se establece la relación de proporcionalidad directa entre dos valores, y conociendo un tercer valor, se calcula X.</string>
+    <string formatted="false" name="descripcion_scale_sofa">Sequential Organ Failure Assessment (SOFA) es una escala de medición de la aparición y evolución del fallo multiorgánico en pacientes de la UCI.\nUn incremento de la puntuación SOFA en las primeras 48h predice una mortalidad del 50%. En SOFA mayores a 15 puntos la mortalidad esperada es &gt;=90%.\n</string>
+
+
+    <string name="toast_ingrese_valores">Ingrese los valores solicitados</string>
+    <string name="toast_error_medidas">Ingrese valores adecuados</string>
+    <string name="toast_error_valores">Error al seleccionar las soluciones</string>
+
+    <string name="tab1">Escalas</string>
+    <string name="tab2">Fórmulas</string>
+    <string name="share_title">Compartir</string>
+    <string name="share_description">Prueba esta app sobre enfermería:</string>
+
+    <string name="title_activity_none">*</string>
+    <string name="test">test</string>
+
+
+    <!--Cadenas de los spinners  -->
+    <string name="opc_agua_destilada">Agua Destilada</string>
+    <string formatted="false" name="opc_dextrosa5">Dextrosa 5%</string>
+    <string formatted="false" name="opc_dextrosa10">Dextrosa 10%</string>
+    <string formatted="false" name="opc_dextrosa20">Dextrosa 20%</string>
+    <string formatted="false" name="opc_dextrosa25">Dextrosa 25%</string>
+    <string formatted="false" name="opc_dextrosa33">Dextrosa 33.3%</string>
+    <string formatted="false" name="opc_dextrosa30">Dextrosa 30%</string>
+    <string formatted="false" name="opc_dextrosa50">Dextrosa 50%</string>
+    <string formatted="false" name="opc_dextrosa70">Dextrosa 70%</string>
+    <string formatted="false" name="opc_cloruro45">NaCl 0.45%</string>
+    <string formatted="false" name="opc_cloruro9">NaCl 0.9%</string>
+    <string formatted="false" name="opc_cloruro15">NaCl 1.5%</string>
+    <string formatted="false" name="opc_cloruro3">NaCl 3%</string>
+    <string formatted="false" name="opc_cloruro10">NaCl 10%</string>
+    <string formatted="false" name="opc_cloruro117">NaCl 11.7%</string>
+    <string formatted="false" name="opc_cloruro20">NaCl 20%</string>
+
+    <!--Cadenas de apache  -->
+    <string name="apache_temp_rectal">1. Temperatura rectal</string>
+    <string name="apache_pam">2. PAM (mmHg)</string>
+    <string name="apache_frec_cardiaca">3. Frecuencia cardiaca</string>
+    <string name="apache_frec_respiratoria">4. Frecuencia respiratoria</string>
+    <string name="apache_fio2">5. PaO2</string>
+    <string name="apache_ph">6. pH arterial</string>
+    <string name="apache_sodio">7. Sodio sérico</string>
+    <string name="apache_potasio">8. K+ sérico</string>
+    <string name="apache_creatinina">9. Creatinina</string>
+    <string name="apache_hematocrito">10. Hematocrito</string>
+    <string name="apache_leucocitos">11. Leucocitos</string>
+    <string name="apache_glasgow">12. Escala Glasgow</string>
+    <string name="apache_edad">13. Edad</string>
+    <string name="apache_insuf_organica">14. ¿El paciente tiene historia de insuficiencia orgánica sistémica o está inmunocomprometido?</string>
+    <string name="apache_motivo_admision">Motivo de admisión UCI</string>
+    <string name="apache_motivo1">No quirúrgico</string>
+    <string name="apache_motivo2">Cirugía de emergencia</string>
+    <string name="apache_motivo3">Cirugía electiva</string>
+    <string name="apache_oxigenacion">Oxigenación:</string>
+    <string name="apache_falla_renal">¿Hay Falla Renal Aguda?</string>
+
+    <!--Cadenas de rass  -->
+    <string name="rass_combativo">Combativo</string>
+    <string name="rass_muy_agitado">Muy Agitado</string>
+    <string name="rass_agitado">Agitado</string>
+    <string name="rass_inquieto">Inquieto</string>
+    <string name="rass_alerta">Alerta y tranquilo</string>
+    <string name="rass_somnoliento">Somnoliento</string>
+    <string name="rass_sedacion_ligera">Sedación ligera</string>
+    <string name="rass_sedacion_moderada">Sedación moderada</string>
+    <string name="rass_sedacion_profunda">Sedación profunda</string>
+    <string name="rass_no_estimulable">No estimulable</string>
+
+    <!--Cadenas de ramsay  -->
+    <string name="ramsay_despierto">Despierto</string>
+    <string name="ramsay_ansioso">Ansioso y/o agitado</string>
+    <string name="ramsay_tranquilo">Tranquilo y colaborador</string>
+    <string name="ramsay_solo_ordenes">Responde sólo a órdenes\n\n</string>
+    <string name="ramsay_estimulo_auditivo">Dormido: Estímulo auditivo o glabelar</string>
+    <string name="ramsay_respuesta_energica">Respuesta enérgica</string>
+    <string name="ramsay_respuesta_lenta">Respuesta lenta</string>
+    <string name="ramsay_no_responde">No responde</string>
+
+    <!--Cadenas de glasgow  -->
+    <string name="glasgow_ninguna">Ninguna</string>
+    <string name="glasgow_espontanea">Espontánea</string>
+    <string name="glasgow_voz">A la voz</string>
+    <string name="glasgow_dolor">Al dolor</string>
+    <string name="glasgow_orientada">Orientada</string>
+    <string name="glasgow_confusa">Confusa</string>
+    <string name="glasgow_incoherente">Palabras inapropiadas</string>
+    <string name="glasgow_incomprensible">Sonidos incomprensibles</string>
+    <string name="glasgow_obedece_ordenes">Obedece órdenes</string>
+    <string name="glasgow_localiza_tacto">Localiza al tacto</string>
+    <string name="glasgow_localiza_dolor">Localiza al dolor</string>
+    <string name="glasgow_decorticacion">Decorticación</string>
+    <string name="glasgow_descerebracion">Descerebración</string>
+
+
+    <!--Cadenas de apgar familiar  -->
+    <string name="opc_apgarfam_casinunca">Casi nunca</string>
+    <string name="opc_apgarfam_aveces">A veces</string>
+    <string name="opc_apgarfam_casisiempre">Casi siempre</string>
+    <string name="apgarfam_pregunta1">ADAPTACIÓN: Me satisface la ayuda que recibo de mi familia cuando tengo algún problema.</string>
+    <string name="apgarfam_pregunta2">SOCIEDAD: Me satisface la forma como mi familia habla de las cosas y comparte los problemas conmigo.</string>
+    <string name="apgarfam_pregunta3">CRECIMIENTO: Me satisface como mi familia acepta y apoya mis deseos de emprender nuevas actividades.</string>
+    <string name="apgarfam_pregunta4">AFECTO: Me satisface como mi familia expresa afecto y responde a mis emociones como rabia, tristeza, amor.</string>
+    <string name="apgarfam_pregunta5">RESOLUCION: Me satisface la manera en que mi familia y yo pasamos el tiempo juntos.</string>
+
+    <!--Cadenas de apgar -->
+    <string formatted="false" name="opc_apgar_mayor100">&gt;100 por minuto</string>
+    <string formatted="false" name="opc_apgar_menor100">&lt;100 por minuto</string>
+    <string name="opc_apgar_ausente">Ausente</string>
+    <string name="opc_apgar_buena">Buena, llanto fuerte</string>
+    <string name="opc_apgar_irregular">Irregular, lenta</string>
+    <string name="opc_apgar_rosada">Completamente rosado</string>
+    <string name="opc_apgar_normal">Rosado (salvo manos y pies)</string>
+    <string name="opc_apgar_cianosis">Cianosis y palidez</string>
+    <string name="opc_apgar_movimientos">Movimientos activos</string>
+    <string name="opc_apgar_extremidades">Extremidades flexionadas</string>
+    <string name="opc_apgar_flacidez">Flacidez generalizada</string>
+    <string name="opc_apgar_energica">Enérgica (tos, estornudos)</string>
+    <string name="opc_apgar_muecas">Muecas</string>
+    <string name="opc_apgar_nula">Nula</string>
+
+    <!--Cadenas de silverman -->
+    <string name="opc_silverman_ausente">Ausente</string>
+    <string name="opc_silverman_sin_retraccion">Sin retracción</string>
+    <string name="opc_silverman_minima">Mínimo</string>
+    <string name="opc_silverman_estetoscopio">Audible con el estetoscopio</string>
+    <string name="opc_silverman_apenas_visible">Apenas visible</string>
+    <string name="opc_silverman_marcada">Marcado</string>
+    <string name="opc_silverman_audible">Audible sin el estetoscopio</string>
+    <string name="opc_silverman_sincronizado">Tórax y abdomen sincronizados</string>
+    <string name="opc_silverman_torax_escaso">Elevación nula o escasa del tórax al elevarse el abdomen</string>
+    <string name="opc_silverman_depresion_torax">Depresión del torax</string>
+
+    <!--Cadenas de norton -->
+    <string name="opc_norton_bueno">Bueno</string>
+    <string name="opc_norton_mediano">Mediano</string>
+    <string name="opc_norton_regular">Regular</string>
+    <string name="opc_norton_muymalo">Muy malo</string>
+    <string name="opc_norton_alerta">Alerta</string>
+    <string name="opc_norton_apatico">Apático</string>
+    <string name="opc_norton_confuso">Confuso</string>
+    <string name="opc_norton_estuporoso">Estuporoso</string>
+    <string name="opc_norton_ambulante">Ambulante</string>
+    <string name="opc_norton_disminuida">Disminuída</string>
+    <string name="opc_norton_muylimitada">Muy limitada</string>
+    <string name="opc_norton_inmovil">Inmóvil</string>
+    <string name="opc_norton_total">Total</string>
+    <string name="opc_norton_camina">Camina con ayuda</string>
+    <string name="opc_norton_sentado">Sentado</string>
+    <string name="opc_norton_encama">Encamado</string>
+    <string name="opc_norton_ninguna">Ninguna</string>
+    <string name="opc_norton_ocasional">Ocasional</string>
+    <string name="opc_norton_urinaria1">Urinaria o fecal</string>
+    <string name="opc_norton_urinaria2">Urinaria y fecal</string>
+
+    <!--Cadenas de downton -->
+    <string name="opc_downton_si">Si</string>
+    <string name="opc_downton_no">No</string>
+    <string name="opc_downton_ninguno">Ninguno</string>
+    <string name="opc_downton_sedantes">Sedantes</string>
+    <string name="opc_downton_diureticos">Diuréticos</string>
+    <string name="opc_downton_hipotensores">Hipotensores</string>
+    <string name="opc_downton_antiparkinsonianos">Antiparkinsonianos</string>
+    <string name="opc_downton_antidepresivos">Antidepresivos</string>
+    <string name="opc_downton_otros_medicamentos">Otros medicamentos</string>
+    <string name="opc_downton_alteraciones_visuales">Alteraciones visuales</string>
+    <string name="opc_downton_alteraciones_auditivas">Alteraciones auditivas</string>
+    <string name="opc_downton_extremidades">Extremidades (ictus)</string>
+    <string name="opc_downton_orientado">Orientado</string>
+    <string name="opc_downton_confuso">Confuso</string>
+    <string name="opc_downton_normal">Normal</string>
+    <string name="opc_downton_segura">Segura con ayuda</string>
+    <string name="opc_downton_insegura">Insegura con/sin ayuda</string>
+    <string name="opc_downton_imposible">Imposible</string>
+
+    <!--Cadenas de Barthel -->
+    <string name="opc_barthel_independiente">Independiente</string>
+    <string name="opc_barthel_dependiente">Dependiente</string>
+    <string name="opc_barthel_necesita_ayuda">Necesita ayuda</string>
+    <string name="opc_barthel_necesita_algo_ayuda">Necesita algo de ayuda</string>
+    <string name="opc_barthel_continente">Continente</string>
+    <string name="opc_barthel_incontinencia_ocasional">Incontinencia ocasional</string>
+    <string name="opc_barthel_incontinencia_completa">Incontinencia completa</string>
+    <string name="opc_barthel_minima_ayuda">Minima ayuda</string>
+    <string name="opc_barthel_gran_ayuda">Gran ayuda</string>
+    <string name="opc_barthel_independiente_50m">Independiente, camina al menos 50m</string>
+    <string name="opc_barthel_ayuda_50m">Necesita ayuda o supervisión para caminar 50m</string>
+    <string name="opc_barthel_independiente_silla">Independiente en silla de ruedas</string>
+
+    <!--Cadenas de Sofa -->
+    <string formatted="false" name="opc_sofa_cardio1">Dopamina &lt;=5µg/kg/min o Dobutamina (cualquier dosis)</string>
+    <string formatted="false" name="opc_sofa_cardio2">Dopamina &gt;5µg/kg/min o Epi/Norepi &lt;=0.1µg/kg/min</string>
+    <string formatted="false" name="opc_sofa_cardio3">Dopamina &gt;15µg/kg/min o Epi/Norepi &gt;0.1µg/kg/min</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-4549935446415170/4450174044</string>
+
+</resources>

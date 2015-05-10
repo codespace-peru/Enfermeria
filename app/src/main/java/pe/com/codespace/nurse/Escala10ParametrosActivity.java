@@ -1,30 +1,68 @@
 package pe.com.codespace.nurse;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import static pe.com.codespace.nurse.MyValues.*;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class Escala10ParametrosActivity extends ActionBarActivity {
+public class Escala10ParametrosActivity extends AppCompatActivity {
 
-    TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textView6, textView7, textView8,textView9, textView10, textViewNotas;
-    TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5, textViewItemEscala6, textViewItemEscala7, textViewItemEscala8,textViewItemEscala9, textViewItemEscala10;
-    Spinner dropdownItem1,dropdownItem2,dropdownItem3,dropdownItem4,dropdownItem5,dropdownItem6,dropdownItem7,dropdownItem8,dropdownItem9,dropdownItem10;
+    TextView textViewTitle;
+    TextView textViewResultado;
+    TextView textView1;
+    TextView textView2;
+    TextView textView3;
+    TextView textView4;
+    TextView textView5;
+    TextView textView6;
+    TextView textView7;
+    TextView textView8;
+    TextView textView9;
+    TextView textView10;
+    TextView textViewNotas;
+    TextView textViewItemEscala1;
+    TextView textViewItemEscala2;
+    TextView textViewItemEscala3;
+    TextView textViewItemEscala4;
+    TextView textViewItemEscala5;
+    TextView textViewItemEscala6;
+    TextView textViewItemEscala7;
+    TextView textViewItemEscala8;
+    TextView textViewItemEscala9;
+    TextView textViewItemEscala10;
+    Spinner dropdownItem1;
+    Spinner dropdownItem2;
+    Spinner dropdownItem3;
+    Spinner dropdownItem4;
+    Spinner dropdownItem5;
+    Spinner dropdownItem6;
+    Spinner dropdownItem7;
+    Spinner dropdownItem8;
+    Spinner dropdownItem9;
+    Spinner dropdownItem10;
     int Param1, Param2, Param3, Param4, Param5, Param6, Param7, Param8, Param9, Param10;
     String[] items1, items2, items3, items4, items5, items6, items7, items8, items9, items10;
-    int[] items1Values, items2Values, items3Values, items4Values, items5Values, items6Values, items7Values, items8Values, items9Values, items10Values;
+    int[] items1Values;
+    int[] items2Values;
+    int[] items3Values;
+    int[] items4Values;
+    int[] items5Values;
+    int[] items6Values;
+    int[] items7Values;
+    int[] items8Values;
+    int[] items9Values;
+    int[] items10Values;
     int numeroEscala;
     String tipoEscala;
 
@@ -33,8 +71,10 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_escala10parametros);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
         numeroEscala = getIntent().getExtras().getInt("numeroEscala");
 
         textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
@@ -83,34 +123,34 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
         textViewItemEscala10.setText(String.valueOf(Param10));
         UpdateRespuesta();
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.spinner_item, items1);
+        AdapterSpinner adapter1 = new AdapterSpinner(this,R.layout.spinner_item, items1);
         dropdownItem1.setAdapter(adapter1);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, items2);
+        AdapterSpinner adapter2 = new AdapterSpinner(this,R.layout.spinner_item, items2);
         dropdownItem2.setAdapter(adapter2);
 
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, items3);
+        AdapterSpinner adapter3 = new AdapterSpinner(this,R.layout.spinner_item, items3);
         dropdownItem3.setAdapter(adapter3);
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, items4);
+        AdapterSpinner adapter4 = new AdapterSpinner(this,R.layout.spinner_item, items4);
         dropdownItem4.setAdapter(adapter4);
 
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.spinner_item, items5);
+        AdapterSpinner adapter5 = new AdapterSpinner(this,R.layout.spinner_item, items5);
         dropdownItem5.setAdapter(adapter5);
 
-        ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(this, R.layout.spinner_item, items6);
+        AdapterSpinner adapter6 = new AdapterSpinner(this,R.layout.spinner_item, items6);
         dropdownItem6.setAdapter(adapter6);
 
-        ArrayAdapter<String> adapter7 = new ArrayAdapter<String>(this, R.layout.spinner_item, items7);
+        AdapterSpinner adapter7 = new AdapterSpinner(this,R.layout.spinner_item, items7);
         dropdownItem7.setAdapter(adapter7);
 
-        ArrayAdapter<String> adapter8 = new ArrayAdapter<String>(this, R.layout.spinner_item, items8);
+        AdapterSpinner adapter8 = new AdapterSpinner(this,R.layout.spinner_item, items8);
         dropdownItem8.setAdapter(adapter8);
 
-        ArrayAdapter<String> adapter9 = new ArrayAdapter<String>(this, R.layout.spinner_item, items9);
+        AdapterSpinner adapter9 = new AdapterSpinner(this,R.layout.spinner_item, items9);
         dropdownItem9.setAdapter(adapter9);
 
-        ArrayAdapter<String> adapter10 = new ArrayAdapter<String>(this, R.layout.spinner_item, items10);
+        AdapterSpinner adapter10 = new AdapterSpinner(this,R.layout.spinner_item, items10);
         dropdownItem10.setAdapter(adapter10);
 
         dropdownItem1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -237,6 +277,13 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
         AdView adView = (AdView)this.findViewById(R.id.adViewEscala10Param);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
     private void UpdateRespuesta(){
@@ -246,43 +293,41 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case BARTHEL:
-                textViewTitle.setText("Escala de Barthel");
-                textView1.setText("Alimentación");
-                textView2.setText("Bañarse");
-                textView3.setText("Arreglarse");
-                textView4.setText("Vestirse");
-                textView5.setText("Deposición");
-                textView6.setText("Micción");
-                textView7.setText("Uso del retrete");
-                textView8.setText("Traslado sillón/cama");
-                textView9.setText("Deambulación");
-                textView10.setText("Movilidad en escaleras");
-                textViewNotas.setText("Esta escala valora la independencia funcional al realizar actividades básicas de la vida diaria.\n\n" +
-                                      "< 20 :   Total\n" + "20 - 35 : Grave\n" + "40 - 55 : Moderado\n" +
-                                      ">= 60 :  Leve\n" + "100 : Independiente\n");
+                textViewTitle.setText(getResources().getString(R.string.scale_barthel_title));
+                textView1.setText(getResources().getString(R.string.label_barthel_alimentacion));
+                textView2.setText(getResources().getString(R.string.label_barthel_banarse));
+                textView3.setText(getResources().getString(R.string.label_barthel_arreglarse));
+                textView4.setText(getResources().getString(R.string.label_barthel_vestirse));
+                textView5.setText(getResources().getString(R.string.label_barthel_deposicion));
+                textView6.setText(getResources().getString(R.string.label_barthel_miccion));
+                textView7.setText(getResources().getString(R.string.label_barthel_retrete));
+                textView8.setText(getResources().getString(R.string.label_barthel_sillon));
+                textView9.setText(getResources().getString(R.string.label_barthel_deambulacion));
+                textView10.setText(getResources().getString(R.string.label_barthel_movilidad));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_barthel));
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=10; Param2=5; Param3=5; Param4=10; Param5=10; Param6=10; Param7=10; Param8=15; Param9=10; Param10=10;
-                items1 = new String[]{"Independiente","Necesita ayuda", "Dependiente"};
+                items1 = new String[]{getResources().getString(R.string.opc_barthel_independiente),getResources().getString(R.string.opc_barthel_necesita_ayuda), getResources().getString(R.string.opc_barthel_dependiente)};
                 items1Values = new int[]{10,5,0};
-                items2 = new String[]{"Independiente", "Dependiente"};
+                items2 = new String[]{getResources().getString(R.string.opc_barthel_independiente), getResources().getString(R.string.opc_barthel_dependiente)};
                 items2Values = new int[]{5,0};
-                items3 = new String[]{"Independiente", "Necesita ayuda"};
+                items3 = new String[]{getResources().getString(R.string.opc_barthel_independiente), getResources().getString(R.string.opc_barthel_dependiente)};
                 items3Values = new int[]{5,0};
-                items4 = new String[]{"Independiente","Necesita ayuda","Dependiente"};
+                items4 = new String[]{getResources().getString(R.string.opc_barthel_independiente),getResources().getString(R.string.opc_barthel_necesita_ayuda),getResources().getString(R.string.opc_barthel_dependiente)};
                 items4Values = new int[]{10,5,0};
-                items5 = new String[]{"Continente", "Incontinencia ocasional", "Incontinencia completa"};
+                items5 = new String[]{getResources().getString(R.string.opc_barthel_continente), getResources().getString(R.string.opc_barthel_incontinencia_ocasional), getResources().getString(R.string.opc_barthel_incontinencia_completa)};
                 items5Values = new int[]{10,5,0};
-                items6 = new String[]{"Continente", "Incontinencia ocasional", "Incontinencia completa"};
+                items6 = new String[]{getResources().getString(R.string.opc_barthel_continente), getResources().getString(R.string.opc_barthel_incontinencia_ocasional), getResources().getString(R.string.opc_barthel_incontinencia_completa)};
                 items6Values = new int[]{10,5,0};
-                items7 = new String[]{"Independiente", "Necesita algo de ayuda", "Dependiente"};
+                items7 = new String[]{getResources().getString(R.string.opc_barthel_independiente), getResources().getString(R.string.opc_barthel_necesita_algo_ayuda), getResources().getString(R.string.opc_barthel_dependiente)};
                 items7Values = new int[]{10,5,0};
-                items8 = new String[]{"Independiente", "Mínima ayuda", "Gran ayuda", "Dependiente"};
+                items8 = new String[]{getResources().getString(R.string.opc_barthel_independiente), getResources().getString(R.string.opc_barthel_minima_ayuda), getResources().getString(R.string.opc_barthel_gran_ayuda), getResources().getString(R.string.opc_barthel_dependiente)};
                 items8Values = new int[]{15,10,5,0};
-                items9 = new String[]{"Independiente, camina al menos 50m", "Necesita ayuda o supervisión para caminar 50m","Independiente en silla de ruedas", "Dependiente"};
+                items9 = new String[]{getResources().getString(R.string.opc_barthel_independiente_50m), getResources().getString(R.string.opc_barthel_ayuda_50m),getResources().getString(R.string.opc_barthel_independiente_silla), getResources().getString(R.string.opc_barthel_dependiente)};
                 items9Values = new int[]{15,10,5,0};
-                items10 = new String[]{"Independiente", "Necesita algo de ayuda", "Dependiente"};
+                items10 = new String[]{getResources().getString(R.string.opc_barthel_independiente), getResources().getString(R.string.opc_barthel_necesita_algo_ayuda), getResources().getString(R.string.opc_barthel_dependiente)};
                 items10Values = new int[]{10,5,0};
-                tipoEscala="Indice de Barthel";
+                tipoEscala = getResources().getString(R.string.label_barthel_tipoescala);
                 break;
 
         }
@@ -290,29 +335,15 @@ public class Escala10ParametrosActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.escala_glasgow, menu);
+        //getMenuInflater().inflate(R.menu.escala_glasgow, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
-    }
 
 }

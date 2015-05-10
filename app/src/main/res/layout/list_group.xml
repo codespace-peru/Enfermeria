@@ -8,12 +8,14 @@
     <TextView
         android:id="@+id/tvGroup"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/listgroup_height_size"
-        android:minHeight="40dp"
+        android:layout_height="wrap_content"
+        android:text="@string/test"
+        android:paddingBottom="@dimen/height_padding_title"
+        android:paddingTop="@dimen/height_padding_title"
         android:gravity="center_vertical"
         android:textStyle="bold"
+        android:textAllCaps="true"
         android:textColor="@color/text_color1"
         android:ellipsize="end"
-        android:singleLine="true"
         android:textSize="@dimen/text_group_title_size"/>
 </LinearLayout>

@@ -1,25 +1,22 @@
 package pe.com.codespace.nurse;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import static pe.com.codespace.nurse.MyValues.*;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import java.util.List;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class Escala5ParametrosActivity extends ActionBarActivity {
+public class Escala5ParametrosActivity extends AppCompatActivity {
 
     TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5;
@@ -35,7 +32,9 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_escala5parametros);
         numeroEscala = getIntent().getExtras().getInt("numeroEscala");
 
@@ -65,19 +64,19 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
         textViewItemEscala5.setText(String.valueOf(Param5));
         UpdateRespuesta();
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.spinner_item, items1);
+        AdapterSpinner adapter1 = new AdapterSpinner(this,R.layout.spinner_item, items1);
         dropdownItem1.setAdapter(adapter1);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, items2);
+        AdapterSpinner adapter2 = new AdapterSpinner(this,R.layout.spinner_item, items2);
         dropdownItem2.setAdapter(adapter2);
 
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, items3);
+        AdapterSpinner adapter3 = new AdapterSpinner(this,R.layout.spinner_item, items3);
         dropdownItem3.setAdapter(adapter3);
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, items4);
+        AdapterSpinner adapter4 = new AdapterSpinner(this,R.layout.spinner_item, items4);
         dropdownItem4.setAdapter(adapter4);
 
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, R.layout.spinner_item, items5);
+        AdapterSpinner adapter5 = new AdapterSpinner(this,R.layout.spinner_item, items5);
         dropdownItem5.setAdapter(adapter5);
 
         dropdownItem1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -144,6 +143,13 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
         AdView adView = (AdView)this.findViewById(R.id.adViewEscala5Param);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
     private void UpdateRespuesta(){
@@ -153,128 +159,126 @@ public class Escala5ParametrosActivity extends ActionBarActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case APGAR:
-                textViewTitle.setText("Test de Apgar");
-                textView1.setText("Frecuencia Cardíaca");
-                textView2.setText("Movimientos Respiratorios");
-                textView3.setText("Color de la Piel");
-                textView4.setText("Tono Muscular");
-                textView5.setText("Respuesta a Estímulos");
-                textViewNotas.setText("0 - 3 : Severamente deprimido.\n4 - 6 : Moderadamente deprimido.\n7 - 10: Normal.\n\n" +
-                                      "Desarrollado por Virginia Apgar en 1952. Es un test rápido que se realiza para obtener una valoración del estado general del neonato.");
+                textViewTitle.setText(getResources().getString(R.string.test_apgar_title));
+                textView1.setText(getResources().getString(R.string.label_apgar_frec_cardiaca));
+                textView2.setText(getResources().getString(R.string.label_apgar_mov_respiratorios));
+                textView3.setText(getResources().getString(R.string.label_apgar_color_piel));
+                textView4.setText(getResources().getString(R.string.label_apgar_tono_muscular));
+                textView5.setText(getResources().getString(R.string.label_apgar_respuesta_estimulos));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_apgar));
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=2; Param2=2; Param3=2; Param4=2; Param5=2;
-                items1 = new String[]{"> 100 por minuto","< 100 por minuto", "Ausente"};
+                items1 = new String[]{getResources().getString(R.string.opc_apgar_mayor100),getResources().getString(R.string.opc_apgar_menor100), getResources().getString(R.string.opc_apgar_ausente)};
                 items1Values = new int[]{2,1,0};
-                items2 = new String[]{"Buena", "Llanto fuerte","Ausente"};
+                items2 = new String[]{getResources().getString(R.string.opc_apgar_buena), getResources().getString(R.string.opc_apgar_irregular),getResources().getString(R.string.opc_apgar_ausente)};
                 items2Values = new int[]{2,1,0};
-                items3 = new String[]{"Rosada", "Normal(salvo manos y pies)", "Cianosis y palidez"};
+                items3 = new String[]{getResources().getString(R.string.opc_apgar_rosada), getResources().getString(R.string.opc_apgar_normal), getResources().getString(R.string.opc_apgar_cianosis)};
                 items3Values = new int[]{2,1,0};
-                items4 = new String[]{"Movimientos activos","Extremidades flexionadas","Flacidez generalizada"};
+                items4 = new String[]{getResources().getString(R.string.opc_apgar_movimientos),getResources().getString(R.string.opc_apgar_extremidades),getResources().getString(R.string.opc_apgar_flacidez)};
                 items4Values = new int[]{2,1,0};
-                items5 = new String[]{"Enérgica", "Muecas", "Nula"};
+                items5 = new String[]{getResources().getString(R.string.opc_apgar_energica), getResources().getString(R.string.opc_apgar_muecas), getResources().getString(R.string.opc_apgar_nula)};
                 items5Values = new int[]{2,1,0};
                 tipoEscala="Apgar";
                 break;
-            case APGAR_FAM:
-                textViewTitle.setText("Test de Apgar Familiar");
-                textView1.setText("¿Está satisfecho con la ayuda que recibe de su familia cuando tiene un problema?");
-                textView2.setText("¿Conversan entre ustedes los problemas que tienen en casa?");
-                textView3.setText("¿Las decisiones importantes se toman en conjunto en la casa?");
-                textView4.setText("¿Está satisfecho con el tiempo que usted y su familia pasan juntos?");
-                textView5.setText("¿Siente que su familia lo quiere?");
-                textViewNotas.setText("7 - 10 : Altamente funcionales.\n" +
-                                      "4 - 6 : Moderadamente funcionales.\n" +
-                                      "0 - 3 : Severamente disfuncionales.\n\n" +
-                                      "Es un test que busca evidenciar el estado funcional de la familia.");
+            case SILVERMAN:
+                textViewTitle.setText(getResources().getString(R.string.test_silverman_title));
+                textView1.setText(getResources().getString(R.string.label_silverman_aleteo));
+                textView2.setText(getResources().getString(R.string.label_silverman_tiraje));
+                textView3.setText(getResources().getString(R.string.label_silverman_quejido));
+                textView4.setText(getResources().getString(R.string.label_silverman_retraccion));
+                textView5.setText(getResources().getString(R.string.label_silverman_toracoabdominal));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_silverman));
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=0; Param2=0; Param3=0; Param4=0; Param5=0;
-                items1 = new String[]{"Casi nunca","A veces", "Casi siempre"};
+                items1 = new String[]{getResources().getString(R.string.opc_silverman_ausente),getResources().getString(R.string.opc_silverman_minima), getResources().getString(R.string.opc_silverman_marcada)};
                 items1Values = new int[]{0,1,2};
-                items2 = new String[]{"Casi nunca","A veces", "Casi siempre"};
+                items2 = new String[]{getResources().getString(R.string.opc_silverman_ausente), getResources().getString(R.string.opc_silverman_apenas_visible),getResources().getString(R.string.opc_silverman_marcada)};
                 items2Values = new int[]{0,1,2};
-                items3 = new String[]{"Casi nunca","A veces", "Casi siempre"};
+                items3 = new String[]{getResources().getString(R.string.opc_silverman_ausente), getResources().getString(R.string.opc_silverman_estetoscopio), getResources().getString(R.string.opc_silverman_audible)};
                 items3Values = new int[]{0,1,2};
-                items4 = new String[]{"Casi nunca","A veces", "Casi siempre"};
+                items4 = new String[]{getResources().getString(R.string.opc_silverman_sin_retraccion),getResources().getString(R.string.opc_silverman_apenas_visible),getResources().getString(R.string.opc_silverman_marcada)};
                 items4Values = new int[]{0,1,2};
-                items5 = new String[]{"Casi nunca","A veces", "Casi siempre"};
+                items5 = new String[]{getResources().getString(R.string.opc_silverman_sincronizado), getResources().getString(R.string.opc_silverman_torax_escaso), getResources().getString(R.string.opc_silverman_depresion_torax)};
                 items5Values = new int[]{0,1,2};
-                tipoEscala="Apgar Familiar";
+                tipoEscala="Silverman";
+                break;
+            case APGAR_FAM:
+                textViewTitle.setText(getResources().getString(R.string.test_apgarfam_title));
+                textView1.setText(getResources().getString(R.string.apgarfam_pregunta1));
+                textView2.setText(getResources().getString(R.string.apgarfam_pregunta2));
+                textView3.setText(getResources().getString(R.string.apgarfam_pregunta3));
+                textView4.setText(getResources().getString(R.string.apgarfam_pregunta4));
+                textView5.setText(getResources().getString(R.string.apgarfam_pregunta5));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_apgarfam));
+                textViewNotas.setVisibility(View.VISIBLE);
+                Param1=0; Param2=0; Param3=0; Param4=0; Param5=0;
+                items1 = new String[]{getResources().getString(R.string.opc_apgarfam_casinunca),getResources().getString(R.string.opc_apgarfam_aveces), getResources().getString(R.string.opc_apgarfam_casisiempre)};
+                items1Values = new int[]{0,1,2};
+                items2 = new String[]{getResources().getString(R.string.opc_apgarfam_casinunca),getResources().getString(R.string.opc_apgarfam_aveces), getResources().getString(R.string.opc_apgarfam_casisiempre)};
+                items2Values = new int[]{0,1,2};
+                items3 = new String[]{getResources().getString(R.string.opc_apgarfam_casinunca),getResources().getString(R.string.opc_apgarfam_aveces), getResources().getString(R.string.opc_apgarfam_casisiempre)};
+                items3Values = new int[]{0,1,2};
+                items4 = new String[]{getResources().getString(R.string.opc_apgarfam_casinunca),getResources().getString(R.string.opc_apgarfam_aveces), getResources().getString(R.string.opc_apgarfam_casisiempre)};
+                items4Values = new int[]{0,1,2};
+                items5 = new String[]{getResources().getString(R.string.opc_apgarfam_casinunca),getResources().getString(R.string.opc_apgarfam_aveces), getResources().getString(R.string.opc_apgarfam_casisiempre)};
+                items5Values = new int[]{0,1,2};
+                tipoEscala = getResources().getString(R.string.label_apgarfam_tipoescala);
                 break;
             case NORTON:
-                textViewTitle.setText("Escala de Norton Modificado");
-                textView1.setText("Estado Fisico General");
-                textView2.setText("Estado Mental");
-                textView3.setText("Actividad");
-                textView4.setText("Movilidad");
-                textView5.setText("Incontinencia");
-                textViewNotas.setText("Esta escala mide el riesgo que tiene un paciente de padecer úlceras por presión.\nFue realizada por Doreen Norton en 1962.\n\n" +
-                                      "Riesgo Muy Alto : 5 a 9 puntos\n" +
-                                      "Riesgo Alto      : 10 a 12 puntos\n" +
-                                      "Riesgo Medio     : 13 a 14 puntos\n" +
-                                      "Riesgo Mínimo    : > 14 puntos");
+                textViewTitle.setText(getResources().getString(R.string.scale_norton_title));
+                textView1.setText(getResources().getString(R.string.label_norton_estado_fisico));
+                textView2.setText(getResources().getString(R.string.label_norton_estado_mental));
+                textView3.setText(getResources().getString(R.string.label_norton_actividad));
+                textView4.setText(getResources().getString(R.string.label_norton_movilidad));
+                textView5.setText(getResources().getString(R.string.label_norton_incontinencia));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_norton));
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=4; Param2=4; Param3=4; Param4=4; Param5=4;
-                items1 = new String[]{"Bueno","Mediano", "Regular","Muy Malo"};
+                items1 = new String[]{getResources().getString(R.string.opc_norton_bueno),getResources().getString(R.string.opc_norton_mediano), getResources().getString(R.string.opc_norton_regular),getResources().getString(R.string.opc_norton_muymalo)};
                 items1Values = new int[]{4,3,2,1};
-                items2 = new String[]{"Alerta", "Apático","Confuso","Estuporoso"};
+                items2 = new String[]{getResources().getString(R.string.opc_norton_alerta), getResources().getString(R.string.opc_norton_apatico),getResources().getString(R.string.opc_norton_confuso),getResources().getString(R.string.opc_norton_estuporoso)};
                 items2Values = new int[]{4,3,2,1};
-                items3 = new String[]{"Ambulante", "Disminuída", "Muy Limitada","Inmovil"};
+                items3 = new String[]{getResources().getString(R.string.opc_norton_ambulante), getResources().getString(R.string.opc_norton_camina), getResources().getString(R.string.opc_norton_sentado),getResources().getString(R.string.opc_norton_encama)};
                 items3Values = new int[]{4,3,2,1};
-                items4 = new String[]{"Total", "Camina con Ayuda", "Sentado","Encamado"};
+                items4 = new String[]{getResources().getString(R.string.opc_norton_total), getResources().getString(R.string.opc_norton_disminuida), getResources().getString(R.string.opc_norton_muylimitada),getResources().getString(R.string.opc_norton_inmovil)};
                 items4Values = new int[]{4,3,2,1};
-                items5 = new String[]{"Ninguna","Ocasional","Urinaria o Fecal","Urinaria y Fecal"};
+                items5 = new String[]{getResources().getString(R.string.opc_norton_ninguna),getResources().getString(R.string.opc_norton_ocasional),getResources().getString(R.string.opc_norton_urinaria1),getResources().getString(R.string.opc_norton_urinaria2)};
                 items5Values = new int[]{4,3,2,1};
-                tipoEscala="Norton Modificado";
+                tipoEscala = getResources().getString(R.string.label_norton_tipoescala);
                 break;
             case DOWNTON:
-                textViewTitle.setText("Escala de J.H. Downton");
-                textView1.setText("Caídas previas");
-                textView2.setText("Medicación");
-                textView3.setText("Déficit sensorial");
-                textView4.setText("Estado mental");
-                textView5.setText("Deambulación");
-                textViewNotas.setText("Esta escala mide el riesgo de caídas de un paciente.\n" + "Alto Riesgo : > 2 puntos\n");
+                textViewTitle.setText(getResources().getString(R.string.scale_downton_title));
+                textView1.setText(getResources().getString(R.string.label_downton_caidas));
+                textView2.setText(getResources().getString(R.string.label_downton_medicacion));
+                textView3.setText(getResources().getString(R.string.label_downton_deficit_sensorial));
+                textView4.setText(getResources().getString(R.string.label_downton_estado_mental));
+                textView5.setText(getResources().getString(R.string.label_downton_deambulacion));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_downton));
                 textViewNotas.setVisibility(View.VISIBLE);
                 Param1=0; Param2=0; Param3=0; Param4=0; Param5=0;
-                items1 = new String[]{"No","Si"};
+                items1 = new String[]{getResources().getString(R.string.opc_downton_no),getResources().getString(R.string.opc_downton_si)};
                 items1Values = new int[]{0,1};
-                items2 = new String[]{"Ninguno", "Sedantes","Diureticos","Hipotensores","Antiparkinsonianos","Antidepresivos","Otros medicamentos"};
+                items2 = new String[]{getResources().getString(R.string.opc_downton_ninguno), getResources().getString(R.string.opc_downton_sedantes),getResources().getString(R.string.opc_downton_diureticos),getResources().getString(R.string.opc_downton_hipotensores),getResources().getString(R.string.opc_downton_antiparkinsonianos),getResources().getString(R.string.opc_downton_antidepresivos),getResources().getString(R.string.opc_downton_otros_medicamentos)};
                 items2Values = new int[]{0,1,1,1,1,1,1};
-                items3 = new String[]{"Ninguno", "Alteraciones visuales", "Alteraciones auditivas","Extremidades (ictus)"};
+                items3 = new String[]{getResources().getString(R.string.opc_downton_ninguno), getResources().getString(R.string.opc_downton_alteraciones_visuales), getResources().getString(R.string.opc_downton_alteraciones_auditivas),getResources().getString(R.string.opc_downton_extremidades)};
                 items3Values = new int[]{0,1,1,1};
-                items4 = new String[]{"Orientado", "Confuso"};
+                items4 = new String[]{getResources().getString(R.string.opc_downton_orientado), getResources().getString(R.string.opc_downton_confuso)};
                 items4Values = new int[]{0,1};
-                items5 = new String[]{"Normal","Segura con ayuda","Insegura con ayuda/sin ayuda","Imposible"};
+                items5 = new String[]{getResources().getString(R.string.opc_downton_normal),getResources().getString(R.string.opc_downton_segura),getResources().getString(R.string.opc_downton_insegura),getResources().getString(R.string.opc_downton_imposible)};
                 items5Values = new int[]{0,1,1,1};
-                tipoEscala="Puntos";
+                tipoEscala=getResources().getString(R.string.label_downton_puntos);
                 break;
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.escala_glasgow, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
-    }
 }

@@ -2,30 +2,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_vertical_margin"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="100dp">
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/adViewInput4Param">
 
         <TextView
             android:id="@+id/tvTitleFormula"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_height_title_size"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/height_padding_title"
+            android:paddingBottom="@dimen/height_padding_title"
             android:textStyle="bold"
-            android:text="test"
+            android:text="@string/test"
             android:gravity="center"
             android:textSize="@dimen/title_main"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/rojo"/>
+            android:background="@color/view_color"/>
 
 
 
@@ -34,7 +35,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         <LinearLayout
@@ -46,22 +47,22 @@
             <TextView
                 android:id="@+id/tvInput1"
                 android:textStyle="bold"
-                android:text="TEXTVIEW"
-                android:layout_width="match_parent"
+                android:text="@string/test"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_weight="2"
                 android:textSize="@dimen/text_size2"/>
             <EditText
                 android:id="@+id/etInput1"
-                android:layout_width="match_parent"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:numeric="decimal"
+                android:inputType="numberDecimal"
                 android:background="@color/blanco"
                 android:textSize="@dimen/text_size3"
                 android:gravity="center"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:maxLength="4"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"/>
@@ -76,22 +77,22 @@
             <TextView
                 android:id="@+id/tvInput2"
                 android:textStyle="bold"
-                android:text="TEXTVIEW"
-                android:layout_width="match_parent"
+                android:text="@string/test"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_weight="2"
                 android:textSize="@dimen/text_size2"/>
             <EditText
                 android:id="@+id/etInput2"
-                android:layout_width="match_parent"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:numeric="decimal"
+                android:inputType="numberDecimal"
                 android:background="@color/blanco"
                 android:gravity="center"
                 android:textSize="@dimen/text_size3"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:maxLength="4"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"/>
@@ -105,22 +106,22 @@
             <TextView
                 android:id="@+id/tvInput3"
                 android:textStyle="bold"
-                android:text="TEXTVIEW"
-                android:layout_width="match_parent"
+                android:text="@string/test"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_weight="2"
                 android:textSize="@dimen/text_size2"/>
             <EditText
                 android:id="@+id/etInput3"
-                android:layout_width="match_parent"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:numeric="decimal"
+                android:inputType="numberDecimal"
                 android:background="@color/blanco"
                 android:gravity="center"
                 android:textSize="@dimen/text_size3"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:maxLength="4"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"/>
@@ -134,22 +135,22 @@
             <TextView
                 android:id="@+id/tvInput4"
                 android:textStyle="bold"
-                android:text="TEXTVIEW"
-                android:layout_width="match_parent"
+                android:text="@string/test"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_weight="2"
                 android:textSize="@dimen/text_size2"/>
             <EditText
                 android:id="@+id/etInput4"
-                android:layout_width="match_parent"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:numeric="decimal"
+                android:inputType="numberDecimal"
                 android:background="@color/blanco"
                 android:textSize="@dimen/text_size3"
                 android:gravity="center"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:maxLength="4"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"/>
@@ -159,7 +160,7 @@
             android:id="@+id/tvResultado1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resultado"
+            android:text="@string/test"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:gravity="center_horizontal"
             android:textColor="@color/text_color1"
@@ -171,7 +172,7 @@
             android:id="@+id/tvResultado2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resultado"
+            android:text="@string/test"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:gravity="center_horizontal"
             android:textColor="@color/text_color1"
@@ -183,7 +184,7 @@
             android:id="@+id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripcion"
+            android:text="@string/test"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:textColor="@color/text_color1"
             android:textSize="@dimen/text_size1"/>
@@ -193,18 +194,13 @@
     </ScrollView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewInput4Param"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true">
-
-        <com.google.android.gms.ads.AdView android:id="@+id/adViewInput4Param"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            ads:adUnitId="ca-app-pub-4549935446415170/4450174044"
-            ads:adSize="LARGE_BANNER"/>
-    </LinearLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:adSize="SMART_BANNER"/>
 
 </RelativeLayout>

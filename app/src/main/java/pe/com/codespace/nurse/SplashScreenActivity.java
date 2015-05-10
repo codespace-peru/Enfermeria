@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class SplashScreenActivity extends Activity {
 
     private static final long SPLASH_SCREEN_DELAY = 1800;

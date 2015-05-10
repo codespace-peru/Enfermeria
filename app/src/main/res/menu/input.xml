@@ -2,13 +2,14 @@
     xmlns:appcompat="http://schemas.android.com/apk/res-auto" >
     
     <item android:id="@+id/action_clean"
-        android:title="Repetir"
+        android:title="@string/menu_repeat"
         android:icon="@drawable/ic_action_refresh"
         android:orderInCategory="1"
-        appcompat:showAsAction="always|withText" />
+        appcompat:showAsAction="ifRoom|withText" />
+
     <item android:id="@+id/action_calculate"
-        android:title="Calcular"
+        android:title="@string/menu_calcular"
         android:icon="@drawable/ic_action_calc"
         android:orderInCategory="2"
-        appcompat:showAsAction="always|withText" />
+        appcompat:showAsAction="ifRoom|withText" />
 </menu>

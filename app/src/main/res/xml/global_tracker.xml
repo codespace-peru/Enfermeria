@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyDashes">
+
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <!-- Enable automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <!-- The screen names that will appear in reports -->
+    <screenName name="pe.com.codespace.nurse.MainActivity">
+        EnfermeriaApp MainActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.Escala3ParametrosActivity">
+        EnfermeriaApp Escala3ParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.Escala5ParametrosActivity">
+        EnfermeriaApp Escala5ParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.Escala6ParametrosActivity">
+        EnfermeriaApp Escala6ParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.Escala10ParametrosActivity">
+        EnfermeriaApp Escala10ParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.EscalaNoParametrosActivity">
+        EnfermeriaApp EscalaNoParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.EscalaNoParametrosActivity">
+        EnfermeriaApp EscalaNoParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.FechasActivity">
+        EnfermeriaApp FechasActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.Input2ParametrosActivity">
+        EnfermeriaApp Input2ParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.Input4ParametrosActivity">
+        EnfermeriaApp Input4ParametrosActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.InputConvertSolutionActivity">
+        EnfermeriaApp InputConvertSolutionActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.RegladetresActivity">
+        EnfermeriaApp RegladetresActivity
+    </screenName>
+    <screenName name="pe.com.codespace.nurse.ApacheActivity">
+        EnfermeriaApp ApacheActivity
+    </screenName>
+    <!--  The following value should be replaced with correct property id. -->
+    <string name="ga_trackingId">UA-49891510-6</string>
+</resources>

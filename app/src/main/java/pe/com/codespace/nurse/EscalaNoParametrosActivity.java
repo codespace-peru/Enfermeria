@@ -1,26 +1,21 @@
 package pe.com.codespace.nurse;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.EasyTracker;
+import static pe.com.codespace.nurse.MyValues.*;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class EscalaNoParametrosActivity extends ActionBarActivity {
-
-    private static final int RASS=1001;
-    private static final int RAMSAY=1002;
+public class EscalaNoParametrosActivity extends AppCompatActivity {
 
     TextView textViewTitle,textViewResultado, textViewNotas;
     TextView textViewItem1, textViewItem2, textViewItem3, textViewItem4, textViewItem5;
@@ -29,13 +24,14 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
     TextView textViewNum6, textViewNum7, textViewNum8, textViewNum9, textViewNum10;
     LinearLayout linearLayout7, linearLayout8, linearLayout9, linearLayout10;
     int numeroEscala;
-    //String tipoEscala;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_escalanoparametros);
         numeroEscala= getIntent().getExtras().getInt("numeroEscala");
 
@@ -74,12 +70,19 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
+
     }
 
     private void prepararData(int tipo) {
         switch(tipo){
             case RASS:
-                textViewTitle.setText("Escala de Sedación RASS");
+                textViewTitle.setText(getResources().getString(R.string.scale_rass_title));
                 textViewNum1.setText("+4");
                 textViewNum2.setText("+3");
                 textViewNum3.setText("+2");
@@ -90,78 +93,54 @@ public class EscalaNoParametrosActivity extends ActionBarActivity {
                 textViewNum8.setText("-3");
                 textViewNum9.setText("-4");
                 textViewNum10.setText("-5");
-                textViewItem1.setText("Combativo");
-                textViewItem2.setText("Muy Agitado");
-                textViewItem3.setText("Agitado");
-                textViewItem4.setText("Inquieto");
-                textViewItem5.setText("Alerta y tranquilo");
-                textViewItem6.setText("Somnoliento");
-                textViewItem7.setText("Sedación ligera");
-                textViewItem8.setText("Sedación moderada");
-                textViewItem9.setText("Sedación profunda");
-                textViewItem10.setText("No estimulable");
-                textViewNotas.setText("Richmond Agitation Sedation Scale (RASS) es una escala usada para medir el nivel de agitación o sedación de un paciente.\nEs muy usada en pacientes con ventilación mecánica.");
+                textViewItem1.setText(getResources().getString(R.string.rass_combativo));
+                textViewItem2.setText(getResources().getString(R.string.rass_muy_agitado));
+                textViewItem3.setText(getResources().getString(R.string.rass_agitado));
+                textViewItem4.setText(getResources().getString(R.string.rass_inquieto));
+                textViewItem5.setText(getResources().getString(R.string.rass_alerta));
+                textViewItem6.setText(getResources().getString(R.string.rass_somnoliento));
+                textViewItem7.setText(getResources().getString(R.string.rass_sedacion_ligera));
+                textViewItem8.setText(getResources().getString(R.string.rass_sedacion_moderada));
+                textViewItem9.setText(getResources().getString(R.string.rass_sedacion_profunda));
+                textViewItem10.setText(getResources().getString(R.string.rass_no_estimulable));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_rass));
                 textViewNotas.setVisibility(View.VISIBLE);
-                //tipoEscala="RASS";
                 break;
             case RAMSAY:
-                textViewTitle.setText("Escala de Sedación de RAMSAY");
-                textViewNum1.setText("");
+                textViewTitle.setText(getResources().getString(R.string.scale_ramsay_title));
                 textViewNum2.setText("1");
                 textViewNum3.setText("2");
                 textViewNum4.setText("3");
-                textViewNum5.setText("");
                 textViewNum6.setText("4");
                 textViewNum7.setText("5");
                 textViewNum8.setText("6");
-                textViewNum9.setText("");
-                textViewNum10.setText("");
-                textViewItem1.setText("Despierto:");
-                textViewItem2.setText("Ansioso y/o agitado");
-                textViewItem3.setText("Tranquilo y colaborador");
-                textViewItem4.setText("Responde sólo a órdenes\n\n");
-                textViewItem5.setText("Dormido: Estímulo auditivo o glabelar");
-                textViewItem6.setText("Respuesta enérgica");
-                textViewItem7.setText("Respuesta lenta");
-                textViewItem8.setText("No responde");
-                textViewItem9.setText("");
-                textViewItem10.setText("");
-                textViewNotas.setText("La escala Ramsay es usada para evaluar el nivel de sedación de un paciente hospitalizado. Fue descrita por Michael A. E. Ramsay.");
+                textViewItem1.setText(getResources().getString(R.string.ramsay_despierto));
+                textViewItem2.setText(getResources().getString(R.string.ramsay_ansioso));
+                textViewItem3.setText(getResources().getString(R.string.ramsay_tranquilo));
+                textViewItem4.setText(getResources().getString(R.string.ramsay_solo_ordenes));
+                textViewItem5.setText(getResources().getString(R.string.ramsay_estimulo_auditivo));
+                textViewItem6.setText(getResources().getString(R.string.ramsay_respuesta_energica));
+                textViewItem7.setText(getResources().getString(R.string.ramsay_respuesta_lenta));
+                textViewItem8.setText(getResources().getString(R.string.ramsay_no_responde));
+                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_ramsay));
                 textViewNum1.setVisibility(View.GONE);
                 textViewNum5.setVisibility(View.GONE);
                 linearLayout9.setVisibility(View.GONE);
                 linearLayout10.setVisibility(View.GONE);
                 textViewNotas.setVisibility(View.VISIBLE);
-                //tipoEscala="RAMSAY";
                 break;
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.escala_glasgow, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
-    }
 
 }

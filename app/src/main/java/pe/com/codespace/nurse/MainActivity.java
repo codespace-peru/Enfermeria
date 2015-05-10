@@ -3,9 +3,11 @@ package pe.com.codespace.nurse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,12 +16,14 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import static pe.com.codespace.nurse.MyValues.*;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import pe.com.codespace.nurse.AnalyticsApplication.TrackerName;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
@@ -28,24 +32,37 @@ public class MainActivity extends ActionBarActivity {
     ExpandableListView.OnGroupClickListener onGroupClick;
     ExpandableListView.OnChildClickListener onChildClick;
     int tipo = 1;
+    String tab;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        }
+
+        PrefSingleton.getInstance().Initialize(getApplicationContext());
+        boolean flag = PrefSingleton.getInstance().getPreference(MyValues.SISTEMA_METRICO,false);
+        if(!flag){
+            PrefSingleton.getInstance().putPreference(MyValues.SISTEMA_METRICO,true);
+            PrefSingleton.getInstance().putPreference(MyValues.SISTEMA_INGLES,false);
+        }
 
         final TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("escalas");
         tabSpec.setContent(R.id.tabEscalas);
-        tabSpec.setIndicator("Escalas");
+        tab = getResources().getString(R.string.tab1); // Escalas
+        tabSpec.setIndicator(tab);
         tabHost.addTab(tabSpec);
-
         tabSpec = tabHost.newTabSpec("formulas");
         tabSpec.setContent(R.id.tabFormulas);
-        tabSpec.setIndicator("Formulas");
+        tab = getResources().getString(R.string.tab2); // Formulas
+        tabSpec.setIndicator(tab);
         tabHost.addTab(tabSpec);
 
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
@@ -62,6 +79,13 @@ public class MainActivity extends ActionBarActivity {
         AdView adView = (AdView)this.findViewById(R.id.adViewMain);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -119,6 +143,10 @@ public class MainActivity extends ActionBarActivity {
                                         intent = new Intent(getApplicationContext(),Escala6ParametrosActivity.class);
                                         intent.putExtra("numeroEscala",SOFA);
                                         break;
+                                    case 5://APACHE
+                                        intent = new Intent(getApplicationContext(),ApacheActivity.class);
+                                        intent.putExtra("numeroEscala",APACHE);
+                                        break;
                                 }
                                 startActivity(intent);
                                 break;
@@ -144,6 +172,10 @@ public class MainActivity extends ActionBarActivity {
                                     case 1://Test de Apgar
                                         intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
                                         intent.putExtra("numeroEscala",APGAR);
+                                        break;
+                                    case 2://Test de Silverman
+                                        intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
+                                        intent.putExtra("numeroEscala",SILVERMAN);
                                         break;
                                 }
                                 startActivity(intent);
@@ -264,80 +296,80 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void prepararData(int tipo){
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
         List<String> child;
-        String[] temp;
         switch(tipo){
             case ESCALAS:
-                listDataHeader.add("UCI");
-                listDataHeader.add("Geriatría");
-                listDataHeader.add("Pediatría");
-                listDataHeader.add("Otras Escalas");
+                listDataHeader.add(getResources().getString(R.string.scale_uci_title));
+                listDataHeader.add(getResources().getString(R.string.scale_geriatria_title));
+                listDataHeader.add(getResources().getString(R.string.scale_pediatria_title));
+                listDataHeader.add(getResources().getString(R.string.scale_otras_title));
                 //Hijos del Primer Padre
-                child = new ArrayList<String>();
-                child.add("Escala de Coma de Glasgow");
-                child.add("Escala de Sedación de Ramsay"); //
-                child.add("Escala de Sedación RASS"); //
-                child.add("Score SOFA");
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.scale_glasgow_title));
+                child.add(getResources().getString(R.string.scale_ramsay_title));
+                child.add(getResources().getString(R.string.scale_rass_title));
+                child.add(getResources().getString(R.string.score_sofa_title));
+                child.add(getResources().getString(R.string.score_apache_title));
                 listDataChild.put(listDataHeader.get(0),child);
 
                 //Hijos del Segundo Padre
-                child = new ArrayList<String>();
-                child.add("Escala de Norton Modificado");
-                child.add("Escala de J.H.Downton");
-                child.add("Escala de Barthel");
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.scale_norton_title));
+                child.add(getResources().getString(R.string.scale_downton_title));
+                child.add(getResources().getString(R.string.scale_barthel_title));
                 listDataChild.put(listDataHeader.get(1), child);
 
                 //Hijos del Tercer Padre
-                child = new ArrayList<String>();
-                child.add("Test de Apgar"); // tipo=21
-                //child.add("Cálculo 2"); //tipo=22
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.test_apgar_title)); // tipo=21
+                child.add(getResources().getString(R.string.test_silverman_title)); //tipo=22
                 listDataChild.put(listDataHeader.get(2), child);
 
                 //Hijos del Cuarto Padre
-                child = new ArrayList<String>();
-                child.add("Test de Apgar Familiar"); // tipo=31
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.test_apgarfam_title)); // tipo=31
                 listDataChild.put(listDataHeader.get(3), child);
                 break;
             case FORMULAS:
-                listDataHeader.add("Antropométricas");
-                listDataHeader.add("SueroTerapia");
-                listDataHeader.add("Preparación de Medicamentos");
-                listDataHeader.add("Gineco-Obstetricia");
-                listDataHeader.add("Otras");
+                listDataHeader.add(getResources().getString(R.string.formula_antropom_title));
+                listDataHeader.add(getResources().getString(R.string.formula_suero_title));
+                listDataHeader.add(getResources().getString(R.string.formula_medicamentos_title));
+                listDataHeader.add(getResources().getString(R.string.formula_obstetricia_title));
+                listDataHeader.add(getResources().getString(R.string.formula_otras_title));
                 //Hijos del Primer Padre
-                child = new ArrayList<String>();
-                child.add("Indice de Masa Corporal"); // tipo=1
-                child.add("Pérdidas Insensibles"); // tipo=2
-                child.add("Superficie Corporal en Niños"); // tipo=3
-                child.add("Superficie Corporal en Adultos"); // tipo=4
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.formula_imc_title)); // tipo=1
+                child.add(getResources().getString(R.string.formula_perdidas_insensibles_title)); // tipo=2
+                child.add(getResources().getString(R.string.formula_superficie_corporal_ninos_title)); // tipo=3
+                child.add(getResources().getString(R.string.formula_superficie_corporal_adultos_title)); // tipo=4
                 //child.add("Test con 3 Parámetros"); // tipo=5
                 listDataChild.put(listDataHeader.get(0),child);
 
                 //Hijos del Segundo Padre
-                child = new ArrayList<String>();
-                child.add("Conversión de Dextrosa"); //tipo=8
-                child.add("Conversión de Cloruro de Sodio"); //tipo=9
-                child.add("Velocidad del Goteo"); //tipo=10
-                child.add("Volumen Total a Infundir"); //tipo=11
-                child.add("Tiempo de Infusión"); // tipo=12
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.formula_conversion_dextrosa_title)); //tipo=8
+                child.add(getResources().getString(R.string.formula_conversion_cloruro_title)); //tipo=9
+                child.add(getResources().getString(R.string.formula_velocidad_goteo_title)); //tipo=10
+                child.add(getResources().getString(R.string.formula_volumen_infusion_title)); //tipo=11
+                child.add(getResources().getString(R.string.formula_tiempo_infusion_title)); // tipo=12
                 listDataChild.put(listDataHeader.get(1), child);
 
                 //Hijos del Tercer Padre
-                child = new ArrayList<String>();
-                child.add("Velocidad de Infusión Dopamina/Dobutamina"); //tipo=15
-                child.add("Volumen total Dopamina/Dobutamina"); //tipo=16
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.formula_velocidad_inotropicos_title)); //tipo=15
+                child.add(getResources().getString(R.string.formula_volumen_inotropicos_title)); //tipo=16
                 listDataChild.put(listDataHeader.get(2), child);
 
                 //Hijos del Cuarto Padre
-                child = new ArrayList<String>();
-                child.add("Fecha Probable del Parto");
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.formula_fecha_parto_title));
                 listDataChild.put(listDataHeader.get(3), child);
 
                 //Hijos del Quinto Padre
-                child = new ArrayList<String>();
-                child.add("Regla de Tres Simple");
+                child = new ArrayList<>();
+                child.add(getResources().getString(R.string.formula_regla_tres_title));
                 listDataChild.put(listDataHeader.get(4), child);
                 break;
         }
@@ -347,29 +379,23 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_share:
+                Social.share(this,getResources().getString(R.string.share_title), getResources().getString(R.string.share_description) + " " +  Uri.parse("https://play.google.com/store/apps/details?id=pe.com.codespace.nurse"));
+                break;
+            case R.id.action_settings:
+                Intent intent = new Intent(getApplicationContext(), PreferencesActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

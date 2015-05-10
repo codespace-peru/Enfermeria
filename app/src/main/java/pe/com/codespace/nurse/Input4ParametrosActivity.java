@@ -2,30 +2,32 @@ package pe.com.codespace.nurse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import static pe.com.codespace.nurse.MyValues.*;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
-public class Input4ParametrosActivity extends ActionBarActivity {
+public class Input4ParametrosActivity extends AppCompatActivity {
     double Param1, Param2, Param3, Param4;
     double resultado;
-    String label1="", label2="", unidades="", descripcion="";
+    String label1="", unidades="", descripcion="";
     int tipo = -1;
+    SharedPreferences sharedPreferences;
+    boolean sistema_metrico_flag;
     EditText editText1 = null;
     EditText editText2 = null;
     EditText editText3 = null;
@@ -36,8 +38,15 @@ public class Input4ParametrosActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        }
         setContentView(R.layout.activity_input4param);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sistema_metrico_flag = PrefSingleton.getInstance().getPreference(MyValues.SISTEMA_METRICO,true);
+
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewResultado2 = (TextView) findViewById(R.id.tvResultado2);
         textViewDescription = (TextView) findViewById(R.id.tvDescription);
@@ -55,12 +64,17 @@ public class Input4ParametrosActivity extends ActionBarActivity {
 
         switch (tipo){
             case GOTEO_FARMACOS_UCI:
-                tvTitleFormula.setText("Velocidad de Infusión Dopamina/Dobutamina");
-                tvParam1.setText("Dosis (mcg/kg/min): ");
-                tvParam2.setText("Peso del paciente (kg):");
-                tvParam3.setText("Cantidad del fármaco (mg): ");
-                tvParam4.setText("Volumen total (ml): ");
-                descripcion ="Esta fórmula calcula la velocidad de infusión de una preparación en un determinado volumen de solución, dada una dosis indicada.\n\nLa cantidad del fármaco indica los mg. que están en la preparación.\nEl volumen total incluye los volúmenes de la solución diluyente y del fármaco a preparar.";
+                tvTitleFormula.setText(getResources().getString(R.string.formula_velocidad_inotropicos_title));
+                tvParam1.setText(getResources().getString(R.string.label_dosis_inotropicos) + ":");
+                if(sistema_metrico_flag){
+                    tvParam2.setText(getResources().getString(R.string.label_peso_paciente) + " (" + MyValues.MASA_METRICO + "):");
+                }else
+                {
+                    tvParam2.setText(getResources().getString(R.string.label_peso_paciente) + " (" + MyValues.MASA_INGLES + "):");
+                }
+                tvParam3.setText(getResources().getString(R.string.label_cantidad_farmaco) +  ":");
+                tvParam4.setText(getResources().getString(R.string.label_volumen_total) + " (ml):");
+                descripcion = getResources().getString(R.string.descripcion_farmacos_uci);
                 textViewDescription.setText(descripcion);
                 break;
             case 16:
@@ -71,6 +85,13 @@ public class Input4ParametrosActivity extends ActionBarActivity {
         AdView adView = (AdView)this.findViewById(R.id.adViewInput4Param);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
 
     }
 
@@ -92,24 +113,29 @@ public class Input4ParametrosActivity extends ActionBarActivity {
                 String s4 = editText4.getText().toString();
 
                 if(!Tools.isNumeric(s1) || !Tools.isNumeric(s2) || !Tools.isNumeric(s3) || !Tools.isNumeric(s4)) {
-                    Toast.makeText(getApplicationContext(), "Ingrese los valores solicitados", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_ingrese_valores), Toast.LENGTH_SHORT).show();
                     return false;
                 }
-                Param1 = Double.parseDouble(editText1.getText().toString());
-                Param2 = Double.parseDouble(editText2.getText().toString());
-                Param3 = Double.parseDouble(editText3.getText().toString());
-                Param4 = Double.parseDouble(editText4.getText().toString());
+                Param1 = Double.parseDouble(editText1.getText().toString());//dosis
+                Param2 = Double.parseDouble(editText2.getText().toString());//peso
+                Param3 = Double.parseDouble(editText3.getText().toString());//cantidad
+                Param4 = Double.parseDouble(editText4.getText().toString());//volumen
                 switch (tipo){
                     case GOTEO_FARMACOS_UCI://Goteo de Dopamina
+                        if(!sistema_metrico_flag){
+                            Param2 = Tools.LibrasToKilos(Param2);
+                        }
                         resultado = Formulas.GoteoDopamina(Param1, Param2, Param3, Param4);
-                        label1 = "Velocidad: ";
-                        unidades=" ml/hora";
+                        label1 = getResources().getString(R.string.label_velocidad);
+                        unidades=" ml/hr";
                         break;
                 }
-                textViewResultado1.setText(label1 + resultado + unidades);
+                textViewResultado1.setText(label1 + " : " + resultado + unidades);
                 textViewResultado1.setVisibility(View.VISIBLE);
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                if(getCurrentFocus()!=null){
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                }
                 break;
             case R.id.action_clean:
                 textViewResultado1.setVisibility(View.INVISIBLE);
@@ -122,18 +148,6 @@ public class Input4ParametrosActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
     }
 
 }

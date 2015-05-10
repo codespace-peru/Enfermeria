@@ -2,27 +2,28 @@ package pe.com.codespace.nurse;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static pe.com.codespace.nurse.MyValues.*;
 
 
-public class FechasActivity extends ActionBarActivity {
+public class FechasActivity extends AppCompatActivity {
     Date fecha;
     String label1="", descripcion="";
     int tipo = -1;
@@ -34,7 +35,10 @@ public class FechasActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        }
         setContentView(R.layout.activity_fechas);
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewDescription = (TextView) findViewById(R.id.tvDescription);
@@ -45,18 +49,29 @@ public class FechasActivity extends ActionBarActivity {
         Date hoy = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(hoy);
-        calendar.add(Calendar.YEAR,1);
+
+        datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                textViewResultado1.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        calendar.add(Calendar.YEAR, 1);
         datePicker.setMaxDate(calendar.getTimeInMillis());
-        calendar.add(Calendar.YEAR,-3);
+        calendar.add(Calendar.YEAR, -3);
         datePicker.setMinDate(calendar.getTimeInMillis());
         Intent intent = getIntent();
         tipo = intent.getExtras().getInt("formula");
 
+
+
+
         switch (tipo){
             case FPP:
-                textViewTitleFormula.setText("Fecha Probable de Parto");
-                textViewLabel.setText("Fecha del primer día de la última regla:");
-                descripcion ="Se calcula mediante la fórmula de Naegele, recomendada por la OMS.";
+                textViewTitleFormula.setText(getResources().getString(R.string.formula_fecha_parto_title));
+                textViewLabel.setText(getResources().getString(R.string.label_fecha_parto));
+                descripcion = getResources().getString(R.string.descripcion_fecha_parto);
                 textViewDescription.setText(descripcion);
                 break;
         }
@@ -66,12 +81,18 @@ public class FechasActivity extends ActionBarActivity {
          AdRequest adRequest = new AdRequest.Builder().build();
          adView.loadAd(adRequest);
 
+        //Analytics
+        Tracker tracker = ((AnalyticsApplication)  getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        String nameActivity = getApplicationContext().getPackageName() + "." + this.getClass().getSimpleName();
+        tracker.setScreenName(nameActivity);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.input, menu);
         return true;
     }
@@ -89,15 +110,18 @@ public class FechasActivity extends ActionBarActivity {
                 switch (tipo){
                     case FPP://Fecha Probable de Parto
                         fecha = Formulas.FechaProbabledeParto(dia, mes, anyo);
-                        label1 = "Resultado: ";
+                        label1 = getResources().getString(R.string.label_resultado);
                         break;
                 }
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
                 String resultado = simpleDateFormat.format(fecha);
-                textViewResultado1.setText(label1 + resultado);
+                textViewResultado1.setText(label1 + " : " +resultado);
                 textViewResultado1.setVisibility(View.VISIBLE);
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                if(getCurrentFocus()!=null){
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+
                 break;
             case R.id.action_clean:
                 textViewResultado1.setVisibility(View.INVISIBLE);
@@ -106,15 +130,4 @@ public class FechasActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance(this).activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
-    }
 }
