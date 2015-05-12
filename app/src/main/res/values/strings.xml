@@ -223,8 +223,8 @@
     <string name="glasgow_incoherente">Words (inappropriate)</string>
     <string name="glasgow_incomprensible">Sounds (incomprehensible)</string>
     <string name="glasgow_obedece_ordenes">Obey commands</string>
-    <string name="glasgow_localiza_tacto">Localiza al tacto</string>
-    <string name="glasgow_localiza_dolor">Localize pain</string>
+    <string name="glasgow_localiza_tacto">Locates to touch</string>
+    <string name="glasgow_localiza_dolor">Locates to pain</string>
     <string name="glasgow_decorticacion">Decorticación</string>
     <string name="glasgow_descerebracion">Descerebración</string>
 
