@@ -4,35 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <include android:id="@+id/myToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_vertical_margin"
-        android:layout_above="@+id/adViewInput4Param">
-
-        <TextView
-            android:id="@+id/tvTitleFormula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/height_padding_title"
-            android:paddingBottom="@dimen/height_padding_title"
-            android:textStyle="bold"
-            android:text="@string/test"
-            android:gravity="center"
-            android:textSize="@dimen/title_main"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/view_color"/>
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/toolbar"/>
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingRight="@dimen/padding_medium"
+        android:layout_below="@+id/myToolbar"
+        android:layout_above="@+id/adViewInput4Param"
+        android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/margin_large"
             android:orientation="horizontal">
 
             <TextView
@@ -52,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:layout_weight="2"
-                android:textSize="@dimen/text_size2"/>
+                android:textSize="@dimen/textsize_xmedium"/>
             <EditText
                 android:id="@+id/etInput1"
                 android:layout_width="0px"
@@ -60,18 +47,18 @@
                 android:textStyle="bold"
                 android:inputType="numberDecimal"
                 android:background="@color/blanco"
-                android:textSize="@dimen/text_size3"
+                android:textSize="@dimen/textsize_xmedium"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:maxLength="4"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:padding="@dimen/padding_small"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-
+            android:layout_marginTop="@dimen/margin_medium"
             android:orientation="horizontal">
 
             <TextView
@@ -82,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:layout_weight="2"
-                android:textSize="@dimen/text_size2"/>
+                android:textSize="@dimen/textsize_xmedium"/>
             <EditText
                 android:id="@+id/etInput2"
                 android:layout_width="0px"
@@ -91,16 +78,17 @@
                 android:inputType="numberDecimal"
                 android:background="@color/blanco"
                 android:gravity="center"
-                android:textSize="@dimen/text_size3"
+                android:textSize="@dimen/textsize_xmedium"
                 android:layout_weight="1"
                 android:maxLength="4"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:padding="@dimen/padding_small"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/margin_medium"
             android:orientation="horizontal">
 
             <TextView
@@ -111,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:layout_weight="2"
-                android:textSize="@dimen/text_size2"/>
+                android:textSize="@dimen/textsize_xmedium"/>
             <EditText
                 android:id="@+id/etInput3"
                 android:layout_width="0px"
@@ -120,16 +108,17 @@
                 android:inputType="numberDecimal"
                 android:background="@color/blanco"
                 android:gravity="center"
-                android:textSize="@dimen/text_size3"
+                android:textSize="@dimen/textsize_xmedium"
                 android:layout_weight="1"
                 android:maxLength="4"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:padding="@dimen/padding_small"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/margin_medium"
             android:orientation="horizontal">
 
             <TextView
@@ -140,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:layout_weight="2"
-                android:textSize="@dimen/text_size2"/>
+                android:textSize="@dimen/textsize_xmedium"/>
             <EditText
                 android:id="@+id/etInput4"
                 android:layout_width="0px"
@@ -148,12 +137,13 @@
                 android:textStyle="bold"
                 android:inputType="numberDecimal"
                 android:background="@color/blanco"
-                android:textSize="@dimen/text_size3"
+                android:textSize="@dimen/textsize_xmedium"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:maxLength="4"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:padding="@dimen/padding_small"/>
         </LinearLayout>
 
         <TextView
@@ -161,10 +151,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/padding_large"
             android:gravity="center_horizontal"
-            android:textColor="@color/text_color1"
-            android:textSize="@dimen/text_size3"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/textsize_large"
             android:textStyle="bold"
             android:visibility="invisible"/>
 
@@ -173,10 +163,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/padding_medium"
             android:gravity="center_horizontal"
-            android:textColor="@color/text_color1"
-            android:textSize="@dimen/text_size3"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/textsize_large"
             android:visibility="gone"
             android:textStyle="bold"/>
 
@@ -185,14 +175,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:textColor="@color/text_color1"
-            android:textSize="@dimen/text_size1"/>
+            android:paddingTop="@dimen/padding_medium"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/textsize_xmedium"/>
 
         </LinearLayout>
 
     </ScrollView>
-    </LinearLayout>
+
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewInput4Param"

@@ -29,7 +29,7 @@ public class AnalyticsApplication extends Application {
         ECOMMERCE_TRACKER, // Tracker used by all ecommerce transactions from a company.
     }
 
-    final HashMap<TrackerName, Tracker> mTrackers = new HashMap<>();
+    private final HashMap<TrackerName, Tracker> mTrackers = new HashMap<>();
 
     synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {

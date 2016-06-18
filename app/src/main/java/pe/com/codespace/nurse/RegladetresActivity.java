@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -30,25 +31,26 @@ public class RegladetresActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_regladetres);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
 
-        setContentView(R.layout.activity_regladetres);
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
 
         TextView textViewDescription = (TextView) findViewById(R.id.tvDescription);
-        TextView textViewTitleFormula = (TextView) findViewById(R.id.tvTitleFormula);
         editText1 = (EditText) findViewById(R.id.etInput1);
         editText2 = (EditText) findViewById(R.id.etInput2);
         editText3 = (EditText) findViewById(R.id.etInput3);
         Intent intent = getIntent();
-        tipo = intent.getExtras().getInt("formula");
+        tipo = intent.getExtras().getInt(TIPO_FORMULAS);
         switch (tipo){
             case REGLATRES://Regla de tres simple
-                textViewTitleFormula.setText(getResources().getString(R.string.formula_regla_tres_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_regla_tres_title));
                 textViewDescription.setText(getResources().getString(R.string.descripcion_regla3));
                 break;
         }

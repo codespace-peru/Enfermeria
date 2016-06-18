@@ -2,6 +2,7 @@ package pe.com.codespace.nurse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.google.android.gms.analytics.Tracker;
 
 public class Escala5ParametrosActivity extends AppCompatActivity {
 
-    TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textViewNotas;
+    TextView textViewResultado,textView1, textView2, textView3,textView4, textView5, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5;
     Spinner dropdownItem1,dropdownItem2,dropdownItem3,dropdownItem4,dropdownItem5;
     int Param1, Param2, Param3, Param4, Param5;
@@ -32,13 +33,16 @@ public class Escala5ParametrosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
-        }
         setContentView(R.layout.activity_escala5parametros);
-        numeroEscala = getIntent().getExtras().getInt("numeroEscala");
 
-        textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+
+        numeroEscala = getIntent().getExtras().getInt(TIPO_ESCALAS);
         textViewResultado = (TextView) findViewById(R.id.textViewResultadoEscala);
         textViewNotas = (TextView) findViewById(R.id.textViewEscalaNotas);
         textViewItemEscala1 = (TextView) findViewById(R.id.textViewItemEscala1);
@@ -159,7 +163,9 @@ public class Escala5ParametrosActivity extends AppCompatActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case APGAR:
-                textViewTitle.setText(getResources().getString(R.string.test_apgar_title));
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle(getResources().getString(R.string.test_apgar_title));
+                }
                 textView1.setText(getResources().getString(R.string.label_apgar_frec_cardiaca));
                 textView2.setText(getResources().getString(R.string.label_apgar_mov_respiratorios));
                 textView3.setText(getResources().getString(R.string.label_apgar_color_piel));
@@ -181,7 +187,9 @@ public class Escala5ParametrosActivity extends AppCompatActivity {
                 tipoEscala="Apgar";
                 break;
             case SILVERMAN:
-                textViewTitle.setText(getResources().getString(R.string.test_silverman_title));
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle(getResources().getString(R.string.test_silverman_title));
+                }
                 textView1.setText(getResources().getString(R.string.label_silverman_aleteo));
                 textView2.setText(getResources().getString(R.string.label_silverman_tiraje));
                 textView3.setText(getResources().getString(R.string.label_silverman_quejido));
@@ -203,7 +211,9 @@ public class Escala5ParametrosActivity extends AppCompatActivity {
                 tipoEscala="Silverman";
                 break;
             case APGAR_FAM:
-                textViewTitle.setText(getResources().getString(R.string.test_apgarfam_title));
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle(getResources().getString(R.string.test_apgarfam_title));
+                }
                 textView1.setText(getResources().getString(R.string.apgarfam_pregunta1));
                 textView2.setText(getResources().getString(R.string.apgarfam_pregunta2));
                 textView3.setText(getResources().getString(R.string.apgarfam_pregunta3));
@@ -225,7 +235,9 @@ public class Escala5ParametrosActivity extends AppCompatActivity {
                 tipoEscala = getResources().getString(R.string.label_apgarfam_tipoescala);
                 break;
             case NORTON:
-                textViewTitle.setText(getResources().getString(R.string.scale_norton_title));
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle(getResources().getString(R.string.scale_norton_title));
+                }
                 textView1.setText(getResources().getString(R.string.label_norton_estado_fisico));
                 textView2.setText(getResources().getString(R.string.label_norton_estado_mental));
                 textView3.setText(getResources().getString(R.string.label_norton_actividad));
@@ -247,7 +259,9 @@ public class Escala5ParametrosActivity extends AppCompatActivity {
                 tipoEscala = getResources().getString(R.string.label_norton_tipoescala);
                 break;
             case DOWNTON:
-                textViewTitle.setText(getResources().getString(R.string.scale_downton_title));
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle(getResources().getString(R.string.scale_downton_title));
+                }
                 textView1.setText(getResources().getString(R.string.label_downton_caidas));
                 textView2.setText(getResources().getString(R.string.label_downton_medicacion));
                 textView3.setText(getResources().getString(R.string.label_downton_deficit_sensorial));

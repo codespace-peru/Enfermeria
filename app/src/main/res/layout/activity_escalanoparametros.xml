@@ -4,34 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <include android:id="@+id/myToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_vertical_margin"
-        android:layout_above="@+id/adViewEscalaSinParam">
-
-        <TextView
-            android:id="@+id/textViewTitleEscala"
-            android:text="@string/test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/height_padding_title"
-            android:paddingBottom="@dimen/height_padding_title"
-            android:textSize="@dimen/title_main"
-            android:gravity="center"
-            android:textStyle="bold"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/view_color">
-        </View>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/toolbar"/>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_above="@+id/adViewEscalaSinParam"
+            android:layout_below="@+id/myToolbar"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,14 +28,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/textViewNum1"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -58,7 +44,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -67,14 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/textViewNum2"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -83,7 +69,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -92,14 +78,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/textViewNum3"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -108,7 +94,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -117,14 +103,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/textViewNum4"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -133,7 +119,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -142,14 +128,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/textViewNum5"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -158,7 +144,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -167,14 +153,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/textViewNum6"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -183,7 +169,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -192,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/escala_linear7"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:orientation="horizontal">
 
                 <TextView
@@ -200,7 +186,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -209,7 +195,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -218,7 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/escala_linear8"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:orientation="horizontal">
 
                 <TextView
@@ -226,7 +212,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -235,7 +221,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -244,7 +230,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/escala_linear9"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:orientation="horizontal">
 
                 <TextView
@@ -252,7 +238,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -261,7 +247,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
@@ -270,7 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/escala_linear10"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:orientation="horizontal">
 
                 <TextView
@@ -278,7 +264,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -287,21 +273,31 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:layout_weight="7"/>
             </LinearLayout>
 
+
             <TextView
-                android:id="@+id/textViewEscalaNotas"
+                android:id="@+id/textViewEscalaNotas1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:text="@string/test"
+                android:textStyle="italic"
+                android:textSize="@dimen/textsize_xmedium"
+                android:paddingTop="@dimen/padding_large"/>
+
+            <TextView
+                android:id="@+id/textViewEscalaNotas2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_xmedium"
+                android:paddingTop="@dimen/padding_large"
                 android:visibility="gone"/>
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewEscalaSinParam"

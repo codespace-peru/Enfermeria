@@ -27,7 +27,7 @@
     <string name="score_sofa_title">Score Sofa</string>
     <string name="score_apache_title">Score Apache</string>
     <string name="scale_norton_title">Escala de Norton Modificado</string>
-    <string name="scale_downton_title">Escala de Riesgo de Caídas de Downton</string>
+    <string name="scale_downton_title">Escala de Downton</string>
     <string name="scale_barthel_title">Escala de Barthel</string>
     <string name="test_apgar_title">Test de Apgar</string>
     <string name="test_silverman_title">Test de Silverman-Andersen</string>
@@ -41,6 +41,7 @@
     <string name="formula_velocidad_goteo_title">Velocidad de Goteo</string>
     <string name="formula_volumen_infusion_title">Volumen de Infusión</string>
     <string name="formula_tiempo_infusion_title">Tiempo de Infusión</string>
+    <string name="formula_dosis_farmacos_title">Dosis de Fármacos</string>
     <string name="formula_velocidad_inotropicos_title">Velocidad de Infusión Inotrópicos</string>
     <string name="formula_volumen_inotropicos_title">Volumen Total de Infusión Inotrópicos</string>
     <string name="formula_fecha_parto_title">Fecha Probable de Parto</string>
@@ -55,6 +56,10 @@
     <string name="label_peso_paciente">Peso del paciente</string>
     <string name="label_talla">Talla</string>
     <string name="label_imc">IMC</string>
+    <string name="label_dosis_farmaco">Dosis indicada (mg)</string>
+    <string name="label_dosis_presentacion_cantidad">Presentación (mg)</string>
+    <string name="label_dosis_presentacion_volumen">Presentación (ml)</string>
+    <string name="label_volumen_administrar">Volumen a administrar</string>
     <string name="label_dosis_inotropicos">Dosis (µg/kg/min)</string>
     <string name="label_volumen_infusion">Volumen a infundir (ml)</string>
     <string name="label_cantidad_farmaco">Cantidad fármaco (mg)</string>
@@ -68,7 +73,8 @@
     <string name="label_solucion_base2">Solución base 2:</string>
     <string name="label_velocidad">Velocidad</string>
     <string name="label_resultado">Resultado</string>
-    <string name="label_fecha_parto">Fecha del primer día de la última regla:</string>
+    <string name="label_fecha_parto">Primer día de la última regla:</string>
+    <string name="label_fpp">FPP</string>
     <string name="label_glasgow_ocular">Apertura ocular</string>
     <string name="label_glasgow_verbal">Respuesta verbal</string>
     <string name="label_glasgow_motora">Respuesta motora</string>
@@ -105,7 +111,7 @@
     <string name="label_barthel_sillon">Traslado sillón/cama</string>
     <string name="label_barthel_deambulacion">Deambulación</string>
     <string name="label_barthel_movilidad">Movilidad en escaleras</string>
-    <string name="label_barthel_tipoescala">Indice de Barthel</string>
+    <string name="label_barthel_tipoescala">Índice de Barthel</string>
     <string name="label_sofa_respiracion">Respiración: PO2/FiO2</string>
     <string name="label_sofa_coagulacion">Coagulación: Plaquetas</string>
     <string name="label_sofa_higado">Hígado: Bilirrubina</string>
@@ -117,9 +123,10 @@
     <string name="descripcion_imc">Se calcula el IMC en base a la fórmula de Adolphe Quetelet, recomendada por la OMS.\n\nInterpretación:\nBajo peso:\t &lt; 18.5\nNormal:\t18.5 - 24.99\nSobrepeso:\t25.0 - 29.99\nObesidad leve:\t30.0 - 34.99\nObesidad moderada:\t35.0 - 39.99\nObesidad mórbida:\t&gt;= 40.0</string>
     <string name="descripcion_sc_ninos">Se calcula la superficie corporal usando la fórmula de Haycock.</string>
     <string name="descripcion_sc_adultos">Se calcula la superficie corporal usando la fórmula de Mollester.</string>
-    <string name="descripcion_velocidad_goteo">Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas.\nSe considera 1ml = 20 gotas.</string>
-    <string name="descripcion_volumen_infusion">Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas.\nSe considera 1ml = 20 gotas.</string>
-    <string name="descripcion_tiempo_infusion">Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo.\nSe considera 1ml = 20 gotas.</string>
+    <string name="descripcion_velocidad_goteo">Esta fórmula calcula la velocidad de goteo de una infusión según el volumen a infundir y el tiempo en horas.\nSe considera 1ml = 20 gotas.\n</string>
+    <string name="descripcion_volumen_infusion">Esta fórmula calcula el volumen total a infundir según la velocidad de goteo y el tiempo en horas.\nSe considera 1ml = 20 gotas.\n</string>
+    <string name="descripcion_tiempo_infusion">Esta fórmula calcula el tiempo total de infusión según el volumen total a infundir y la velocidad de goteo.\nSe considera 1ml = 20 gotas.\n</string>
+    <string name="descripcion_dosis_farmaco">Esta fórmula calcula el volumen a administrar de una ampolla de un medicamento según la dosis indicada.\n</string>
     <string name="descripcion_volumen_farmacos_uci">Se calcula el volumen total de una preparación para obtener 1µg/kg/min de fármaco por cada 1cc de preparación, según el peso del paciente.\nEsto es muy útil porque numéricamente coinciden la dosis indicada (µg/kg/min) con la velocidad de infusión (ml/hora).\nEs decir si se desea una dosis de 3µg/kg/min se infundirá a 3ml/hora; permitiendo implementar rápidamente los cambios en la indicación.\nLa cantidad del fármaco indica los mg. que se prepararán.\n</string>
     <string name="descripcion_conversion_soluciones">Esta fórmula indica los volúmenes necesarios de las soluciones base que se necesitan para obtener la solución a preparar.\n\n</string>
     <string name="descripcion_farmacos_uci">Esta fórmula calcula la velocidad de infusión de una preparación en un determinado volumen de solución, dada una dosis indicada. \n\nLa cantidad del fármaco indica los mg. que están en la preparación.\nEl volumen total incluye los volúmenes de la solución diluyente y del fármaco a preparar.\n</string>
@@ -149,6 +156,8 @@
 
     <string name="title_activity_none">*</string>
     <string name="test">test</string>
+    <string name="yes">Si</string>
+    <string name="not">No</string>
 
 
     <!--Cadenas de los spinners  -->
@@ -204,11 +213,12 @@
     <string name="rass_no_estimulable">No estimulable</string>
 
     <!--Cadenas de ramsay  -->
-    <string name="ramsay_despierto">Despierto</string>
+    <string name="ramsay_despierto">Despierto:</string>
     <string name="ramsay_ansioso">Ansioso y/o agitado</string>
     <string name="ramsay_tranquilo">Tranquilo y colaborador</string>
     <string name="ramsay_solo_ordenes">Responde sólo a órdenes\n\n</string>
-    <string name="ramsay_estimulo_auditivo">Dormido: Estímulo auditivo o glabelar</string>
+    <string name="ramsay_estimulo_auditivo1">Dormido(*):</string>
+    <string name="ramsay_estimulo_auditivo2">(*)Estímulo auditivo o glabelar</string>
     <string name="ramsay_respuesta_energica">Respuesta enérgica</string>
     <string name="ramsay_respuesta_lenta">Respuesta lenta</string>
     <string name="ramsay_no_responde">No responde</string>

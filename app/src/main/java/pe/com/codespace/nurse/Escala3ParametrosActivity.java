@@ -2,6 +2,7 @@ package pe.com.codespace.nurse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.google.android.gms.analytics.Tracker;
 
 public class Escala3ParametrosActivity extends AppCompatActivity {
 
-    TextView textViewTitle,textViewResultado,textView1, textView2, textView3, textViewNotas;
+    TextView textViewResultado,textView1, textView2, textView3, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3;
     Spinner dropdownItem1,dropdownItem2,dropdownItem3;
     int Param1, Param2, Param3;
@@ -29,16 +30,17 @@ public class Escala3ParametrosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_escala3parametros);
-        numeroEscala= getIntent().getExtras().getInt("numeroEscala");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
 
-        textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
+        numeroEscala= getIntent().getExtras().getInt(TIPO_ESCALAS);
         textViewResultado = (TextView) findViewById(R.id.textViewResultadoEscala);
         textViewNotas = (TextView) findViewById(R.id.textViewEscalaNotas);
         textViewItemEscala1 = (TextView) findViewById(R.id.textViewItemEscala1);
@@ -119,7 +121,10 @@ public class Escala3ParametrosActivity extends AppCompatActivity {
     private void prepararData(int tipo) {
         switch(tipo){
             case GLASGOW:
-                textViewTitle.setText(getResources().getString(R.string.scale_glasgow_title));
+                if(getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.scale_glasgow_title));
+                    //getSupportActionBar().
+                }
                 textView1.setText(getResources().getString(R.string.label_glasgow_ocular));
                 textView2.setText(getResources().getString(R.string.label_glasgow_verbal));
                 textView3.setText(getResources().getString(R.string.label_glasgow_motora));

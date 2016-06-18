@@ -2,9 +2,9 @@ package pe.com.codespace.nurse;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.TextView;
 
 public class SplashScreenActivity extends Activity {
 
@@ -13,9 +13,11 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
+        Typeface font = Typeface.createFromAsset(getAssets(),"BrushScriptStd.otf");
+        TextView textView = (TextView) findViewById(R.id.tvSplash);
+        textView.setTypeface(font);
+
 
         Thread start_splash = new Thread() {
             @Override

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,17 +40,19 @@ public class InputConvertSolutionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_convertsolution);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
-        setContentView(R.layout.activity_convertsolution);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Intent intent = getIntent();
-        tipo = intent.getExtras().getInt("formula");
-
+        tipo = intent.getExtras().getInt(TIPO_FORMULAS);
 
         dropdownBase = (Spinner)findViewById(R.id.spinnerBase);
         dropdownMix = (Spinner)findViewById(R.id.spinnerMix);
@@ -136,8 +139,6 @@ public class InputConvertSolutionActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
-
-        TextView tvTitleFormula = (TextView) findViewById(R.id.tvTitleFormula1);
         TextView tvParam1 = (TextView) findViewById(R.id.tvTargetSolucion);
         TextView tvParam2 = (TextView) findViewById(R.id.tvBaseSolucion);
         TextView tvParam3 = (TextView) findViewById(R.id.tvMixSolucion);
@@ -147,7 +148,7 @@ public class InputConvertSolutionActivity extends AppCompatActivity {
         tvDescription = (TextView) findViewById(R.id.tvDescription);
         switch (tipo){
             case CONVERSIONDEXTROSA:
-                tvTitleFormula.setText(getResources().getString(R.string.formula_conversion_dextrosa_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_conversion_dextrosa_title));
                 tvParam1.setText(getResources().getString(R.string.label_solucion_target));
                 tvParam2.setText(getResources().getString(R.string.label_solucion_base1));
                 tvParam3.setText(getResources().getString(R.string.label_solucion_base2));
@@ -155,7 +156,7 @@ public class InputConvertSolutionActivity extends AppCompatActivity {
                 tvDescription.setText(getResources().getString(R.string.descripcion_conversion_soluciones));
                 break;
             case CONVERSIONCLORURO:
-                tvTitleFormula.setText(getResources().getString(R.string.formula_conversion_cloruro_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_conversion_cloruro_title));
                 tvParam1.setText(getResources().getString(R.string.label_solucion_target));
                 tvParam2.setText(getResources().getString(R.string.label_solucion_base1));
                 tvParam3.setText(getResources().getString(R.string.label_solucion_base2));

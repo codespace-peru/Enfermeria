@@ -2,6 +2,7 @@ package pe.com.codespace.nurse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,10 +19,8 @@ import com.google.android.gms.analytics.Tracker;
 
 public class Escala10ParametrosActivity extends AppCompatActivity {
 
-    TextView textViewTitle;
     TextView textViewResultado;
-    TextView textView1;
-    TextView textView2;
+    TextView textView1,textView2;
     TextView textView3;
     TextView textView4;
     TextView textView5;
@@ -72,12 +71,15 @@ public class Escala10ParametrosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escala10parametros);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
-        }
-        numeroEscala = getIntent().getExtras().getInt("numeroEscala");
 
-        textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+
+        numeroEscala = getIntent().getExtras().getInt(TIPO_ESCALAS);
         textViewResultado = (TextView) findViewById(R.id.textViewResultadoEscala);
         textViewNotas = (TextView) findViewById(R.id.textViewEscalaNotas);
         textViewItemEscala1 = (TextView) findViewById(R.id.textViewItemEscala1);
@@ -293,7 +295,9 @@ public class Escala10ParametrosActivity extends AppCompatActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case BARTHEL:
-                textViewTitle.setText(getResources().getString(R.string.scale_barthel_title));
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle(getResources().getString(R.string.scale_barthel_title));
+                }
                 textView1.setText(getResources().getString(R.string.label_barthel_alimentacion));
                 textView2.setText(getResources().getString(R.string.label_barthel_banarse));
                 textView3.setText(getResources().getString(R.string.label_barthel_arreglarse));
@@ -335,7 +339,6 @@ public class Escala10ParametrosActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.escala_glasgow, menu);
         return true;
     }
 

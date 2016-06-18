@@ -2,6 +2,7 @@ package pe.com.codespace.nurse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.google.android.gms.analytics.Tracker;
 
 public class EscalaNoParametrosActivity extends AppCompatActivity {
 
-    TextView textViewTitle,textViewResultado, textViewNotas;
+    TextView textViewResultado, textViewNotas1, textViewNotas2;
     TextView textViewItem1, textViewItem2, textViewItem3, textViewItem4, textViewItem5;
     TextView textViewItem6, textViewItem7, textViewItem8, textViewItem9, textViewItem10;
     TextView textViewNum1, textViewNum2, textViewNum3, textViewNum4, textViewNum5;
@@ -29,15 +30,19 @@ public class EscalaNoParametrosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
-        }
         setContentView(R.layout.activity_escalanoparametros);
-        numeroEscala= getIntent().getExtras().getInt("numeroEscala");
 
-        textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+
+        numeroEscala= getIntent().getExtras().getInt(TIPO_ESCALAS);
         textViewResultado = (TextView) findViewById(R.id.textViewResultadoEscala);
-        textViewNotas = (TextView) findViewById(R.id.textViewEscalaNotas);
+        textViewNotas1 = (TextView) findViewById(R.id.textViewEscalaNotas1);
+        textViewNotas2 = (TextView) findViewById(R.id.textViewEscalaNotas2);
         textViewNum1 = (TextView) findViewById(R.id.textViewNum1);
         textViewNum2 = (TextView) findViewById(R.id.textViewNum2);
         textViewNum3 = (TextView) findViewById(R.id.textViewNum3);
@@ -82,7 +87,9 @@ public class EscalaNoParametrosActivity extends AppCompatActivity {
     private void prepararData(int tipo) {
         switch(tipo){
             case RASS:
-                textViewTitle.setText(getResources().getString(R.string.scale_rass_title));
+                if(getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.scale_rass_title));
+                }
                 textViewNum1.setText("+4");
                 textViewNum2.setText("+3");
                 textViewNum3.setText("+2");
@@ -103,11 +110,14 @@ public class EscalaNoParametrosActivity extends AppCompatActivity {
                 textViewItem8.setText(getResources().getString(R.string.rass_sedacion_moderada));
                 textViewItem9.setText(getResources().getString(R.string.rass_sedacion_profunda));
                 textViewItem10.setText(getResources().getString(R.string.rass_no_estimulable));
-                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_rass));
-                textViewNotas.setVisibility(View.VISIBLE);
+                textViewNotas1.setVisibility(View.GONE);
+                textViewNotas2.setText(getResources().getString(R.string.descripcion_scale_rass));
+                textViewNotas2.setVisibility(View.VISIBLE);
                 break;
             case RAMSAY:
-                textViewTitle.setText(getResources().getString(R.string.scale_ramsay_title));
+                if(getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.scale_ramsay_title));
+                }
                 textViewNum2.setText("1");
                 textViewNum3.setText("2");
                 textViewNum4.setText("3");
@@ -118,16 +128,17 @@ public class EscalaNoParametrosActivity extends AppCompatActivity {
                 textViewItem2.setText(getResources().getString(R.string.ramsay_ansioso));
                 textViewItem3.setText(getResources().getString(R.string.ramsay_tranquilo));
                 textViewItem4.setText(getResources().getString(R.string.ramsay_solo_ordenes));
-                textViewItem5.setText(getResources().getString(R.string.ramsay_estimulo_auditivo));
+                textViewItem5.setText(getResources().getString(R.string.ramsay_estimulo_auditivo1));
+                textViewNotas1.setText(getResources().getString(R.string.ramsay_estimulo_auditivo2));
                 textViewItem6.setText(getResources().getString(R.string.ramsay_respuesta_energica));
                 textViewItem7.setText(getResources().getString(R.string.ramsay_respuesta_lenta));
                 textViewItem8.setText(getResources().getString(R.string.ramsay_no_responde));
-                textViewNotas.setText(getResources().getString(R.string.descripcion_scale_ramsay));
+                textViewNotas2.setText(getResources().getString(R.string.descripcion_scale_ramsay));
                 textViewNum1.setVisibility(View.GONE);
                 textViewNum5.setVisibility(View.GONE);
                 linearLayout9.setVisibility(View.GONE);
                 linearLayout10.setVisibility(View.GONE);
-                textViewNotas.setVisibility(View.VISIBLE);
+                textViewNotas2.setVisibility(View.VISIBLE);
                 break;
         }
     }

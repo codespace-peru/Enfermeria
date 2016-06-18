@@ -23,7 +23,7 @@
     <!--Titulos de las Escalas y formulas  -->
     <string name="scale_glasgow_title">Glasgow Coma Scale</string>
     <string name="scale_ramsay_title">Ramsay Sedation Scale</string>
-    <string name="scale_rass_title">Scale de Sedación RASS</string>
+    <string name="scale_rass_title">Richmond Agitation Sedation Scale</string>
     <string name="score_sofa_title">Sofa Score</string>
     <string name="score_apache_title">Apache Score</string>
     <string name="scale_norton_title">Modified Norton Scale</string>
@@ -41,6 +41,7 @@
     <string name="formula_velocidad_goteo_title">Flow Rate</string>
     <string name="formula_volumen_infusion_title">Volume Infusion</string>
     <string name="formula_tiempo_infusion_title">Infusion Time</string>
+    <string name="formula_dosis_farmacos_title">Drug Dose Calculator</string>
     <string name="formula_velocidad_inotropicos_title">Inotropics - Infusion Rate</string>
     <string name="formula_volumen_inotropicos_title">Inotropics - Volume Infusion</string>
     <string name="formula_fecha_parto_title">Pregnancy Due Date</string>
@@ -55,6 +56,10 @@
     <string name="label_peso_paciente">Patient weight</string>
     <string name="label_talla">Height</string>
     <string name="label_imc">BMI</string>
+    <string name="label_dosis_farmaco">Dose indicated (mg)</string>
+    <string name="label_dosis_presentacion_cantidad">Presentation (mg)</string>
+    <string name="label_dosis_presentacion_volumen">Presentation (ml)</string>
+    <string name="label_volumen_administrar">Volume to be administered</string>
     <string name="label_dosis_inotropicos">Dose (µg/kg/min)</string>
     <string name="label_volumen_infusion">Volume to infuse (ml)</string>
     <string name="label_cantidad_farmaco">Drug amount (mg)</string>
@@ -69,6 +74,7 @@
     <string name="label_velocidad">Rate</string>
     <string name="label_resultado">Result</string>
     <string name="label_fecha_parto">First day of last menstrual period:</string>
+    <string name="label_fpp">PDD</string>
     <string name="label_glasgow_ocular">Eye opening</string>
     <string name="label_glasgow_verbal">Best verbal response</string>
     <string name="label_glasgow_motora">Best motor response</string>
@@ -120,14 +126,16 @@
 
     <string name="title_activity_none">*</string>
     <string name="test">test</string>
+    <string name="yes">Yes</string>
+    <string name="not">No</string>
 
-
-    <string name="descripcion_imc">BMI is calculated based on the formula of Adolphe Quetelet, recommended by WHO.\n\nInterpretación:\nBajo peso:\t &lt; 18.5\nNormal:\t18.5 - 24.99\nSobrepeso:\t25.0 - 29.99\nObesidad leve:\t30.0 - 34.99\nObesidad moderada:\t35.0 - 39.99\nObesidad mórbida:\t&gt;= 40.0</string>
+    <string name="descripcion_imc">BMI is calculated based on the formula of Adolphe Quetelet, recommended by WHO.\n\nInterpretation:\nLow weight:\t &lt; 18.5\nNormal:\t18.5 - 24.99\nOverweight:\t25.0 - 29.99\nMild Obesity:\t30.0 - 34.99\nModerate Obesity:\t35.0 - 39.99\nMorbid Obesity:\t&gt;= 40.0</string>
     <string name="descripcion_sc_ninos">Body surface is calculated using the formula of Haycock.</string>
     <string name="descripcion_sc_adultos">Body surface is calculated using the formula of Mollester.</string>
     <string name="descripcion_velocidad_goteo">This formula calculates the infusion rate of infusion according to the volume to be infused and the time in hours.\nIt is considered 1ml = 20 gtts.</string>
     <string name="descripcion_volumen_infusion">This formula calculates the total volume to be infused by the dropping rate and the time in hours.\nIt is considered 1ml = 20 gtts.</string>
     <string name="descripcion_tiempo_infusion">This formula calculates the total infusion time as the total volume to be infused and the dropping rate.\nIt is considered 1ml = 20 gtts.</string>
+    <string name="descripcion_dosis_farmaco">This formula calculates the volume to be administered in a vial of a medicament according to the indicated dose.\n</string>
     <string name="descripcion_volumen_farmacos_uci">The total volume of a preparation is calculated for 1µg/kg/min of drug per 1cc of preparation, according to patient\'s weight.\nThis is very useful because numerically match the recommended dose (µg/kg/min) with the infusion rate (ml/hr).\nThat is, if we want a dose of 3µg/kg/min, then infuse to 3ml/hour; allowing you to quickly implement changes in the indication.\nThe drug amount indicates the mg will be prepared.\n</string>
     <string name="descripcion_conversion_soluciones">This formula indicates the required volumes of the base solutions needed for prepare the target solution.\n\n</string>
     <string name="descripcion_farmacos_uci">This formula calculates the rate of infusion of a preparation in a given volume of solution, according to a prescribed dose. \n\nThe drug amount indicates the mg. that they are in preparation.\nThe total volume includes the volume of the diluent and the drug solution.\n</string>
@@ -204,11 +212,12 @@
     <string name="rass_no_estimulable">Unarousable</string>
 
     <!--Cadenas de ramsay  -->
-    <string name="ramsay_despierto">Awake</string>
+    <string name="ramsay_despierto">Awake:</string>
     <string name="ramsay_ansioso">Anxious and agitated or restless, or both</string>
     <string name="ramsay_tranquilo">Cooperative, orientated and calm</string>
     <string name="ramsay_solo_ordenes">Responds to commands only\n\n</string>
-    <string name="ramsay_estimulo_auditivo">Asleep: light glabellar tap or loud auditory stimulus</string>
+    <string name="ramsay_estimulo_auditivo1">Asleep(*):</string>
+    <string name="ramsay_estimulo_auditivo2">(*)Light glabellar tap or loud auditory stimulus</string>
     <string name="ramsay_respuesta_energica">Brisk response to stimulus</string>
     <string name="ramsay_respuesta_lenta">Sluggish response to stimulus</string>
     <string name="ramsay_no_responde">No response</string>
@@ -233,7 +242,7 @@
     <string name="opc_apgarfam_casinunca">Rarely</string>
     <string name="opc_apgarfam_aveces">Sometimes</string>
     <string name="opc_apgarfam_casisiempre">Almost always</string>
-    <string name="apgarfam_pregunta1">ADAPTATION: I am satisfied that I can turn to my family for help something is troubling me.</string>
+    <string name="apgarfam_pregunta1">ADAPTATION: I am satisfied that I can turn to my family for help something is troubling me.> </string>
     <string name="apgarfam_pregunta2">PARTNERSHIP: I am satisfied with the way my family talks on things with me and shares problems with me.</string>
     <string name="apgarfam_pregunta3">GROWTH: I am satisfied that my family accepts and supports my wishes to take on new activities or directions.</string>
     <string name="apgarfam_pregunta4">AFFECTION: I am satisfied with the way my family expresses affection and responds to my emotion such as anger, sorrow and love.</string>

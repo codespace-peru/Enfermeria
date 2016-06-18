@@ -20,7 +20,7 @@ class Tools {
     }
 
 
-    public static double FarenheitToCentigrados (double farenheit)
+   /* public static double FarenheitToCentigrados (double farenheit)
     {
         double centigrados;
         centigrados = (farenheit-32)/1.8;
@@ -34,7 +34,7 @@ class Tools {
         farenheit = centigrados*1.8 + 32;
         farenheit = round(farenheit,2);
         return  farenheit;
-    }
+    }*/
 
     public static double InchesToCentimetros(double inches)
     {

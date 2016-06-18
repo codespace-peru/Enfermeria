@@ -27,8 +27,8 @@
     <string name="scale_rass_title">Escala RASS de Sedação</string>
     <string name="score_sofa_title">Escore Sofa</string>
     <string name="score_apache_title">Escore Apache</string>
-    <string name="scale_norton_title">Escala de Norton Modificado</string>
-    <string name="scale_downton_title">Escala de Riesgo de Caídas de Downton</string>
+    <string name="scale_norton_title">Escala Norton Modificada</string>
+    <string name="scale_downton_title">Escala Downton</string>
     <string name="scale_barthel_title">Índice de Barthel</string>
     <string name="test_apgar_title">Teste de Apgar</string>
     <string name="test_silverman_title">Teste de Silverman-Andersen</string>
@@ -42,6 +42,7 @@
     <string name="formula_velocidad_goteo_title">Velocidade de Gotejamento</string>
     <string name="formula_volumen_infusion_title">Volume de Infusão</string>
     <string name="formula_tiempo_infusion_title">Tempo de Infusão</string>
+    <string name="formula_dosis_farmacos_title">Dose Drogas</string>
     <string name="formula_velocidad_inotropicos_title">Velocidad de Infusão: Inotrópicos</string>
     <string name="formula_volumen_inotropicos_title">Volume Total de Infusão: Inotrópicos</string>
     <string name="formula_fecha_parto_title">Data Provável do Parto</string>
@@ -56,6 +57,10 @@
     <string name="label_peso_paciente">Peso do paciente</string>
     <string name="label_talla">Estatura</string>
     <string name="label_imc">IMC</string>
+    <string name="label_dosis_farmaco">Dose indicada (mg)</string>
+    <string name="label_dosis_presentacion_cantidad">Apresentação (mg)</string>
+    <string name="label_dosis_presentacion_volumen">Apresentação (ml)</string>
+    <string name="label_volumen_administrar">Volume a ser administrado</string>
     <string name="label_dosis_inotropicos">Dose (µg/kg/min)</string>
     <string name="label_volumen_infusion">Volume de infusão (ml)</string>
     <string name="label_cantidad_farmaco">Quantidade de medicamento (mg)</string>
@@ -70,6 +75,7 @@
     <string name="label_velocidad">Velocidade</string>
     <string name="label_resultado">Resultado</string>
     <string name="label_fecha_parto">Data do primeiro dia do último período:</string>
+    <string name="label_fpp">DPP</string>
     <string name="label_glasgow_ocular">Abertura ocular</string>
     <string name="label_glasgow_verbal">Resposta verbal</string>
     <string name="label_glasgow_motora">Resposta motora</string>
@@ -121,9 +127,10 @@
     <string name="descripcion_velocidad_goteo">Esta fórmula calcula a velocidade de gotejamento de acordo com o volume a ser infundido e o tempo em horas.\nE considerado 1ml = 20 gotas.</string>
     <string name="descripcion_volumen_infusion">Esta fórmula calcula o volume total a ser infundido de acordo com a velocidade de gotejamento e o tempo em horas.\nE considerado 1ml = 20 gotas.</string>
     <string name="descripcion_tiempo_infusion">Esta fórmula calcula o tempo total de infusão de acordo com o volume total de infusão e a velocidade de gotejamento.\nE considerado 1ml = 20 gotas.</string>
+    <string name="descripcion_dosis_farmaco">Esta fórmula calcula o volume a ser administrado de uma ampola de um medicamento de acordo com a dose prescrita.\n</string>
     <string name="descripcion_volumen_farmacos_uci">É calcula o volume total de uma preparação para obter 1µg/kg/min de medicamento por cada 1cc de preparação, de acordo com o peso do paciente.\nIsto é muito útil porque numéricamente coincide a dose recomendada (µg/kg/min) com a velocidade de infusão (ml/hora).\nOu seja, se a dose desejada é 3µg/kg/min vai ser infundido a 3ml/hora; permitindo implementar rapidamente mudanças na indicação.\nO quantidade de medicamento indica a mg. a ser preparado.\n</string>
     <string name="descripcion_conversion_soluciones">Esta fórmula indica as quantidades necessárias das soluções base que precisam para obter a solução a preparar.\n\n</string>
-    <string name="descripcion_farmacos_uci">Esta fórmula calcula a velocidade de infusão de uma preparação num dado volume de soluçãao, dada uma dose recomendada. \n\nO quantidade de medicamento indica a mg. a ser preparado.\nO volume total inclui o volume da solução de diluente e o medicamento a preparar.\n</string>
+    <string name="descripcion_farmacos_uci">Esta fórmula calcula a velocidade de infusão de uma preparação num dado volume de soluçãao, dada uma dose prescrita.\n\nO quantidade de medicamento indica a mg. a ser preparado.\nO volume total inclui o volume da solução de diluente e o medicamento a preparar.\n</string>
     <string formatted="false" name="descripcion_apache">APACHE II (Acute Physiology And Chronic Health Evaluation) é um score que avalia o prognóstico de morte de um paciente na UTI.\n\nPontuação - Mortalidade:\n0 - 4 : 4%\n5 - 9 : 8%\n10-14 : 15%\n15-19 : 25%\n20-24 : 40%\n25-29 : 55%\n30-34 : 75%\n >= 35 : 85%\n</string>
     <string formatted="false" name="descripcion_fecha_parto">Ele é calculado por meio da fórmula de Naegele, recomendada pela OMS.</string>
     <string formatted="false" name="descripcion_scale_rass">Richmond Agitation Sedation Scale (RASS) é uma escala usada para medir o nível de agitação ou sedação de um paciente.\nÉ amplamente utilizada em pacientes ventilados mecanicamente.\n</string>
@@ -150,6 +157,8 @@
 
     <string name="title_activity_none">*</string>
     <string name="test">test</string>
+    <string name="yes">Sim</string>
+    <string name="not">Não</string>
 
 
     <!--Cadenas de los spinners  -->
@@ -205,11 +214,12 @@
     <string name="rass_no_estimulable">Não desperta</string>
 
     <!--Cadenas de ramsay  -->
-    <string name="ramsay_despierto">Acordado</string>
+    <string name="ramsay_despierto">Acordado:</string>
     <string name="ramsay_ansioso">Ansioso/agitado</string>
     <string name="ramsay_tranquilo">Tranqüilo, colaborador</string>
     <string name="ramsay_solo_ordenes">Responde apenas a comandos\n\n</string>
-    <string name="ramsay_estimulo_auditivo">Adormecido: Estímulo sonoro ou glabelar</string>
+    <string name="ramsay_estimulo_auditivo1">Adormecido(*):</string>
+    <string name="ramsay_estimulo_auditivo2">Estímulo sonoro ou glabelar</string>
     <string name="ramsay_respuesta_energica">Responde rapidamente</string>
     <string name="ramsay_respuesta_lenta">Responde lentamente</string>
     <string name="ramsay_no_responde">Sem resposta</string>

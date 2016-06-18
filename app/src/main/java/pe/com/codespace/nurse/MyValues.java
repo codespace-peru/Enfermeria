@@ -16,9 +16,13 @@ final class MyValues {
     public final static String SISTEMA_METRICO = "Metrico";
     public final static String SISTEMA_INGLES = "Ingles";
 
+    public final static String TIPO_ESCALAS = "Escala";
+    public final static String TIPO_FORMULAS = "Formula";
+
 
     public final static int ESCALAS = 1;
     public final static int FORMULAS = 2;
+
     public static final int GLASGOW=131;
     public static final int RASS=10001;
     public static final int RAMSAY=10002;
@@ -39,11 +43,13 @@ final class MyValues {
     public static final int SC_ADULTOS=214;
     public static final int CONVERSIONDEXTROSA=221;
     public static final int CONVERSIONCLORURO=222;
+
     public static final int VELOCIDADGOTEO=223;
     public static final int VOLUMENINFUSION=224;
     public static final int TIEMPOINFUSION=225;
     public static final int GOTEO_FARMACOS_UCI=231;
     public static final int VOLUMEN_FARMACOS_UCI=232;
+    public static final int DOSIS_FARMACOS=233;
     public static final int FPP=241;
     public static final int REGLATRES=251;
 }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,19 +39,21 @@ public class Input4ParametrosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_input4param);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
-        setContentView(R.layout.activity_input4param);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sistema_metrico_flag = PrefSingleton.getInstance().getPreference(MyValues.SISTEMA_METRICO,true);
 
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewResultado2 = (TextView) findViewById(R.id.tvResultado2);
         textViewDescription = (TextView) findViewById(R.id.tvDescription);
-        TextView tvTitleFormula = (TextView) findViewById(R.id.tvTitleFormula);
         TextView tvParam1 = (TextView) findViewById(R.id.tvInput1);
         TextView tvParam2 = (TextView) findViewById(R.id.tvInput2);
         TextView tvParam3 = (TextView) findViewById(R.id.tvInput3);
@@ -60,11 +63,11 @@ public class Input4ParametrosActivity extends AppCompatActivity {
         editText3 = (EditText) findViewById(R.id.etInput3);
         editText4 = (EditText) findViewById(R.id.etInput4);
         Intent intent = getIntent();
-        tipo = intent.getExtras().getInt("formula");
+        tipo = intent.getExtras().getInt(TIPO_FORMULAS);
 
         switch (tipo){
             case GOTEO_FARMACOS_UCI:
-                tvTitleFormula.setText(getResources().getString(R.string.formula_velocidad_inotropicos_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_velocidad_inotropicos_title));
                 tvParam1.setText(getResources().getString(R.string.label_dosis_inotropicos) + ":");
                 if(sistema_metrico_flag){
                     tvParam2.setText(getResources().getString(R.string.label_peso_paciente) + " (" + MyValues.MASA_METRICO + "):");

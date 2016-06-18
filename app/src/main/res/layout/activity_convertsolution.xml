@@ -4,38 +4,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
-    <LinearLayout
-        android:id="@+id/ll_1"
+    <include android:id="@+id/myToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvTitleFormula1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/height_padding_title"
-            android:paddingTop="@dimen/height_padding_title"
-            android:textStyle="bold"
-            android:text="@string/test"
-            android:gravity="center"
-            android:textSize="@dimen/title_main"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/view_color"/>
-
-    </LinearLayout>
+        android:layout_alignParentTop="true"
+        layout="@layout/toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_1"
-        android:paddingLeft="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/myToolbar"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingRight="@dimen/padding_medium"
         android:layout_above="@+id/adViewConvertSolution">
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,38 +31,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:textColor="@color/text_color1"
-                android:textSize="@dimen/text_size1"/>
+                android:paddingTop="@dimen/padding_medium"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/textsize_xmedium"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:paddingTop="@dimen/padding_medium"
+                android:weightSum="3">
                 <TextView
                     android:id="@+id/tvTargetVolumen"
                     android:textStyle="bold"
                     android:text="@string/test"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/text_size2"/>
+                    android:layout_weight="2"
+                    android:textSize="@dimen/textsize_xmedium"/>
 
                 <EditText
                     android:id="@+id/etInput1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:inputType="numberDecimal"
                     android:background="@color/blanco"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:gravity="center"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:maxLength="4"
-                    android:layout_marginRight="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:padding="@dimen/padding_small"/>
             </LinearLayout>
 
             <TextView
@@ -87,9 +73,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:gravity="center_horizontal"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 />
 
             <Spinner
@@ -105,9 +91,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:gravity="center_horizontal"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 />
 
             <Spinner
@@ -123,9 +109,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:gravity="center_horizontal"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 />
 
             <Spinner
@@ -140,10 +126,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:gravity="center_horizontal"
-                android:textColor="@color/text_color1"
-                android:textSize="@dimen/text_size3"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/textsize_large"
                 android:textStyle="bold"
                 android:visibility="invisible"/>
 
@@ -152,10 +138,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:gravity="center_horizontal"
-                android:textColor="@color/text_color1"
-                android:textSize="@dimen/text_size3"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/textsize_large"
                 android:visibility="gone"
                 android:textStyle="bold"/>
         </LinearLayout>

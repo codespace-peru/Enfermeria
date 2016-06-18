@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         }
 
         PrefSingleton.getInstance().Initialize(getApplicationContext());
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
             TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            tv.setTextSize(20);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textsize_xlarge));
         }
 
         myExpand = (ExpandableListView) findViewById(R.id.myExpandListEscalas);
@@ -102,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 myAdapter = new AdapterExpandableList(getApplicationContext(), listDataHeader, listDataChild);
                 myExpand.setAdapter(myAdapter);
-                myExpand.setGroupIndicator(null);
                 myExpand.setOnGroupClickListener(onGroupClick);
                 myExpand.setOnChildClickListener(onChildClick);
 
@@ -116,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        myExpand.setOnGroupClickListener(onGroupClick);
-
         onChildClick = new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView eListView, View view, int groupPosition, int childPosition, long id) {
@@ -129,23 +131,23 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+1){
                                     case 1://Glasgow
                                         intent = new Intent(getApplicationContext(),Escala3ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",GLASGOW);
+                                        intent.putExtra(TIPO_ESCALAS,GLASGOW);
                                         break;
                                     case 2://Ramsay
                                         intent = new Intent(getApplicationContext(),EscalaNoParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",RAMSAY);
+                                        intent.putExtra(TIPO_ESCALAS,RAMSAY);
                                         break;
                                     case 3://RASS
                                         intent = new Intent(getApplicationContext(),EscalaNoParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",RASS);
+                                        intent.putExtra(TIPO_ESCALAS,RASS);
                                         break;
                                     case 4://SOFA
                                         intent = new Intent(getApplicationContext(),Escala6ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",SOFA);
+                                        intent.putExtra(TIPO_ESCALAS,SOFA);
                                         break;
                                     case 5://APACHE
                                         intent = new Intent(getApplicationContext(),ApacheActivity.class);
-                                        intent.putExtra("numeroEscala",APACHE);
+                                        intent.putExtra(TIPO_ESCALAS,APACHE);
                                         break;
                                 }
                                 startActivity(intent);
@@ -154,15 +156,15 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+1){
                                     case 1://Norton
                                         intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",NORTON);
+                                        intent.putExtra(TIPO_ESCALAS,NORTON);
                                         break;
                                     case 2://Downton
                                         intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",DOWNTON);
+                                        intent.putExtra(TIPO_ESCALAS,DOWNTON);
                                         break;
                                     case 3://Barthel
                                         intent = new Intent(getApplicationContext(),Escala10ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",BARTHEL);
+                                        intent.putExtra(TIPO_ESCALAS,BARTHEL);
                                         break;
                                 }
                                 startActivity(intent);
@@ -171,11 +173,11 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+1){
                                     case 1://Test de Apgar
                                         intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",APGAR);
+                                        intent.putExtra(TIPO_ESCALAS,APGAR);
                                         break;
                                     case 2://Test de Silverman
                                         intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",SILVERMAN);
+                                        intent.putExtra(TIPO_ESCALAS,SILVERMAN);
                                         break;
                                 }
                                 startActivity(intent);
@@ -184,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+1){
                                     case 1://Apgar Familiar
                                         intent = new Intent(getApplicationContext(),Escala5ParametrosActivity.class);
-                                        intent.putExtra("numeroEscala",APGAR_FAM);
+                                        intent.putExtra(TIPO_ESCALAS,APGAR_FAM);
                                         break;
                                 }
                                 startActivity(intent);
@@ -197,22 +199,22 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+1){
                                     case 1:
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",IMC);
+                                        intent.putExtra(TIPO_FORMULAS,IMC);
                                         startActivity(intent);
                                         break;
                                     case 2:
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",PERDIDAS);
+                                        intent.putExtra(TIPO_FORMULAS,PERDIDAS);
                                         startActivity(intent);
                                         break;
                                     case 3:
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",SC_NINOS);
+                                        intent.putExtra(TIPO_FORMULAS,SC_NINOS);
                                         startActivity(intent);
                                         break;
                                     case 4:
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",SC_ADULTOS);
+                                        intent.putExtra(TIPO_FORMULAS,SC_ADULTOS);
                                         startActivity(intent);
                                         break;
                                 }
@@ -221,42 +223,47 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+8){
                                     case 8:// Conversion Dextrosa
                                         intent = new Intent(getApplicationContext(), InputConvertSolutionActivity.class);
-                                        intent.putExtra("formula",CONVERSIONDEXTROSA);
+                                        intent.putExtra(TIPO_FORMULAS,CONVERSIONDEXTROSA);
                                         startActivity(intent);
                                         break;
                                     case 9:// Conversion Cloruro
                                         intent = new Intent(getApplicationContext(), InputConvertSolutionActivity.class);
-                                        intent.putExtra("formula",CONVERSIONCLORURO);
+                                        intent.putExtra(TIPO_FORMULAS,CONVERSIONCLORURO);
                                         startActivity(intent);
                                         break;
                                     case 10:// Velocidad de Goteo
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",VELOCIDADGOTEO);
+                                        intent.putExtra(TIPO_FORMULAS,VELOCIDADGOTEO);
                                         startActivity(intent);
                                         break;
                                     case 11:// Velocidad de Goteo
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",VOLUMENINFUSION);
+                                        intent.putExtra(TIPO_FORMULAS,VOLUMENINFUSION);
                                         startActivity(intent);
                                         break;
                                     case 12:// Velocidad de Goteo
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",TIEMPOINFUSION);
+                                        intent.putExtra(TIPO_FORMULAS,TIEMPOINFUSION);
                                         startActivity(intent);
                                         break;
                                 }
 
                                 break;
-                            case 2://Fórmulas para Fármacos en UCI
+                            case 2://Fórmulas Preparación Medicamentos
                                 switch (childPosition+15){
-                                    case 15:// Calculo de Dopamina y Dobutamina
-                                        intent = new Intent(getApplicationContext(), Input4ParametrosActivity.class);
-                                        intent.putExtra("formula",GOTEO_FARMACOS_UCI); // Empieza en el 15
+                                    case 15://Calculo de Dosis Medicamento
+                                        intent = new Intent(getApplicationContext(), Input3ParametrosActivity.class);
+                                        intent.putExtra(TIPO_FORMULAS,DOSIS_FARMACOS); // Empieza en el 15
                                         startActivity(intent);
                                         break;
-                                    case 16:// Cálculo del Volumen total Dopamina y Dobutamina
+                                    case 16:// Calculo de Dopamina y Dobutamina
+                                        intent = new Intent(getApplicationContext(), Input4ParametrosActivity.class);
+                                        intent.putExtra(TIPO_FORMULAS,GOTEO_FARMACOS_UCI); // Empieza en el 15
+                                        startActivity(intent);
+                                        break;
+                                    case 17:// Cálculo del Volumen total Dopamina y Dobutamina
                                         intent = new Intent(getApplicationContext(), Input2ParametrosActivity.class);
-                                        intent.putExtra("formula",VOLUMEN_FARMACOS_UCI);
+                                        intent.putExtra(TIPO_FORMULAS,VOLUMEN_FARMACOS_UCI);
                                         startActivity(intent);
                                         break;
                                 }
@@ -265,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+22){
                                     case 22:// Fecha Probable de Parto
                                         intent = new Intent(getApplicationContext(), FechasActivity.class);
-                                        intent.putExtra("formula",FPP); // Empieza en el 22
+                                        intent.putExtra(TIPO_FORMULAS,FPP); // Empieza en el 22
                                         startActivity(intent);
                                         break;
                                     case 23:
@@ -276,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
                                 switch (childPosition+29){
                                     case 29:// Regla de tres
                                         intent = new Intent(getApplicationContext(), RegladetresActivity.class);
-                                        intent.putExtra("formula",REGLATRES); // Empieza en el 29
+                                        intent.putExtra(TIPO_FORMULAS,REGLATRES); // Empieza en el 29
                                         startActivity(intent);
                                         break;
                                     case 30:
@@ -290,7 +297,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        myExpand.setOnGroupClickListener(onGroupClick);
         myExpand.setOnChildClickListener(onChildClick);
+
     }
 
 
@@ -358,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //Hijos del Tercer Padre
                 child = new ArrayList<>();
+                child.add(getResources().getString(R.string.formula_dosis_farmacos_title)); //tipo=15
                 child.add(getResources().getString(R.string.formula_velocidad_inotropicos_title)); //tipo=15
                 child.add(getResources().getString(R.string.formula_volumen_inotropicos_title)); //tipo=16
                 listDataChild.put(listDataHeader.get(2), child);

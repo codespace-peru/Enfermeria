@@ -2,10 +2,9 @@ package pe.com.codespace.nurse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -23,28 +22,83 @@ import com.google.android.gms.analytics.Tracker;
 
 public class ApacheActivity extends AppCompatActivity {
 
-    TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textView6, textView7, textView8, textView9, textView10, textView11, textView12,textView13, textView14, textViewNotas;
-    TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5, textViewItemEscala6, textViewItemEscala7, textViewItemEscala8,textViewItemEscala9, textViewItemEscala10, textViewItemEscala11, textViewItemEscala12, textViewItemEscala13, textViewItemEscala14;
-    Spinner dropdownItem1,dropdownItem2,dropdownItem3,dropdownItem4,dropdownItem5,dropdownItem6,dropdownItem7,dropdownItem8,dropdownItem9,dropdownItem10, dropdownItem11,dropdownItem12,dropdownItem13,dropdownItem14;
-    int Param1, Param2, Param3, Param4, Param5, Param6, Param7, Param8, Param9, Param10, Param11, Param12, Param13, Param14;
-    String[] items1, items2, items3, items4, items5, items6, items7, items8, items9, items10, items11, items12, items13, items14;
+    private TextView textViewResultado;
+    private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
+    private TextView textView4;
+    private TextView textView5;
+    private TextView textView6;
+    private TextView textView7;
+    private TextView textView8;
+    private TextView textView9;
+    private TextView textView10;
+    private TextView textView11;
+    private TextView textView12;
+    private TextView textView13;
+    private TextView textView14;
+    private TextView textViewNotas;
+    private TextView textViewItemEscala1;
+    private TextView textViewItemEscala2;
+    private TextView textViewItemEscala3;
+    private TextView textViewItemEscala4;
+    private TextView textViewItemEscala5;
+    private TextView textViewItemEscala6;
+    private TextView textViewItemEscala7;
+    private TextView textViewItemEscala8;
+    private TextView textViewItemEscala9;
+    private TextView textViewItemEscala10;
+    private TextView textViewItemEscala11;
+    private TextView textViewItemEscala12;
+    private TextView textViewItemEscala13;
+    private TextView textViewItemEscala14;
+    private Spinner dropdownItem5;
+    private Spinner dropdownItem14;
+    int Param1;
+    int Param2;
+    int Param3;
+    int Param4;
+    int Param5;
+    int Param6;
+    int Param7;
+    int Param8;
+    int Param9;
+    int Param10;
+    int Param11;
+    private int Param12;
+    int Param13;
+    int Param14;
+    String[] items1;
+    String[] items2;
+    String[] items3;
+    String[] items4;
+    String[] items5;
+    String[] items6;
+    String[] items7;
+    String[] items8;
+    String[] items9;
+    private String[] items10;
+    String[] items11;
+    String[] items12;
+    String[] items13;
+    String[] items14;
     int[] items1Values, items2Values, items3Values, items4Values, items5Values, items6Values, items7Values, items8Values, items9Values, items10Values, items11Values, items12Values, items13Values, items14Values;
     Switch switch1, switch2, switch3;
     int numeroEscala;
     int FRA = 1; // indice para fallo renal agudo
-    //int A,B,C;
     String tipoEscala;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
-        }
         setContentView(R.layout.activity_apache);
-        numeroEscala = getIntent().getExtras().getInt("numeroEscala");
-        textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+        numeroEscala = getIntent().getExtras().getInt(TIPO_ESCALAS);
         textViewResultado = (TextView) findViewById(R.id.textViewResultadoEscala);
         textViewNotas = (TextView) findViewById(R.id.textViewEscalaNotas);
         textViewItemEscala1 = (TextView) findViewById(R.id.textViewItemEscala1);
@@ -75,23 +129,24 @@ public class ApacheActivity extends AppCompatActivity {
         textView12 = (TextView) findViewById(R.id.textViewVariable12);
         textView13 = (TextView) findViewById(R.id.textViewVariable13);
         textView14 = (TextView) findViewById(R.id.textViewVariable14);
-        dropdownItem1 = (Spinner) findViewById(R.id.spinnerVariable1);
-        dropdownItem2 = (Spinner) findViewById(R.id.spinnerVariable2);
-        dropdownItem3 = (Spinner) findViewById(R.id.spinnerVariable3);
-        dropdownItem4 = (Spinner) findViewById(R.id.spinnerVariable4);
+        Spinner dropdownItem1 = (Spinner) findViewById(R.id.spinnerVariable1);
+        Spinner dropdownItem2 = (Spinner) findViewById(R.id.spinnerVariable2);
+        Spinner dropdownItem3 = (Spinner) findViewById(R.id.spinnerVariable3);
+        Spinner dropdownItem4 = (Spinner) findViewById(R.id.spinnerVariable4);
         dropdownItem5 = (Spinner) findViewById(R.id.spinnerVariable5);
-        dropdownItem6 = (Spinner) findViewById(R.id.spinnerVariable6);
-        dropdownItem7 = (Spinner) findViewById(R.id.spinnerVariable7);
-        dropdownItem8 = (Spinner) findViewById(R.id.spinnerVariable8);
-        dropdownItem9 = (Spinner) findViewById(R.id.spinnerVariable9);
-        dropdownItem10 = (Spinner) findViewById(R.id.spinnerVariable10);
-        dropdownItem11 = (Spinner) findViewById(R.id.spinnerVariable11);
-        dropdownItem12 = (Spinner) findViewById(R.id.spinnerVariable12);
-        dropdownItem13 = (Spinner) findViewById(R.id.spinnerVariable13);
+        Spinner dropdownItem6 = (Spinner) findViewById(R.id.spinnerVariable6);
+        Spinner dropdownItem7 = (Spinner) findViewById(R.id.spinnerVariable7);
+        Spinner dropdownItem8 = (Spinner) findViewById(R.id.spinnerVariable8);
+        Spinner dropdownItem9 = (Spinner) findViewById(R.id.spinnerVariable9);
+        Spinner dropdownItem10 = (Spinner) findViewById(R.id.spinnerVariable10);
+        Spinner dropdownItem11 = (Spinner) findViewById(R.id.spinnerVariable11);
+        Spinner dropdownItem12 = (Spinner) findViewById(R.id.spinnerVariable12);
+        Spinner dropdownItem13 = (Spinner) findViewById(R.id.spinnerVariable13);
         dropdownItem14 = (Spinner) findViewById(R.id.spinnerVariable14);
         switch1 = (Switch) findViewById(R.id.switch1);
         switch2 = (Switch) findViewById(R.id.switch2);
         switch3 = (Switch) findViewById(R.id.switch3);
+
         prepararData(numeroEscala);
         textViewItemEscala1.setText(String.valueOf(Param1));
         textViewItemEscala2.setText(String.valueOf(Param2));
@@ -397,7 +452,7 @@ public class ApacheActivity extends AppCompatActivity {
                     dropdownItem5.setSelection(3);
                 } else {
                     textView5.setText("5. PaO2");
-                    items5 = new String[]{">70", "61 - 70", "56 - 60", "<56"};
+                    items5 = new String[]{"> 70", "61 - 70", "56 - 60", "< 56"};
                     items5Values = new int[]{0,1,3,4};
                     adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item1, items5);
                     dropdownItem5.setAdapter(adapter);
@@ -428,7 +483,9 @@ public class ApacheActivity extends AppCompatActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case APACHE:
-                textViewTitle.setText(getResources().getString(R.string.score_apache_title));
+                if(getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.score_apache_title));
+                }
                 textView1.setText(getResources().getString(R.string.apache_temp_rectal));
                 textView2.setText(getResources().getString(R.string.apache_pam));
                 textView3.setText(getResources().getString(R.string.apache_frec_cardiaca));
@@ -484,11 +541,6 @@ public class ApacheActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
     }
 
 }

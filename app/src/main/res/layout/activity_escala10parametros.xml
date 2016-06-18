@@ -4,34 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <include android:id="@+id/myToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_vertical_margin"
-        android:layout_above="@+id/adViewEscala10Param">
-
-        <TextView
-            android:id="@+id/textViewTitleEscala"
-            android:text="@string/test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/height_padding_title"
-            android:paddingTop="@dimen/height_padding_title"
-            android:textSize="@dimen/title_main"            
-            android:gravity="center"
-            android:textStyle="bold"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/view_color">
-        </View>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/toolbar"/>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingRight="@dimen/padding_medium"
+            android:layout_above="@+id/adViewEscala10Param"
+            android:layout_below="@+id/myToolbar"
             android:scrollbars="none">
 
         <LinearLayout
@@ -43,10 +28,10 @@
                 android:id="@+id/textViewVariable1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +48,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -73,10 +58,10 @@
                 android:id="@+id/textViewVariable2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +78,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -103,10 +88,10 @@
                 android:id="@+id/textViewVariable3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +108,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -133,10 +118,10 @@
                 android:id="@+id/textViewVariable4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +138,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -163,10 +148,10 @@
                 android:id="@+id/textViewVariable5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -183,7 +168,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -193,10 +178,10 @@
                 android:id="@+id/textViewVariable6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -213,7 +198,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -223,10 +208,10 @@
                 android:id="@+id/textViewVariable7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -243,7 +228,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -253,10 +238,10 @@
                 android:id="@+id/textViewVariable8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -273,7 +258,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -283,10 +268,10 @@
                 android:id="@+id/textViewVariable9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,7 +288,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -313,10 +298,10 @@
                 android:id="@+id/textViewVariable10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:textStyle="bold"
                 android:text="@string/test"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:paddingTop="@dimen/padding_medium"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -333,7 +318,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:text="@string/test"
-                    android:textSize="@dimen/text_size3"
+                    android:textSize="@dimen/textsize_xmedium"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -343,22 +328,20 @@
                 android:id="@+id/textViewResultadoEscala"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:textSize="@dimen/text_size3"
+                android:paddingTop="@dimen/padding_medium"
+                android:textSize="@dimen/textsize_large"
                 android:gravity="center"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textViewEscalaNotas"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/padding_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size2"
+                android:textSize="@dimen/textsize_xmedium"
                 android:visibility="gone"/>
         </LinearLayout>
         </ScrollView>
-    </LinearLayout>
-
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewEscala10Param"

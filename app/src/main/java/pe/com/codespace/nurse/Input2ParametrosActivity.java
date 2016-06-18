@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,29 +40,30 @@ public class Input2ParametrosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_input2param);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setIcon(R.drawable.ic_launcher);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
-        setContentView(R.layout.activity_input2param);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sistema_metrico_flag = PrefSingleton.getInstance().getPreference(MyValues.SISTEMA_METRICO,true);
 
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewResultado2 = (TextView) findViewById(R.id.tvResultado2);
         textViewDescription = (TextView) findViewById(R.id.tvDescription);
-        TextView tvTitleFormula = (TextView) findViewById(R.id.tvTitleFormula);
         TextView tvParam1 = (TextView) findViewById(R.id.tvInput1);
         TextView tvParam2 = (TextView) findViewById(R.id.tvInput2);
         editText1 = (EditText) findViewById(R.id.etInput1);
         editText2 = (EditText) findViewById(R.id.etInput2);
         Intent intent = getIntent();
-        tipo = intent.getExtras().getInt("formula");
+        tipo = intent.getExtras().getInt(TIPO_FORMULAS);
 
         switch (tipo){
             case IMC://IMC
-                tvTitleFormula.setText(getResources().getString(R.string.formula_imc_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_imc_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_imc_title));
                 if(sistema_metrico_flag){
                     tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
                     tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_METRICO + "):");
@@ -73,7 +75,8 @@ public class Input2ParametrosActivity extends AppCompatActivity {
                 descripcion= getResources().getString(R.string.descripcion_imc);
                 break;
             case PERDIDAS://Perdidas Insensibles
-                tvTitleFormula.setText(getResources().getString(R.string.formula_perdidas_insensibles_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_perdidas_insensibles_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_perdidas_insensibles_title));
                 if(sistema_metrico_flag){
                     tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
                 }
@@ -84,7 +87,8 @@ public class Input2ParametrosActivity extends AppCompatActivity {
                 descripcion="";
                 break;
             case SC_NINOS://SC en niños
-                tvTitleFormula.setText(getResources().getString(R.string.formula_superficie_corporal_ninos_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_superficie_corporal_ninos_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_superficie_corporal_ninos_title));
                 if(sistema_metrico_flag){
                     tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
                     tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_METRICO + "):");
@@ -96,7 +100,8 @@ public class Input2ParametrosActivity extends AppCompatActivity {
                 descripcion= getResources().getString(R.string.descripcion_sc_ninos);
                 break;
             case SC_ADULTOS://SC en adultos
-                tvTitleFormula.setText(getResources().getString(R.string.formula_superficie_corporal_adultos_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_superficie_corporal_adultos_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_superficie_corporal_adultos_title));
                 if(sistema_metrico_flag){
                     tvParam1.setText(getResources().getString(R.string.label_peso)  + " (" + MyValues.MASA_METRICO + "):");
                     tvParam2.setText(getResources().getString(R.string.label_talla) + " (" + MyValues.LONG_METRICO + "):");
@@ -108,25 +113,29 @@ public class Input2ParametrosActivity extends AppCompatActivity {
                 descripcion=getResources().getString(R.string.descripcion_sc_adultos);
                 break;
             case VELOCIDADGOTEO://Velocidad de Goteo
-                tvTitleFormula.setText(getResources().getString(R.string.formula_velocidad_goteo_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_velocidad_goteo_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_velocidad_goteo_title));
                 tvParam1.setText(getResources().getString(R.string.label_volumen_infusion) + ":");
                 tvParam2.setText(getResources().getString(R.string.label_numero_horas) + ":");
                 descripcion=getResources().getString(R.string.descripcion_velocidad_goteo);
                 break;
             case VOLUMENINFUSION://
-                tvTitleFormula.setText(getResources().getString(R.string.formula_volumen_infusion_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_volumen_infusion_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_volumen_infusion_title));
                 tvParam1.setText(getResources().getString(R.string.formula_velocidad_goteo_title) + " (gts/min): ");
                 tvParam2.setText(getResources().getString(R.string.label_numero_horas) + ":");
                 descripcion = getResources().getString(R.string.descripcion_volumen_infusion);
                 break;
             case TIEMPOINFUSION://
-                tvTitleFormula.setText(getResources().getString(R.string.formula_tiempo_infusion_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_tiempo_infusion_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_tiempo_infusion_title));
                 tvParam1.setText(getResources().getString(R.string.label_volumen_infusion) + ":");
                 tvParam2.setText(getResources().getString(R.string.formula_velocidad_goteo_title) + " (gts/min): ");
                 descripcion=getResources().getString(R.string.descripcion_tiempo_infusion);
                 break;
             case VOLUMEN_FARMACOS_UCI://
-                tvTitleFormula.setText(getResources().getString(R.string.formula_volumen_inotropicos_title));
+                //tvTitleFormula.setText(getResources().getString(R.string.formula_volumen_inotropicos_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_volumen_inotropicos_title));
                 if(sistema_metrico_flag){
                     tvParam1.setText(getResources().getString(R.string.label_peso_paciente)  + " (" + MyValues.MASA_METRICO + "):");
                 }

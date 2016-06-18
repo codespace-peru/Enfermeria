@@ -2,6 +2,7 @@ package pe.com.codespace.nurse;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.google.android.gms.analytics.Tracker;
 
 public class Escala6ParametrosActivity extends AppCompatActivity {
 
-    TextView textViewTitle,textViewResultado,textView1, textView2, textView3,textView4, textView5, textView6, textViewNotas;
+    TextView textViewResultado,textView1, textView2, textView3,textView4, textView5, textView6, textViewNotas;
     TextView textViewItemEscala1, textViewItemEscala2, textViewItemEscala3,textViewItemEscala4, textViewItemEscala5, textViewItemEscala6;
     Spinner dropdownItem1,dropdownItem2,dropdownItem3,dropdownItem4,dropdownItem5, dropdownItem6;
     int Param1, Param2, Param3, Param4, Param5, Param6;
@@ -33,12 +34,15 @@ public class Escala6ParametrosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escala6parametros);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
-        }
-        numeroEscala = getIntent().getExtras().getInt("numeroEscala");
 
-        textViewTitle = (TextView) findViewById(R.id.textViewTitleEscala);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+
+        numeroEscala = getIntent().getExtras().getInt(TIPO_ESCALAS);
         textViewResultado = (TextView) findViewById(R.id.textViewResultadoEscala);
         textViewNotas = (TextView) findViewById(R.id.textViewEscalaNotas);
         textViewItemEscala1 = (TextView) findViewById(R.id.textViewItemEscala1);
@@ -178,7 +182,9 @@ public class Escala6ParametrosActivity extends AppCompatActivity {
     private void prepararData(int tipo){
         switch (tipo){
             case SOFA:
-                textViewTitle.setText(getResources().getString(R.string.score_sofa_title));
+                if(getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.score_sofa_title));
+                }
                 textView1.setText(getResources().getString(R.string.label_sofa_respiracion));
                 textView2.setText(getResources().getString(R.string.label_sofa_coagulacion));
                 textView3.setText(getResources().getString(R.string.label_sofa_higado));

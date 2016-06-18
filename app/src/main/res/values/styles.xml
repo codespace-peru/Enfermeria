@@ -1,38 +1,58 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:background">@color/background</item>
 
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark</item>
+        <item name="colorAccent">@color/accentColor</item>
+    </style>
+
+    <style name="MyCustomToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/primaryText</item>
+        <item name="android:textColorSecondary">@color/secondaryText</item>
+    </style>
+
+    <style name="MyTitleTextStyle" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/textIcons</item>
+        <item name="android:textSize">@dimen/textsize_xlarge</item>
+    </style>
+
+    <style name="MyTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/primaryText</item>
     </style>
 
     <style name="SpinnerText1">
         <item name="android:layout_margin">0dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingBottom">@dimen/padding_medium</item>
+        <item name="android:paddingTop">@dimen/padding_medium</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
         <item name="android:shadowColor">#999999</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">-1</item>
         <item name="android:shadowRadius">0</item>
         <item name="android:spinnerMode">dialog</item>
-        <item name="android:textColor">@color/text_color1</item>
-        <item name="android:textSize">@dimen/text_size2</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
     </style>
 
     <style name="SpinnerText2">
         <item name="android:background">@drawable/background_spinner</item>
         <item name="android:layout_margin">0dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingBottom">@dimen/padding_medium</item>
+        <item name="android:paddingTop">@dimen/padding_medium</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
         <item name="android:shadowColor">#999999</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">-1</item>
         <item name="android:shadowRadius">0</item>
         <item name="android:spinnerMode">dialog</item>
-        <item name="android:textColor">@color/text_color1</item>
-        <item name="android:textSize">@dimen/text_size2</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
     </style>
 
 </resources>

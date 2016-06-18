@@ -1,13 +1,16 @@
 package pe.com.codespace.nurse;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
@@ -27,49 +30,57 @@ public class FechasActivity extends AppCompatActivity {
     Date fecha;
     String label1="", descripcion="";
     int tipo = -1;
-    DatePicker datePicker = null;
+    Button btnDate = null;
     TextView textViewResultado1 = null;
     TextView textViewLabel = null;
     TextView textViewDescription = null;
+    int mYear, mMonth, mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setIcon(R.drawable.ic_launcher);
-        }
         setContentView(R.layout.activity_fechas);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+
         textViewResultado1 = (TextView) findViewById(R.id.tvResultado1);
         textViewDescription = (TextView) findViewById(R.id.tvDescription);
         textViewLabel = (TextView) findViewById(R.id.tvLabel);
-        TextView textViewTitleFormula = (TextView) findViewById(R.id.tvTitleFormula);
+        btnDate = (Button) findViewById(R.id.btnDate);
+        final Calendar calendar = Calendar.getInstance();
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        btnDate.setText(mDay + " / " + mMonth + " / " + mYear);
 
-        datePicker = (DatePicker) findViewById(R.id.datePickerFechas);
-        Date hoy = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(hoy);
-
-        datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+        final DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                textViewResultado1.setVisibility(View.INVISIBLE);
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                mYear = year;
+                mMonth = month;
+                mDay = day;
+                btnDate.setText(day + " / " + month + " / " + year);
+            }
+        },mYear,mMonth,mDay);
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dpd.show();
             }
         });
 
-        calendar.add(Calendar.YEAR, 1);
-        datePicker.setMaxDate(calendar.getTimeInMillis());
-        calendar.add(Calendar.YEAR, -3);
-        datePicker.setMinDate(calendar.getTimeInMillis());
         Intent intent = getIntent();
-        tipo = intent.getExtras().getInt("formula");
-
-
-
+        tipo = intent.getExtras().getInt(TIPO_FORMULAS);
 
         switch (tipo){
             case FPP:
-                textViewTitleFormula.setText(getResources().getString(R.string.formula_fecha_parto_title));
+                getSupportActionBar().setTitle(getResources().getString(R.string.formula_fecha_parto_title));
                 textViewLabel.setText(getResources().getString(R.string.label_fecha_parto));
                 descripcion = getResources().getString(R.string.descripcion_fecha_parto);
                 textViewDescription.setText(descripcion);
@@ -102,15 +113,14 @@ public class FechasActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.action_calculate:
-                int dia = datePicker.getDayOfMonth();
-                int mes = datePicker.getMonth();
-                int anyo = datePicker.getYear();
-
+                int dia = mDay;
+                int mes = mMonth;
+                int anyo = mYear;
 
                 switch (tipo){
                     case FPP://Fecha Probable de Parto
                         fecha = Formulas.FechaProbabledeParto(dia, mes, anyo);
-                        label1 = getResources().getString(R.string.label_resultado);
+                        label1 = getResources().getString(R.string.label_fpp);
                         break;
                 }
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
@@ -121,7 +131,6 @@ public class FechasActivity extends AppCompatActivity {
                 if(getCurrentFocus()!=null){
                     inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
                 }
-
                 break;
             case R.id.action_clean:
                 textViewResultado1.setVisibility(View.INVISIBLE);

@@ -3,18 +3,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tvItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/height_padding_title"
-        android:paddingTop="@dimen/height_padding_title"
         android:gravity="center_vertical"
-        android:textColor="@color/text_color2"
+        android:paddingBottom="@dimen/padding_xmedium"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingTop="@dimen/padding_xmedium"
+        android:textColor="@color/secondaryText"
         android:text="@string/test"
-        android:ellipsize="end"
-        android:textSize="@dimen/text_item_title_size"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/textsize_large"/>
 </LinearLayout>

@@ -73,7 +73,6 @@ class AdapterExpandableList extends BaseExpandableListAdapter {
         }
         textView = (TextView) row.findViewById(R.id.tvGroup);
         textView.setText(_listHeader.get(groupPosition));
-        row.setPadding(10,0,0,0);
         return row;
     }
 
@@ -81,7 +80,6 @@ class AdapterExpandableList extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View view, ViewGroup viewGroup) {
         View row = view;
-        //ArrayList<String> child = (ArrayList<String>)_listChild.get(groupPosition);
         TextView textView;
         if(row == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -90,7 +88,6 @@ class AdapterExpandableList extends BaseExpandableListAdapter {
         textView = (TextView) row.findViewById(R.id.tvItem);
         String text = (String) getChild(groupPosition, childPosition);
         textView.setText(text);
-        row.setPadding(20,0,0,0);
         return row;
     }
 

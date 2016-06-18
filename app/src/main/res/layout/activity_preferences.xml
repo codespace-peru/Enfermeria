@@ -1,57 +1,50 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:text="@string/preferencias_title"
+    <include android:id="@+id/myToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/height_padding_title"
-        android:paddingBottom="@dimen/height_padding_title"
-        android:textSize="@dimen/title_main"
-        android:gravity="center"
-        android:textStyle="bold"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/view_color"
-        android:layout_height="2dp"/>
+        android:layout_alignParentTop="true"
+        layout="@layout/toolbar"/>
 
     <TextView
+        android:id="@+id/tvPrefChoose"
         android:text="@string/label_sistemas_medicion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:textSize="@dimen/text_size2"/>
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_below="@+id/myToolbar"
+        android:textSize="@dimen/textsize_large"/>
 
     <RadioGroup
         android:id="@+id/radioGroupSistemas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_below="@+id/tvPrefChoose">
 
         <RadioButton
             android:id="@+id/rdbMetrico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/padding_medium"
             android:text="@string/label_sistema_metrico"
-            android:textSize="@dimen/text_size2"/>
+            android:textSize="@dimen/textsize_xmedium"/>
 
         <RadioButton
             android:id="@+id/rdbIngles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/padding_medium"
             android:text="@string/label_sistema_ingles"
-            android:textSize="@dimen/text_size2"/>
-
+            android:textSize="@dimen/textsize_xmedium"/>
 
     </RadioGroup>
 
-
-
-</LinearLayout>
+</RelativeLayout>

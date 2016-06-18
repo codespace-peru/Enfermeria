@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/test"
-        android:paddingBottom="@dimen/height_padding_title"
-        android:paddingTop="@dimen/height_padding_title"
+        android:paddingBottom="@dimen/padding_xmedium"
+        android:paddingTop="@dimen/padding_xmedium"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:gravity="center_vertical"
-        android:textStyle="bold"
         android:textAllCaps="true"
-        android:textColor="@color/text_color1"
-        android:ellipsize="end"
-        android:textSize="@dimen/text_group_title_size"/>
+        android:textColor="@color/primaryText"
+        android:textSize="@dimen/textsize_large"/>
 </LinearLayout>
